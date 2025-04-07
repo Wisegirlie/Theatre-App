@@ -1,0 +1,59 @@
+.css-remove-styling {
+  cursor: auto;
+}
+
+.css-remove-styling:hover {
+  color: black;
+}
+
+.remove-margin {
+  margin: 0;
+}
+
+.css-event-description-text {
+  width: 400px;
+}
+
+.css-event-detail-div {
+  margin-left: 60px;
+}
+
+.css-margin-top-25px {
+  margin-top: 25px;
+}
+
+
+
+.css-reviews-div {
+  width: 600px;
+}
+
+
+.css-star-size {
+  height: 25px;
+  width: 25px;
+}
+
+.css-reviews-text-div {
+  margin-left: 20px;
+}
+
+.css-margin-top-10px{
+  margin-top: 10px;
+}
+
+.css-margin-bottom-10px{
+  margin-bottom: 10px;
+}
+
+.css-margin-bottom-0px{
+  margin-bottom: 0;
+}
+
+.css-margin-top-0px{
+  margin-top:0px;
+}
+
+.button-back-eventDetails {
+  margin-top: 20px !important;
+}

@@ -1,0 +1,28 @@
+.css-main {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .css-left-side{
+    flex: 1;    
+  }
+
+  .css-main-manage-events{
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+  }
+
+.css-rigth-side{    
+    display: flex;
+    align-items: start;
+    gap: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;    
+    
+}
+
+.dashbar-manageEvents {  
+  width: 228px;
+}

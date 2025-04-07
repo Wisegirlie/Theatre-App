@@ -1,0 +1,130 @@
+.css-flex {
+  display: flex;
+  margin-top: 30px;
+}
+
+.css-color-darkOrange {
+  color: #F15a24;
+}
+
+.css-dashboard-div {
+  margin-right: 100px;
+  text-align: left !important;
+}
+
+.css-color-lightOrange {
+  color: #eb9318
+}
+
+.css-color-darkGrey {
+  color: #676767;
+}
+
+.css-font-bold {
+  font-weight: bold;
+}
+
+.css-margin-none {
+  margin: 0;
+}
+
+
+.css-margin-bottom {
+  margin-bottom: 60px;
+}
+
+
+.css-align-baseline {
+  align-items: start;
+}
+
+.css-font-size {
+  font-size: 16px;
+  ;
+}
+
+/* =====================
+   Rounded dashes sizes
+   =====================*/
+
+.asset-rounded-dash {
+  width: 240px;
+  max-height: 11px;
+}
+.asset-rounded-dash-super {
+  width: 270px;
+  max-height: 11px;
+}
+
+
+/* =====================
+   Super user dashboard
+   =====================*/
+
+.super-data { 
+  display: block;
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 50px;
+}
+
+.super-options-container {
+  display: flex;
+  justify-items: left;
+  align-items: center;
+}
+
+.super-options {
+  width: 220px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.super-options-img-div {
+  display: block;
+  width: 120px;
+  height: 120px;    
+  margin-top: 20px;   
+  border-radius: 50%;
+  /* background-color: #F15a24; */
+  margin-bottom: 15px;   
+  object-fit: cover;
+  text-align: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.super-options-img {
+  width: 100%;
+  height: 100%; 
+  border-radius: 50%;
+}
+
+.super-options-img-div-ticket {  
+  display: block;
+  background-color: #CBCBCB;  
+  object-fit: contain;  
+}
+
+.super-options-img-ticket {
+  width: 85%;  
+  height: auto;     
+  position: absolute; 
+  top: 50%; 
+  left: 50%;   
+  transform: translate(-50%, -50%);
+  object-fit: cover; 
+}
+
+/* =====================
+         TICKETS 
+   =====================*/
+
+   

@@ -1,0 +1,81 @@
+.css-input{
+  background-color: #f2f2f2;
+  border: none;
+  height: 35px;
+  width: 220px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.css-input::placeholder{
+  color: #CBCBCB;
+  font-size:12px;
+  font-weight: bold;
+}
+
+.css-content{
+  text-align: center;
+  width: 400px;
+  padding-top: 100px;
+}
+
+
+.css-text-login{
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 18px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.css-text-user{
+  color:#CBCBCB;
+  padding-right: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.css-text-register{
+  color:var(--orange-main);
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;  
+}
+
+.css-text-register:hover{
+  text-decoration: none;
+  color:#f19124;
+}
+
+.css-newUser-div p{
+  margin: 0;
+  margin-top: 10px;
+}
+
+.login-user-icon{
+  margin-bottom: 12px;
+  margin-right: 0px;
+}
+
+.css-margin-bottom-30px{
+  margin-bottom: 30px;
+
+}
+
+.wrapper {
+  transform: scale(1.2); /* Adjust the scaling factor as needed */
+  transform-origin: center;
+}
+
+.css-input:focus{
+  border: 1.5px solid #FF891B;
+  background-color: white;
+  color: #1a1a1a;
+}
+
+.back-gray {
+  background-color: #222222;
+}

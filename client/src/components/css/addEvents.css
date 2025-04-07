@@ -1,0 +1,23 @@
+.css-textarea-description {
+  box-sizing: border-box;
+  resize: none;
+  width: 250px;
+  height: 150px;
+}
+
+.css-description-container {
+  display: inline;
+}
+
+.css-margin-left-50px{
+  margin-left: 50px;
+}
+
+.css-margin-top-25px{
+  margin-top: 25px;
+}
+
+.css-dashbarRounded{
+  width: 155px;
+  height: 10px;
+}

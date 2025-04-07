@@ -1,0 +1,65 @@
+h1 {
+  margin-top: 0px;
+  margin-bottom: 6px;
+}
+
+.css-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.css-img-div {
+  display: flex;
+  padding-top: 10px;
+}
+
+.css-event-cover {
+  height: 125px;
+  width: 225px;
+}
+
+.css-content-div {
+  width: 500px;
+  margin-left: 40px;
+}
+
+.css-button-detail {
+  background-color: black;
+  margin-right: 100px;
+  width: 160px;
+}
+
+.css-button-detail:hover {
+  background-color: rgb(95, 95, 95);
+}
+
+.css-button-purchase {
+  background-color: #F15A24;
+  width: 190px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.css-button-div {
+  display: flex;
+  margin: 10px;
+  margin-left: 0px;
+
+}
+
+.css-description {
+  margin-top: 0px;
+  margin-right: 0px;
+  width: 400px;
+}
+
+button {
+  margin-top: 9px  !important;
+  margin-bottom: 30px  !important;
+}
+
+.title-margin-bottom {
+  margin-bottom: 20px !important;
+}

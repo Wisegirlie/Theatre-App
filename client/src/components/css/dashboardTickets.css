@@ -1,0 +1,41 @@
+.css-tickets-info {
+  display: flex;
+  margin-bottom: 30px;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.css-ticketsPic-div {
+  width: 150px;
+}
+.css-tickets-pic {
+  margin-top: 5px;
+}
+
+.css-event-ticket-text {
+  color: #696969;
+  font-weight: bold;
+}
+
+.css-event-ticket-text:hover {
+  text-decoration: none;
+  cursor: auto;
+}
+
+
+.css-value-text {
+  color: black;
+  font-weight: bold;
+}
+
+.css-value-text:hover {
+  text-decoration: none;
+  cursor: auto;
+}
+
+
+
+.css-margin-top-none {
+  margin-top: 0;
+}
+

@@ -1,0 +1,144 @@
+  
+  .css-header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .css-header .css-logo {
+    margin-left: 20px;
+    font-size: 24px;
+  }
+
+  .css-ticket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    text-align: center;    
+  }
+
+  .css-header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .css-header nav ul li {
+    margin: 0 15px;
+  }
+  
+  .css-header nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .css-user-info {
+    margin-right: 20px;
+  }
+  
+  .css-purchase-detail {
+    padding: 20px;
+    
+  }
+  
+  .css-purchase-content {
+    display: flex;
+    align-items: start;
+    margin-top: 40px;
+  }
+  
+  .css-event-image {
+    max-width: 200px;
+    margin-right: 50px;
+    margin-top: 7px;
+  }
+  
+  .css-event-info {
+    max-width: 600px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #B8B8B8;
+    font-size: 12pt;
+  }
+  
+  
+  .css-title{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+    font-size: 24pt;
+    font-weight: bold;
+    margin-top: 0px;
+  }
+
+  .css-purchaseTicket{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #F15A24;
+    font-size: 34pt;
+    font-weight: bold;
+  }
+
+  .css-purchaseDescription{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+    font-size: 13pt;
+  }
+  .css-availableTickets{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4D4D4D;
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+
+
+  
+  .css-titulo {
+    font-size: 18px; 
+    font-weight: bold; 
+    margin-top: 50px;
+  }
+
+  
+  .css-ticket-controls {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 20px; 
+  }
+  
+  .css-button {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 5px;
+    align-items: center;
+  }
+  .css-ticket{
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+ 
+  .button-back-margint-top {
+    margin-top: 0px !important;
+  }

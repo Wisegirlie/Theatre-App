@@ -1,0 +1,57 @@
+.manage-tickets-container {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .sidebar {
+    /* width: 300px; */
+    padding: 0 20px;
+    margin-right: 40px;    
+  }
+  
+  
+  
+  .progress-bar {
+    height: 10px;
+    background: linear-gradient(to right, #ff5733, #ffa726);
+    border-radius: 5px;
+    margin: 5px 0 50px;
+    width: 234px;
+  }
+  
+  .tickets-list {
+    flex-grow: 1;
+    padding-left: 20px;
+  }
+  
+  .ticket-card {
+    display: flex;
+    align-items: start;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 25px;
+  }
+  
+  .ticket-image {
+    width: 65px;
+    height: auto;
+    margin: 20px 30px 0px 5px;
+    align-self: self-start;
+  }
+  
+  .ticket-info {
+    flex-grow: 1;
+    width: 300px;
+  }
+  
+  .ticket-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .dashbar-user-title {
+    width: 177px;
+  }

@@ -1,0 +1,60 @@
+.css-block {
+  display: block;
+}
+
+
+.css-black-bold {
+  color: black;
+  font-weight: bold;
+  margin-right: 30px;
+}
+
+.css-input-insert {
+  padding: 2px 10px;
+  width: 250px;
+  border-radius: 10px;
+  border: none;
+  height: 35px;
+  background-color:rgb(239, 239, 239);
+  outline: none;
+}
+
+.css-input-insert:focus {
+  border: 1.5px solid #f18424;
+  background-color: white;
+}
+
+.css-tickets-width{
+  width: 80px;
+}
+
+.css-button-width{
+  width: 150px;
+  height: 30px;
+
+}
+
+
+.css-margin-top-40px{
+  margin-top: 40px;
+}
+
+.css-margin-left-40px{
+  margin-left: 40px
+}
+
+.css-dashbar{
+  width: 95%;
+  height: auto;
+}
+
+.css-content-ticket{
+  padding-top: 40px;
+  width: 900px;
+  align-items:flex-start;
+  justify-content: space-around;
+}
+
+.css-margin-right-0{
+margin-right: 0px;
+}

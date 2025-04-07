@@ -1,0 +1,136 @@
+.css-flex {
+    display: flex;    
+  }
+
+  .css-dashboard-div {
+    margin-right: 100px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .css-color-lightOrange {
+    color: #eb9318
+  }
+  
+  .css-color-darkGrey {
+    color: #676767;
+  }
+  
+  .css-font-bold {
+    font-weight: bold;
+  }
+  
+  .css-margin-none {
+    margin: 0;
+  }
+  
+  
+  .css-margin-bottom {
+    margin-bottom: 80px;
+  }
+  
+  .css-margin-right-10 {
+    margin-right: 10px;
+  }
+
+  .css-flex-align {
+    align-items:start;
+  }
+  
+  .css-font-size {
+    font-size: 16px;
+    
+  }
+
+  .css-font-size-bigger {
+    font-size: 22px;
+    
+  }
+  
+  .css-tickets-info {
+    display: flex;
+    margin-bottom: 30px;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  
+  .css-ticketsPic-div {
+    width: 150px;
+  }
+  
+  .css-event-ticket-text {
+    color: #696969;
+    font-weight: bold;
+  }
+  
+  .css-event-ticket-text:hover {
+    text-decoration: none;
+    cursor: auto;
+  }
+  
+  
+  .css-value-text {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .css-value-text:hover {
+    text-decoration: none;
+    cursor: auto;
+  }
+    
+  .css-margin-top-none {
+    margin-top: 0;
+  }
+
+  .profile-user-icon {
+    height: 120px;    
+    margin-top: 20px;   
+
+  }
+
+ h3 {
+    margin-bottom: 10px;
+ }
+
+ .gray-text-medium-size {
+    font-size: 18px;
+    color: #696969;
+    margin-top: 60px;
+ }
+
+ .css-padding-top-30 {
+    padding-top: 10px;
+ }
+
+ #div-right {
+    display: inline-block;
+ }
+
+ #div-left {
+    display: inline-block;
+ }
+
+ #div-main {
+    margin: 40px;
+ }
+
+
+  .button-back {
+    margin-top: 50px !important;
+  }
+
+  .profile-card {
+    display: flex;
+    width: 80%;
+    align-items: start;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 30px;
+  }
+
+  .profile-title-div {
+    width: 250px;
+  }
