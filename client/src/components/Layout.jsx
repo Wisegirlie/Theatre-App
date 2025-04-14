@@ -5,9 +5,9 @@ import '../css/layout.css'
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="css-app">
+      <div className="app-container">
         <Header />
-        <main className="css-main-content">
+        <main className="main-container">
           <div >
             {children}
           </div>

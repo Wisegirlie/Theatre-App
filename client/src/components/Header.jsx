@@ -53,7 +53,7 @@ const Header = () => {
   return (
       <>
           <header>
-              <div className="header-container">
+              <div className="header-container container">
                   {/* logo */}
                   <div className="header-logo-container">
                       <Link to="/">
@@ -91,14 +91,14 @@ const Header = () => {
                   {/*   Sign out   */}
                   {isLogged && (
                       <>
-                          <div className="signout-div" onClick={handleSignOut}>
+                          <div className="signout-div" >
                               <div className="header-user-info">
                                   Hello,
                                   <span className="header-user-name">
                                       {user.name}
                                   </span>
                               </div>
-                              <img className="signout-logo" src={SignoutIcon} />
+                              <img className="header-signout-img" src={SignoutIcon} onClick={handleSignOut} alt='Sign Out button'/>
                           </div>
                       </>
                   )}
@@ -109,10 +109,10 @@ const Header = () => {
                                   Sign In
                               </Link>
                               <span className="signout-text" style={{marginRight: '3px', marginLeft: '3px'}}>/</span> 
-                              <Link to="/register" className="signout-text" style={{marginRight: '10px'}}>
+                              <Link to="/register" className="signout-text">
                                   Sign-up
                               </Link>
-                              <img className="signout-logo" src={userImg} />
+                              <img className="header-signout-img" src={userImg} />
                           </div>
                       </>
                   )}

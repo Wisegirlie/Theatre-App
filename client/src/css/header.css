@@ -1,3 +1,7 @@
+header {
+  background-color: #2d2d2d; 
+}
+
 .header-container {
   display: flex;
   flex-direction: row;
@@ -5,7 +9,9 @@
   height: 80px;  
   padding: 15px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-start;  
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* =====================
@@ -107,8 +113,7 @@ nav {
   .header-user-name{
     color: #ffffff;
     font-size: 16px;
-    font-weight: 500;
-    margin-right: 10px;
+    font-weight: 500;    
     margin-left: 8px;
   
   }
@@ -129,10 +134,11 @@ nav {
   font-size: 16px;
 }
 
-.signout-logo {
-  height: 26px;
+.header-signout-img {
+  height: 28px;
   cursor: pointer;  
   margin-right: 5px;
+  margin-left: 15px;
 }
 
 .signout-text {  
