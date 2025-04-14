@@ -1,13 +1,37 @@
-.css-footer-div {
+.footer-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
   padding: 35px;
-
+  justify-content: center;
+  align-items: center;
+  background-color: #000;  
 }
 
+.footer-logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
 
-.css-footer-img{
-  width: 200px;
-  height: 42px;
+.footer-logoImg{
+  width: 170px;  
+}
+
+.footer-networks-container {
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.fa-instagram::before, .fa-youtube-play::before, .fa-envelope::before {    
+  font-size: 19px;    
+  color: #fff5da;
+  padding: 0 3px;
+}
+
+.fa-instagram:hover::before,
+.fa-youtube-play:hover::before,
+.fa-envelope:hover::before
+{
+  color: #ffcd45;
 }

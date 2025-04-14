@@ -55,10 +55,10 @@ const Header = () => {
           <header>
               <div className="header-container">
                   {/* logo */}
-                  <div className="logo-container">
+                  <div className="header-logo-container">
                       <Link to="/">
                           <img
-                              className="logo-img"
+                              className="header-logo-img"
                               src={Logo}
                               alt="Theatre-App Logo"
                           />
