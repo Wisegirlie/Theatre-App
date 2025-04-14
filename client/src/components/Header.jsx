@@ -97,8 +97,9 @@ const Header = () => {
                                   <span className="header-user-name">
                                       {user.name}
                                   </span>
-                              </div>
+                              </div>                              
                               <img className="header-signout-img" src={SignoutIcon} onClick={handleSignOut} alt='Sign Out button'/>
+                              <span className='tooltip'>Sign out</span>
                           </div>
                       </>
                   )}
@@ -111,7 +112,7 @@ const Header = () => {
                               <span className="signout-text" style={{marginRight: '3px', marginLeft: '3px'}}>/</span> 
                               <Link to="/register" className="signout-text">
                                   Sign-up
-                              </Link>
+                              </Link>                              
                               <img className="header-signout-img" src={userImg} />
                           </div>
                       </>

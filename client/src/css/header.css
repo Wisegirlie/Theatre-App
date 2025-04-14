@@ -1,11 +1,13 @@
 header {
-  background-color: #2d2d2d; 
+  background-color: var(--background-gray); 
+  position: sticky;
+  position: -webkit-sticky; /* Safari */  
+  top: 0;
 }
 
 .header-container {
   display: flex;
-  flex-direction: row;
-  background-color: #2d2d2d;
+  flex-direction: row;  
   height: 80px;  
   padding: 15px;
   align-items: center;
@@ -150,6 +152,29 @@ nav {
 .signout-text:hover {
   color: #e0e0e0;
   text-decoration: underline;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;  
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  padding: 1px 5px;
+  border-radius: 5px;  
+  transform: translateX(90%);    
+  transition: 0.3s;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 100;
+}
+
+.header-signout-img:hover ~ .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(105%);    
 }
 
 /* ----------------- */

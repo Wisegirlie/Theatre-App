@@ -1,5 +1,5 @@
 footer {
-  background-color: #000;  
+  background-color: #000; 
 }
 
 .footer-container {
@@ -7,7 +7,6 @@ footer {
   padding: 35px;
   justify-content: center;
   align-items: center;
-  background-color: #000;    
   margin-left: auto;
   margin-right: auto;
 }
