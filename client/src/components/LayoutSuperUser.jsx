@@ -1,6 +1,6 @@
 import HeaderSuperUser from './HeaderSuperUser'
 import Footer from './Footer'
-import './css/layout.css'
+import '../css/layout.css'
 
 const LaypoutSuperUser = ({children}) => {
   return (

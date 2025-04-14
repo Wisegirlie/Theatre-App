@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DashBar from '../assets/dashboard-img/asset-dash-rounded.png';
 import UserIcon from '../assets/login-img/icon-user.png';
-import './css/manageUsers.css';
+import '../css/manageUsers.css';
 import { deleteUser, getAllUsers } from '../services/userServices';
 
 const ManageUsers = () => {

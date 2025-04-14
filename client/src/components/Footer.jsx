@@ -1,5 +1,5 @@
 import Logo from '../assets/footer-img/LOGO - Fusion Five horizontal.png'
-import './css/footer.css'
+import '../css/footer.css'
 
 
 

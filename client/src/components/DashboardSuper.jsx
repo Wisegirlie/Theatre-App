@@ -2,7 +2,7 @@ import DashBar from '../assets/dashboard-img/asset-dash-rounded.png'
 import iconUser from '../assets/profile-img/icon-user-for-profile.png'
 import EventImage from '../assets/events-img/event_photo_wicked_02.jpg'
 import TicketImage from '../assets/dashboard-img/asset-ticket.png'
-import './css/dashboard.css'
+import '../css/dashboard.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getUsersCount } from '../services/userServices.js';

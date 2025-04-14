@@ -1,6 +1,6 @@
 import DashBar from '../assets/dashboard-img/asset-dash-rounded.png';
 import DashboardTickets from './DashboardTickets';
-import './css/dashboard.css';
+import '../css/dashboard.css';
 import { useEffect, useState } from 'react';
 import { getUserEventsAndTickets } from '../services/ticketServices';
 

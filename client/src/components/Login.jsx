@@ -1,15 +1,17 @@
-import './css/login.css'
+import '../css/login.css'
 import UserIcon from '../assets/login-img/icon-user.png'
 import LockIcon from '../assets/login-img/icon-lock.png'
 import { useState } from 'react';
 import { SignIn } from '../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAppContext } from '../context/useAppContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { isLogged, setIsLogged } = useAppContext();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -20,14 +22,16 @@ const Login = () => {
     // }
 
     try {
-      console.log('attempting login with', email, password);
+      // console.log('attempting login with', email, password);
       const data = await SignIn(email, password);
-      console.log('Login successfully:', data);
+      // console.log('Login successfully:', data);
+      console.log('Login successfully');
       setError('')
+      setIsLogged(true);
       if (data.user.role === 1) {
-        navigate('/superDashboard');
+        navigate('/superDashboard');        
       } else if (data.user.role === 2) {
-        navigate('/my-dashboard');
+        navigate('/');
       }
     } catch (error) {
       setError(error.message)

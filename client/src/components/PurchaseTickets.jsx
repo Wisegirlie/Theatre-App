@@ -1,4 +1,4 @@
-import './css/purchaseTickets.css';
+import '../css/purchaseTickets.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getEventById, updateEventTickets } from '../services/eventServices';

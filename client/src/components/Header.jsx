@@ -1,34 +1,126 @@
-import './css/header.css'
+import '../css/header.css'
 import Logo from '../assets/header-img/LOGO-for-DARK-background.png'
-import HomeIcon from '../assets/header-img/icon-home.png'
-import { Link } from 'react-router-dom';
+import SignoutIcon from '../assets/header-img/icon-signout.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { signOut } from '../services/auth';
+import { useEffect, useState } from 'react';
+import { useAppContext } from '../context/useAppContext';
+import userImg from '../assets/profile-img/icon-user-for-profile.png';
 
 const Header = () => {
-  return (
-    <>
-      <header>
-        <div className="css-header">
-          <div className='css-headerContent'>
-            <div className='logo-header'>
-              <img className="logo-header-img" src={Logo} alt="logo" />
-            </div>
-            <div className='css-icon-div'>
-              <img className="css-icon" src={HomeIcon} alt="home-icon" />
-            </div>
-            <div className='css-text-div'>
-            <Link to="/" className="no-underline"><p className='css-home-text no-underline'>Home</p></Link>
-            <Link to="/login" className="no-underline"><p>Sign In</p></Link>
-            <Link to="/register" className="no-underline"><p>Sign Up</p></Link>
-              
-            </div>
-          </div>
-        </div>
-        <div className='css-orange-line'>
 
-        </div>
-      </header>
-    </>
-  )
+  const [user, setUser] = useState({ name: '' });
+  const { isLogged, setIsLogged } = useAppContext();
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+      const userName = localStorage.getItem("name");
+      if (userName) {
+          setUser({ name: userName });
+      } else {
+        setUser({ name: 'Username' });
+      }
+      // console.log('Logged: ', isLogged);
+  }, []);
+
+  useEffect(() => {
+    const userName = localStorage.getItem("name");    
+    if (userName) {
+      setUser({ name: userName });
+    } else {
+      setUser({ name: 'Username' });
+    }
+    // console.log('Logged: ', isLogged);
+  }, [isLogged]);
+
+
+
+  const handleSignOut = async () => {
+      try {
+          const result = await signOut();
+          console.log(result.message);
+          // Clear all client-side state    
+          localStorage.clear();
+          sessionStorage.clear();   
+          setIsLogged(false);       
+          setUser({ name: '' });
+          navigate("/");
+      } catch (error) {
+          console.error("An error occurred while signing out:", error);
+      }
+  };
+
+  return (
+      <>
+          <header>
+              <div className="header-container">
+                  {/* logo */}
+                  <div className="logo-container">
+                      <Link to="/">
+                          <img
+                              className="logo-img"
+                              src={Logo}
+                              alt="Theatre-App Logo"
+                          />
+                      </Link>
+                  </div>
+                  {/* Menu options */}
+                  <nav className="menu-options-div">
+                      <ul className="menu-ul">
+                          <li className="menu-li">
+                              <i className="fa fa-star"></i>
+                              <Link to="/">What's on</Link>
+                          </li>
+                          {isLogged && (
+                              <>
+                                  (
+                                  <li className="menu-li">
+                                      <Link to="/tickets">
+                                          My Tickets
+                                      </Link>
+                                  </li>
+                                  <li className="menu-li">
+                                      <Link to="/profile">
+                                          Account
+                                      </Link>
+                                  </li>)
+                              </>
+                          )}
+                      </ul>
+                  </nav>
+                  {/*   Sign out   */}
+                  {isLogged && (
+                      <>
+                          <div className="signout-div" onClick={handleSignOut}>
+                              <div className="header-user-info">
+                                  Hello,
+                                  <span className="header-user-name">
+                                      {user.name}
+                                  </span>
+                              </div>
+                              <img className="signout-logo" src={SignoutIcon} />
+                          </div>
+                      </>
+                  )}
+                  {!isLogged && (
+                      <>
+                          <div className="signout-div">
+                              <Link to="/login" className="signout-text">
+                                  Sign In
+                              </Link>
+                              <span className="signout-text" style={{marginRight: '3px', marginLeft: '3px'}}>/</span> 
+                              <Link to="/register" className="signout-text" style={{marginRight: '10px'}}>
+                                  Sign-up
+                              </Link>
+                              <img className="signout-logo" src={userImg} />
+                          </div>
+                      </>
+                  )}
+              </div>
+              <div className="orange-line"></div>
+          </header>
+      </>
+  );
 }
 
 export default Header

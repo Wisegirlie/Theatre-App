@@ -1,7 +1,7 @@
 import EventsCard from './EventsCard';
 import { useEffect, useState } from 'react';
 import { getAllEvents } from '../services/eventServices';
-import './css/eventsCard.css';
+import '../css/eventsCard.css';
 
 const Events = () => {
   const [eventsData, setEventsData] = useState([]);

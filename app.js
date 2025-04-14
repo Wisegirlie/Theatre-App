@@ -12,7 +12,7 @@ dotenv.config(); // Load environment variables from .env file
 const app = express();
 
 app.get('/', (req, res) => {
-     res.json({ message: "Welcome to Theater Application." });
+     res.json({ message: "Welcome to Theatre-App." });
  });
 
 const corsOptions = {

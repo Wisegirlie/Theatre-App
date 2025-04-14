@@ -1,5 +1,5 @@
-import './css/manageEvents.css';
-import './css/eventsCard.css';
+import '../css/manageEvents.css';
+import '../css/eventsCard.css';
 import DashBar from '../assets/dashboard-img/asset-dash-rounded.png';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';

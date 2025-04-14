@@ -1,4 +1,4 @@
-import './css/manageTickets.css';
+import '../css/manageTickets.css';
 import TicketImg from '../assets/dashboard-img/asset-ticket.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';

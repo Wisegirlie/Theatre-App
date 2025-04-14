@@ -1,4 +1,4 @@
-import './css/eventsDetail.css'
+import '../css/eventsDetail.css'
 import Reviews from './Reviews'
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';

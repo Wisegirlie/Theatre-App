@@ -1,6 +1,6 @@
 import iconUser from '../assets/profile-img/icon-user-for-profile.png';
 import DashBarRounded from '../assets/dashboard-img/assets-dash-rounded.png';
-import './css/profileUser.css';
+import '../css/profileUser.css';
 import { useEffect, useState } from 'react';
 import { getUserEventsAndTickets } from '../services/ticketServices';
 

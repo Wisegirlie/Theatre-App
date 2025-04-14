@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './css/eventsCard.css';
+import '../css/eventsCard.css';
 
 const EventsCard = ({ id, image, title, description }) => {
   return (

@@ -1,12 +1,12 @@
-import HeaderSigned from './HeaderSigned'
+import Header from './Header'
 import Footer from './Footer'
-import './css/layout.css'
+import '../css/layout.css'
 
 const LaypoutSigned = ({children}) => {
   return (
     <>
     <div className="css-app">
-      <HeaderSigned />
+      <Header />
       <main className="css-main-content">
         <div >
           {children}

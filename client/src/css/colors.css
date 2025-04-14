@@ -1,0 +1,9 @@
+/* =====================
+           COLORS        
+   ====================== */
+
+:root {
+    --orange-main: #f15a24;   /*   main app logo color*/
+    --orange-strong: #f15a24;   /* color of header baseline  */
+    --orange-light: #eb8d00;
+}

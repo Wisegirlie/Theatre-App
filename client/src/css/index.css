@@ -1,18 +1,14 @@
 /* =====================
            GENERAL        
-   ====================== */
-
-p:hover {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* =====================
-           COLORS        
-   ====================== */
-
-:root {
-	--orange-main: #f15a24;
+   ====================== */ 
+   
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  color: #000;
 }
 
 

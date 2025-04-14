@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashBarRounded from '../assets/dashboard-img/assets-dash-rounded.png';
 import TheaterPic from '../assets/events-img/asset-theatre.png';
-import './css/addEvents.css';
+import '../css/addEvents.css';
 import { createEvent } from '../services/eventServices.js'; 
 
 const AddEvent = () => {

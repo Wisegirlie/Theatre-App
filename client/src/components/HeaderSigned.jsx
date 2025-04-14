@@ -1,4 +1,4 @@
-import './css/header.css';
+import '../css/header.css';
 import Logo from '../assets/header-img/LOGO-for-DARK-background.png';
 import HomeIcon from '../assets/header-img/icon-home.png';
 import SignoutIcon from '../assets/header-img/icon-signout.png';
@@ -29,40 +29,49 @@ const handleSignOut = async () => {
 };
 
   return (
-    <>
-      <header>
-        <div className="css-header">
-          <div className='css-headerContent'>
-            <div className='logo-header'>
-              <img className="logo-header-img" src={Logo} alt="logo" />
-            </div>
-            <div className='css-icon-div'>
-              <Link to="/my-dashboard" className='no-underline'>
-                <img className="css-icon" src={HomeIcon} alt="home-icon" />
-              </Link>
-            </div>
-            <div className='css-text-div'>
-              <Link to="/my-dashboard" className='no-underline'>
-                <p className='css-home-text'>Home</p>
-              </Link>
-              <Link to="/events" className="no-underline"><p>Events</p></Link>
-              <Link to="/tickets" className="no-underline"><p>My Tickets</p></Link>
-              <Link to="/profile" className="no-underline"><p>Account</p></Link>
-
-            </div>
-          </div>
-          <div className='css-signout-div' onClick={handleSignOut}>
-            <p className='css-signout-text no-underline'>Sign Out</p>
-            <img className='css-signout-logo' src={SignoutIcon} />
-          </div>
-        </div>
-        <div className='css-orange-line' />
-        <div className='css-user-div'>
-          <p className='css-user-logged'>{`User logged: ${user.name}`}</p>
-        </div>
-      </header>
-    </>
-  )
+      <>
+          <header>
+              <div className="header">
+                  <div className="headerContent">
+                      <div className="logo-container">
+                          <img className="logo-img" src={Logo} alt="logo" />
+                      </div>
+                      <div className="icon-div">
+                          <Link to="/my-dashboard" className="no-underline">
+                              <img
+                                  className="icon"
+                                  src={HomeIcon}
+                                  alt="home-icon"
+                              />
+                          </Link>
+                      </div>
+                      <div className="text-div">
+                          <Link to="/my-dashboard" className="no-underline">
+                              <p className="home-text">Home</p>
+                          </Link>
+                          <Link to="/events" className="no-underline">
+                              <p>Events</p>
+                          </Link>
+                          <Link to="/tickets" className="no-underline">
+                              <p>My Tickets</p>
+                          </Link>
+                          <Link to="/profile" className="no-underline">
+                              <p>Account</p>
+                          </Link>
+                      </div>
+                  </div>
+                  <div className="signout-div" onClick={handleSignOut}>
+                      <p className="signout-text no-underline">Sign Out</p>
+                      <img className="signout-logo" src={SignoutIcon} />
+                  </div>
+              </div>
+              <div className="orange-line" />
+              <div className="user-div">
+                  <p className="user-logged">{`User logged: ${user.name}`}</p>
+              </div>
+          </header>
+      </>
+  );
 }
 
 export default HeaderSigned

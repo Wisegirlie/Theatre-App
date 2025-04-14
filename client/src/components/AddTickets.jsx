@@ -1,6 +1,6 @@
 import DashBarRounded from '../assets/dashboard-img/assets-dash-rounded.png'
 import TicketPic from '../assets/dashboard-img/asset-ticket.png'
-import './css/addTickets.css'
+import '../css/addTickets.css'
 import { useState, useEffect } from 'react';
 import { createTicket } from '../services/ticketServices';
 import { getAllEvents } from '../services/eventServices';
