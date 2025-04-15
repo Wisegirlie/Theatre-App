@@ -7,10 +7,8 @@ const Layout = ({ children }) => {
     <>
       <div className="app-container">
         <Header />
-        <main className="main-container">
-          <div >
-            {children}
-          </div>
+        <main className="main-container">          
+            {children}          
         </main>
         <Footer />
       </div>

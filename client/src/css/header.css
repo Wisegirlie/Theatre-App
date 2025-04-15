@@ -3,6 +3,7 @@ header {
   position: sticky;
   position: -webkit-sticky; /* Safari */  
   top: 0;
+  z-index: 999;
 }
 
 .header-container {
@@ -83,6 +84,7 @@ nav {
   font-weight: 600;
   font-size: 20px;
   margin-right: 60px;
+  cursor: pointer;  
 }
    
 .menu-li:hover {
@@ -151,7 +153,7 @@ nav {
 
 .signout-text:hover {
   color: #e0e0e0;
-  text-decoration: underline;
+  text-decoration: underline;  
 }
 
 .tooltip {

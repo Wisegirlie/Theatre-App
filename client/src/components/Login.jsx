@@ -1,6 +1,5 @@
 import '../css/login.css'
-import UserIcon from '../assets/login-img/icon-user.png'
-import LockIcon from '../assets/login-img/icon-lock.png'
+import '../css/buttons.css'
 import { useState } from 'react';
 import { SignIn } from '../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
@@ -39,50 +38,60 @@ const Login = () => {
     }
 
   return (
-    <>
-      <div className='wrapper'>
-        <div className='css-content'>
-          <div className='login-user-icon'>
-            <img src={UserIcon} />
-          </div>
-          <p className='css-text-login'>Login below to get started</p>
-          <form onSubmit={handleLogin}>
-            <input 
-              className='css-input' 
-              type="text" 
-              placeholder="&#128231; Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            >
-            </input>
-            <br></br>
-            <input 
-              className='css-input' 
-              type="password" 
-              placeholder="&#128274;  Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            ></input>
-            <br></br>
-            <button className="back-gray" type='submit'>Login</button>
-            {error && <div className='message-div error-div'>{error}</div>}
-            <br></br>
-            
-          </form>
+      <div className="login-container">
+          <div className="login-container-background"></div>
+          <div className="login-content-container">
+            <div className="login-content-container-inner-border">
+              <div className="login-user-img-container">
+                  {/* <img src={UserIcon} /> */}
+                  <span className='fa fa-user-o'></span>
+              </div>
+              <p className="login-form-text">
+                Log in into your account
+              </p>
+              <form onSubmit={handleLogin}>
+                  <input
+                      className="login-form-input"
+                      type="text"
+                      placeholder="Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                  ></input>
+                  <input
+                      className="login-form-input"
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                  ></input>
+                  <button className="login-form-button" type="submit">
+                      Login
+                  </button>
+                  {error && (
+                      <div className="login-error-container login-error-color">
+                          {error}
+                      </div>
+                  )}
+              </form>
 
-          <div className='css-newUser-div'>
-            <p><span className='css-text-user'>New user?</span>
-            <Link to="/register" className='no-underline'>
-              <span className='css-text-register no-underline'>Register</span>
-            </Link>
-            </p>
+              <div className="login-bottom-text-container">
+                  <p>
+                      <span className="login-bottom-text">
+                        New user?
+                      </span>
+                      <Link to="/register">
+                          <span className="login-bottom-link">
+                            Register
+                          </span>
+                      </Link>
+                  </p>
+              </div>
+              </div>  
           </div>
-        </div>
       </div>
-    </>
-  )
+  );
 }
 
 export default Login;

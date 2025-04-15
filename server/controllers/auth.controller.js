@@ -8,9 +8,9 @@ export const SignIn = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email })
-    if (!userFound) return res.status(400).json({ message: "email was not found" });
+    if (!userFound) return res.status(400).json({ message: "Email not found" });
     if (!userFound.authenticate(req.body.password)) {
-      return res.status(400).json({ message: "Password incorrect" });
+      return res.status(400).json({ message: "Incorrect Password" });
     }
     const token = await createAccessToken({ _id: userFound._id, role: userFound.role });
     res.cookie('t', token, { maxAge: 14400000, httpOnly: true });
@@ -26,8 +26,8 @@ export const SignIn = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error during sign-in:', error);
-    return res.status(500).json({ message: "An error occurred during sign-in. Please try again later." });
+    console.error('Error during Sign-in:', error);
+    return res.status(500).json({ message: "An error occurred during Sign-in. Please try again later." });
   }
 };
 

@@ -1,5 +1,6 @@
 const API_URL = "http://localhost:3000/auth";
 
+// Sign in
 export const SignIn = async (email, password) =>{
   const response = await fetch(`${API_URL}/signin`, {
     method: 'POST',
@@ -23,6 +24,7 @@ export const SignIn = async (email, password) =>{
   return data;
 }
 
+// Sign up
 export const Register = async (name, email, password) =>{
   const response = await fetch(`http://localhost:3000/api/users`, {
     method: 'POST',
@@ -34,9 +36,8 @@ export const Register = async (name, email, password) =>{
 
   if (!response.ok){
     const errorData = await response.json();
-    throw new Error(errorData.message || 'Add user failed');
+    throw new Error(errorData.message || 'Registering user failed');
   }
-
   const data = await response.json();
   return data;
 }

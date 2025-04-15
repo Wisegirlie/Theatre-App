@@ -1,5 +1,6 @@
 footer {
-  background-color: #000; 
+  /* background-color: var(--background-gray); */
+  background-color: var(--background-footer); 
 }
 
 .footer-container {
@@ -30,7 +31,7 @@ footer {
 
 .fa-instagram::before, .fa-youtube-play::before, .fa-envelope::before {    
   font-size: 19px;    
-  color: #fff5da;
+  color: #d2cab6;
   padding: 0 3px;
 }
 

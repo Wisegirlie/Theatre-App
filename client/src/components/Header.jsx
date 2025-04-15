@@ -68,8 +68,10 @@ const Header = () => {
                   <nav className="menu-options-div">
                       <ul className="menu-ul">
                           <li className="menu-li">
+                              <Link to="/">
                               <i className="fa fa-star"></i>
-                              <Link to="/">What's on</Link>
+                              What's on
+                              </Link>
                           </li>
                           {isLogged && (
                               <>
