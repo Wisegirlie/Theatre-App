@@ -1,5 +1,5 @@
-import DashBarRounded from '../assets/dashboard-img/assets-dash-rounded.png';
-import TicketPic from '../assets/dashboard-img/asset-ticket.png';
+import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
+import TicketPic from '../assets/dashboard/asset-ticket.png';
 import '../css/addTickets.css';
 import { useState, useEffect } from 'react';
 import { updateTicket } from '../services/ticketServices';

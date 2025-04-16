@@ -1,4 +1,4 @@
-// import Logo from '../assets/home-img/LOGO-for-LIGHT-background.png'
+// import Logo from '../assets/logos/LOGO-for-LIGHT-background.png'
 import '../css/home.css'
 import { Link } from 'react-router-dom';
 import TheatrePic from '../assets/variety-images/variety-24.jpg';

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import DashBarRounded from '../assets/dashboard-img/assets-dash-rounded.png';
-import defaultPic from '../assets/profile-img/icon-user-for-profile.png';
+import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
+import defaultPic from '../assets/profile/icon-user-for-profile.png';
 import { ModifyingUser } from '../services/userServices';
 
 const handleReturn = () => {

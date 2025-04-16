@@ -1,4 +1,4 @@
-import Logo from '../assets/home-img/LOGO-for-LIGHT-background.png'
+import Logo from '../assets/logos/LOGO-for-LIGHT-background.png'
 import '../css/home.css'
 
 const Home = () => {

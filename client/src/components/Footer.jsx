@@ -1,4 +1,4 @@
-import Logo from '../assets/header-img/LOGO-for-DARK-background.png'
+import Logo from '../assets/logos/LOGO-for-DARK-background.png'
 import '../css/footer.css'
 
 

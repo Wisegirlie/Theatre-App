@@ -1,5 +1,5 @@
-import userIcon from '../assets/events-img/icon-user-for-reviews.png'
-import star from '../assets/events-img/icon-star.png'
+import userIcon from '../assets/shows/icon-user-for-reviews.png'
+import star from '../assets/shows/icon-star.png'
 import '../css/eventsDetail.css'
 
 const Reviews = () => {

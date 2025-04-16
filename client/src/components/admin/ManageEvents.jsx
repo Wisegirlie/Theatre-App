@@ -1,9 +1,9 @@
-import '../css/manageEvents.css';
-import '../css/eventsCard.css';
-import DashBar from '../assets/dashboard-img/asset-dash-rounded.png';
+import '../../css/manageEvents.css';
+import '../../css/eventsCard.css';
+import DashBar from '../../assets/dashboard/asset-dash-rounded.png';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllEvents, deleteEvent } from '../services/eventServices.js';
+import { getAllEvents, deleteEvent } from '../../services/eventServices.js';
 
 const ManageEvents = () => {
   const [events, setEvents] = useState([]);

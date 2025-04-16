@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Logo from '../assets/home-img/LOGO-for-LIGHT-background.png'
+import Logo from '../assets/logos/LOGO-for-LIGHT-background.png'
 import '../css/registeredconfirmation.css'
 
 const RegisteredConfirmation = () => {

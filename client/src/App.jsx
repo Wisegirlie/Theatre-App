@@ -8,7 +8,7 @@ import SignUp from "./components/SignUp";
 import AddTickets from "./components/AddTickets";
 import Tickets from "./components/Tickets";
 import AddEvent from "./components/AddEvent";
-import ManageEvents from "./components/ManageEvents";
+import ManageEvents from "./components/admin/ManageEvents";
 import ManageUsers from "./components/ManageUsers";
 import ProfileUser from "./components/ProfileUser.jsx";
 import ProfileSuperUser from "./components/ProfileSuperUser.jsx";

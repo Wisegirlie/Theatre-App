@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import DashBar from '../assets/dashboard-img/asset-dash-rounded.png';
+import DashBar from '../assets/dashboard/asset-dash-rounded.png';
 import DashboardTickets from './DashboardTickets';
 import '../css/dashboard.css';
 import { getUserEventsAndTickets } from '../services/ticketServices'; 

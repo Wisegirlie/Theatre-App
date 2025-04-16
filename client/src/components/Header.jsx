@@ -1,11 +1,11 @@
 import '../css/header.css'
-import Logo from '../assets/header-img/LOGO-for-DARK-background.png'
-import SignoutIcon from '../assets/header-img/icon-signout.png';
+import Logo from '../assets/logos/LOGO-for-DARK-background.png'
+import SignoutIcon from '../assets/header/icon-signout.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from '../services/authSignOut';
 import { useEffect, useState } from 'react';
 import { useAppContext } from '../context/useAppContext';
-import userImg from '../assets/profile-img/icon-user-for-profile.png';
+import userImg from '../assets/profile/icon-user-for-profile.png';
 
 const Header = () => {
 

@@ -1,4 +1,4 @@
-import TicketPic from '../assets/dashboard-img/asset-ticket.png'
+import TicketPic from '../assets/dashboard/asset-ticket.png'
 import '../css/dashboardTickets.css'
 
 const DashboardTickets = ({ title, ticketsNum }) => {
