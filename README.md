@@ -14,11 +14,13 @@ This app is for providing an online complete resource for arts, culture, and ent
 * React 
 * Vite
 * Node.js
-* Expressgit 
+* Express
 * MongoDB
 * JavaScript
+* REST API
 * HTML
 * CSS
+* Git 
 
 ## Installation  
 1. Clone the repository  
@@ -38,7 +40,19 @@ This app is for providing an online complete resource for arts, culture, and ent
 
 * Database: I am using a local MongoDB for testing and simplificatio. You can connect the app to an MongoDB in the cloud to provide full availavility of data in any context. 
 
-## Contributors  
+## Release information 
+
+### Version: 2.0. April 2025. (Still under development)
+New release by Gabriela Waisman. 
+*  100% Complete Front-End makeover. 
+*  UI / UX Enhancement
+*  Responsiveness Addition
+*  Navigation enhancement
+*  Back-End optimization.
+*  New app design.
+
+### Version 1.0. August 2024. 
+Contributors:
 - Rebecca Liu 
 - Mauro Zegarra 
 - Gabriela Waisman

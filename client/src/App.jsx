@@ -2,8 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home"
 import Layout from './components/Layout'
 import Login from './components/Login'
-import LayoutSigned from './components/LayoutSigned'
-import LayoutSuperUser from './components/LayoutSuperUser'
 import Events from './components/Events'
 import Dashboard from "./components/Dashboard"
 import SignUp from "./components/SignUp";
@@ -45,17 +43,17 @@ function App() {
           <Route path="/profile" element={<Layout><ProfileUser /></Layout>} /> 
           <Route path="/purchase-tickets/:id" element={<Layout><PurchaseTicket /></Layout>}/>          
           {/* SUPER USER ROUTES */}
-          <Route path="/superDashboard" element={<LayoutSuperUser><DashboardSuper /></LayoutSuperUser>} />
-          <Route path="/manageusers"    element={<LayoutSuperUser><ManageUsers /></LayoutSuperUser>} />
-          <Route path="/add-User" element={<LayoutSuperUser><AddUser /></LayoutSuperUser>} />
-          <Route path="/modify-User/:id" element={<LayoutSuperUser><ModifyUser /></LayoutSuperUser>} />
-          <Route path="/manage-tickets" element={<LayoutSuperUser><ManageTickets /></LayoutSuperUser>}/>
-          <Route path="/addTickets"  element={<LayoutSuperUser><AddTickets /></LayoutSuperUser>} />          
-          <Route path="/manage-events"  element={<LayoutSuperUser><ManageEvents /></LayoutSuperUser>} />
-          <Route path="/my-addEvents"   element={<LayoutSuperUser><AddEvent /></LayoutSuperUser>} />
-          <Route path="/modify-event/:id"   element={<LayoutSuperUser><ModifyEvent /></LayoutSuperUser>} />
-          <Route path="/modify-ticket/:id" element={<LayoutSuperUser><ModifyTickets /></LayoutSuperUser>}/>
-          <Route path="/profileSuper"   element={<LayoutSuperUser><ProfileSuperUser /></LayoutSuperUser>} />          
+          <Route path="/superDashboard" element={<Layout><DashboardSuper /></Layout>} />
+          <Route path="/manageusers"    element={<Layout><ManageUsers /></Layout>} />
+          <Route path="/add-User" element={<Layout><AddUser /></Layout>} />
+          <Route path="/modify-User/:id" element={<Layout><ModifyUser /></Layout>} />
+          <Route path="/manage-tickets" element={<Layout><ManageTickets /></Layout>}/>
+          <Route path="/addTickets"  element={<Layout><AddTickets /></Layout>} />          
+          <Route path="/manage-events"  element={<Layout><ManageEvents /></Layout>} />
+          <Route path="/my-addEvents"   element={<Layout><AddEvent /></Layout>} />
+          <Route path="/modify-event/:id"   element={<Layout><ModifyEvent /></Layout>} />
+          <Route path="/modify-ticket/:id" element={<Layout><ModifyTickets /></Layout>}/>
+          <Route path="/profileSuper"   element={<Layout><ProfileSuperUser /></Layout>} />          
         </Routes>
       </AppProvider>
     

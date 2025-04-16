@@ -173,6 +173,13 @@ nav {
   z-index: 100;
 }
 
+.tooltip-orange {
+  /* color: var(--background-gray);
+  background-color: var(--orange-main); */
+  color: #FFF;
+  background-color: #666;
+}
+
 .header-signout-img:hover ~ .tooltip {
   visibility: visible;
   opacity: 1;

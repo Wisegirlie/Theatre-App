@@ -24,9 +24,9 @@ const SignUp = () => {
       const data = await Register(username, email, password)
       // console.log(`user registered successfully: ${data}`);
       console.log(`user registered successfully.`);
-      setUsername('');
-      setPassword('');
-      setEmail('');
+      // setUsername('');
+      // setPassword('');
+      // setEmail('');
       setSuccess("Thank you!")
       setError('')       
       try {
