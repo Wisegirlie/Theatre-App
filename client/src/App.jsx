@@ -9,15 +9,15 @@ import AddTickets from "./components/AddTickets";
 import Tickets from "./components/Tickets";
 import AddEvent from "./components/AddEvent";
 import ManageEvents from "./components/admin/ManageEvents";
-import ManageUsers from "./components/ManageUsers";
+import ManageUsers from "./components/admin/ManageUsers";
 import ProfileUser from "./components/ProfileUser.jsx";
-import ProfileSuperUser from "./components/ProfileSuperUser.jsx";
-import DashboardSuper from "./components/DashboardSuper";
+import ProfileSuperUser from "./components/admin/ProfileSuperUser.jsx";
+import DashboardSuper from "./components/admin/DashboardSuper";
 import EventsDetail from "./components/EventsDetail";
 import RegisteredConfirmation from "./components/RegisteredConfirmation.jsx";
 import { AppProvider } from "./context/AppProvider.jsx";
 import PurchaseTicket from "./components/PurchaseTickets";
-import ManageTickets from "./components/ManageTickets";
+import ManageTickets from "./components/admin/ManageTickets.jsx";
 import AddUser from "./components/AddUser.jsx"
 import ModifyUser from './components/ModifyUser.jsx'
 import ModifyEvent from "./components/ModifyEvent.jsx";

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import DashBar from '../assets/dashboard/asset-dash-rounded.png';
-import UserIcon from '../assets/login/icon-user.png';
-import '../css/manageUsers.css';
-import { deleteUser, getAllUsers } from '../services/userServices';
+import DashBar from '../../assets/dashboard/asset-dash-rounded.png';
+import UserIcon from '../../assets/login/icon-user.png';
+import '../../css/manageUsers.css';
+import { deleteUser, getAllUsers } from '../../services/userServices';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);

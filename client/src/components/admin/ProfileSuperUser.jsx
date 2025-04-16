@@ -1,6 +1,6 @@
-import iconUser from '../assets/profile/icon-user-for-profile.png'
-import '../css/profileUser.css'
-import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
+import iconUser from '../../assets/profile/icon-user-for-profile.png'
+import '../../css/profileUser.css'
+import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 

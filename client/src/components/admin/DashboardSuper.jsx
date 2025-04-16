@@ -1,13 +1,13 @@
-import DashBar from '../assets/dashboard/asset-dash-rounded.png'
-import iconUser from '../assets/profile/icon-user-for-profile.png'
-import EventImage from '../assets/shows/event_wicked.jpg'
-import TicketImage from '../assets/dashboard/asset-ticket.png'
-import '../css/dashboard.css'
+import DashBar from '../../assets/dashboard/asset-dash-rounded.png'
+import iconUser from '../../assets/profile/icon-user-for-profile.png'
+import EventImage from '../../assets/shows/event_wicked.jpg'
+import TicketImage from '../../assets/dashboard/asset-ticket.png'
+import '../../css/dashboard.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getUsersCount } from '../services/userServices.js';
-import { getEventsCount } from '../services/eventServices.js'
-import { getTicketsCount } from '../services/ticketServices.js'
+import { getUsersCount } from '../../services/userServices.js';
+import { getEventsCount } from '../../services/eventServices.js'
+import { getTicketsCount } from '../../services/ticketServices.js'
 
 const DashboardSuper = () => {
   const [usersRegistered, setUsersRegistered] = useState(0);

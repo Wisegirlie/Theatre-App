@@ -1,8 +1,8 @@
-import '../css/manageTickets.css';
-import TicketImg from '../assets/dashboard/asset-ticket.png';
+import '../../css/manageTickets.css';
+import TicketImg from '../../assets/dashboard/asset-ticket.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllTickets, deleteTicket } from '../services/ticketServices';
+import { getAllTickets, deleteTicket } from '../../services/ticketServices';
 
 const ManageTickets = () => {
   const [tickets, setTickets] = useState([]);
