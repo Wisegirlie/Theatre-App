@@ -18,3 +18,7 @@
   flex-wrap: wrap;  
   padding: 40px 10% 50px;
 }
+
+#events {
+  scroll-margin-top: 75px; 
+}

@@ -8,9 +8,9 @@ const Home = () => {
     return (
         <>
             <div className="home-container">                
-                <Hero picture={TheatrePic} title={"Nothing like it"}  buttonText={"Explore what’s on"} />                
+                <Hero picture={TheatrePic} title={"All in one place"}  buttonText={"Explore what’s on"} />                
                 {/*  Events */}
-                <section className='home-section-container'>
+                <section className='home-section-container' id="events">
                     <h1 className='page-main-title'>
                         Upcoming Events
                     </h1>
