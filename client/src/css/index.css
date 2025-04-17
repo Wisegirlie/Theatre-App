@@ -39,6 +39,7 @@
    ====================== */
 
 .page-main-title {
-    color: var(--orange-main);
-    margin: 0;
+    color: var(--main-title-colors);
+    font-size: 32px;
+    margin-bottom: 20px;
 }

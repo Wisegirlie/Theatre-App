@@ -110,9 +110,10 @@
 }
 
 .login-form-input::placeholder{
-  color: #b9b9b9;
+  color: #9b9b9b;
   font-size: 14px;
-  font-weight: bold;
+  /* font-weight: bold; */
+  letter-spacing: 0.02em;
 }
 
 .login-form-input:focus{

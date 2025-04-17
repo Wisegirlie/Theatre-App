@@ -1,14 +1,15 @@
 # Theatre-App
 
-This app is for providing an online complete resource for arts, culture, and entertainment, featuring shows, performances, events, festivals, venues and ticket purchasing. It was made as practice in collaboration with other members and may be updated in the future to modify and add features.
+This app is designed to be a comprehensive online resource for the performing arts, culture, and entertainment.
+It features shows, performances, events, festivals, venues, and ticket purchasing options, among other features.
 
 ## Features  
 - Includes a portal for the regular customer and a different portal for the site manager. 
-- Login Authentication with email and password.
-- Full Add, modify, delete (CRUD) operations for the site manager.
+- User Authentication with email and password.
+- Full create, read, update, and delete (CRUD) functionality for site managers
 - Site managers can only be assigned by managers. 
 - Easy-to-use interface  
-... More features will be implemented in the future.
+... More features to be implemented in future updates.
 
 ## Languages, Databases, APIs and Frameworks used:
 * React 
@@ -38,20 +39,24 @@ This app is for providing an online complete resource for arts, culture, and ent
   
 ### Notes
 
-* Database: I am using a local MongoDB for testing and simplificatio. You can connect the app to an MongoDB in the cloud to provide full availavility of data in any context. 
+* I am using a local MongoDB Database for testing during development. You can connect the app to an MongoDB on the cloud to provide full availavility of data in any context. 
 
 ## Release information 
 
-### Version: 2.0. April 2025. (Still under development)
-New release by Gabriela Waisman. 
+### Version: 2.0. April 2025. (still under development)
+Remade by Gabriela Waisman. 
 *  100% Complete Front-End makeover. 
 *  UI / UX Enhancement
 *  Responsiveness Addition
 *  Navigation enhancement
-*  Back-End optimization.
-*  New app design.
+*  Back-End optimization
+*  Addition of new fields in the database
+*  New features
+*  New app design
 
 ### Version 1.0. August 2024. 
+Creation of a working app with basic operations.
+This initial version was developed quickly for demonstration purposes, so most features were not included, and database fields were kept to a minimum.
 Contributors:
 - Rebecca Liu 
 - Mauro Zegarra 

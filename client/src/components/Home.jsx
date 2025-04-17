@@ -1,28 +1,20 @@
-// import Logo from '../assets/logos/LOGO-for-LIGHT-background.png'
-import '../css/home.css'
+import '../css/home.css';
 import { Link } from 'react-router-dom';
 import TheatrePic from '../assets/variety-images/variety-24.jpg';
+import Events from './Events';
+import Hero from './misc/Hero';
 
 const Home = () => {
     return (
         <>
-            <div className="home-container">
-                {/* Hero */}
-                <section className="home-hero">
-                    <img
-                        className="home-hero-img"
-                        alt="Image of people acting on stage"
-                        loading="lazy"
-                        src={TheatrePic}
-                    />
-                    <div className="home-hero-text">
-                        <h2 className="home-hero-title">
-                            Nothing like it
-                        </h2>
-                        <Link className="home-hero-button" to="#events">
-                            Explore what’s on
-                        </Link>
-                    </div>
+            <div className="home-container">                
+                <Hero picture={TheatrePic} title={"Nothing like it"}  buttonText={"Explore what’s on"} />                
+                {/*  Events */}
+                <section className='home-section-container'>
+                    <h1 className='page-main-title'>
+                        Upcoming Events
+                    </h1>
+                    <Events />
                 </section>
             </div>
         </>

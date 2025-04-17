@@ -1,7 +1,7 @@
-import EventsCard from './EventsCard';
 import { useEffect, useState } from 'react';
 import { getAllEvents } from '../services/eventServices';
-import '../css/eventsCard.css';
+import EventsCard from './misc/EventsCard';
+import '../css/events.css';
 
 const Events = () => {
   const [eventsData, setEventsData] = useState([]);
@@ -19,21 +19,18 @@ const Events = () => {
     fetchEvents();
   }, []);
 
-  return (
-    <>
-      <div>
-        <h1 className='page-main-title title-margin-bottom'>Events</h1>
-        {eventsData.map((event) => (
-          <EventsCard
-            key={event._id} // Utiliza `_id` en lugar de `id` si tu backend devuelve `_id`
-            id={event._id}
-            image={event.image}
-            title={event.title}
-            description={event.description}
-          />
-        ))}
-      </div>
-    </>
+  return (    
+    <div className='events-container'>      
+      {eventsData.map((event) => (
+        <EventsCard
+          key={event._id} // Utiliza `_id` en lugar de `id` si tu backend devuelve `_id`
+          id={event._id}
+          image={event.image}
+          title={event.title}
+          description={event.description}
+        />
+      ))}
+    </div>
   );
 };
 

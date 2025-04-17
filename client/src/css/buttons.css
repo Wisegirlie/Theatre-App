@@ -4,25 +4,17 @@
 
 button{
     background-color: var(--background-footer);
-    margin-top: 50px;
-    width: 170px;
     border: none;    
     font-size: 14px;
     color: white;
-    padding: 7px 20px 8px;
-    border-radius: 20px;
+    padding: 7px 50px 9px;
+    border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
-    font-family: 'Segoe UI', sans-serif;      
   }
-
-button {
-    /* margin-top: 9px !important;
-    margin-bottom: 12px !important; */
-}
     
 button:hover{
-    background-color: #F15a24;
+    background-color: var(--orange-main);
 }
 
 .button-modify {
@@ -70,7 +62,3 @@ button:hover{
     background-color: #000000;
     color: white;    
   }    
-  
-.button-margin-right {
-    margin-right: 40px;
-  }

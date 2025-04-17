@@ -10,4 +10,5 @@
     --background-gray: #2d2d2d; /* background header and footer - app background*/
     --background-footer: #222222; /* background of footer*/
     --success: #5ea93c;
+    --main-title-colors: #000;   /*  main titles of each page */
 }
