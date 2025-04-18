@@ -33,37 +33,78 @@ const EventsDetail = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <>
-
-      <div>
-        <h1 className='page-main-title'>Event Details</h1>
-      </div>
-      <div className='css-flex'>
-        <div>
-          <img className='css-event-cover' src={eventData.image} />
-          <br></br>
-          <span className='text-data'>Available Tickets: {eventData.ticketsAvailable}</span>          
-          <span style={{ color: "#ff891b", fontWeight: "bold", fontSize: "15px"  }}>Get yours!</span>
-        </div>
-        <div className='css-event-detail-div'>
-          <h2 className='remove-margin css-margin-bottom-10px'>{eventData.title}</h2>
-          <div className='css-event-description-text'>
-            <p className='css-remove-styling css-margin-top-0px'>{eventData.description}</p>
-            <Link to={`/purchase-tickets/${id}`} className='no-underline'>
-              <button className='button-purchase button-orange button-margin-right'>Purchase Ticket</button>
-            </Link>
-            <button onClick={handleReturn} className='button-back button-back-eventDetails'>Return</button>
-            <p className='css-remove-styling' style={{ fontWeight: "bold", marginTop: 40, marginBottom: 20 }}>Read Reviews</p>
-            <Reviews />
-            <Reviews />
-            <Reviews />
-            <Reviews />
+      <div className="event-details-main-container container">
+          <h1 className="page-main-title">{eventData.title}</h1>
+          <div className="event-details-container">
+              <div className="event-details-leftPanel">
+                  <img
+                      className="event-details-img"
+                      src={eventData.image}
+                      alt={"{eventData.title} Poster"}
+                  />
+                  <br></br>
+                  <span className="text-data">
+                      Available Tickets: {eventData.ticketsAvailable}
+                  </span>
+                  <span
+                      style={{
+                          color: "#ff891b",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                      }}
+                  >
+                      Get yours!
+                  </span>
+              </div>
+              <div className="event-details-rightPanel">
+                  {/* <h2 className="remove-margin css-margin-bottom-10px">
+                      {eventData.title}
+                  </h2> */}
+                  <div className="event-details-description-container">
+                      <p className="event-details-description-text">
+                          {eventData.description}
+                      </p>
+                      <p className="event-details-description-text">
+                        <strong>Date:</strong>  <br />
+                        <strong>Venue:</strong>  <br />
+                        <strong>Adress:</strong>  <br />
+                        <strong>Price:</strong>  <br />
+                      </p>
+                      
+                      <Link
+                          to={`/purchase-tickets/${id}`}
+                          className="no-underline"
+                      >
+                          <button className="button-green event-detail-button-right-margin">
+                              Get Ticket
+                          </button>
+                      </Link>
+                      <button
+                          onClick={handleReturn}
+                          className=""
+                      >
+                          Return
+                      </button>
+                      <p
+                          className=""
+                          style={{
+                              fontWeight: "bold",
+                              marginTop: 40,
+                              marginBottom: 20,
+                          }}
+                      >
+                          {/* Read Reviews */}
+                      </p>
+                  </div>
+              </div>
           </div>
-        </div>
 
+          {/* <Reviews />
+          <Reviews />
+          <Reviews />
+          <Reviews /> */}
       </div>
-    </>
-  )
+  );
 }
 
 export default EventsDetail

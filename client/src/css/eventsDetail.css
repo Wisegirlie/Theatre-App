@@ -1,3 +1,44 @@
+.event-details-main-container {
+  padding: 40px 40px;
+}
+
+.event-details-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.event-details-leftPanel {
+  flex: 1 1 50%;  
+}
+
+.event-details-rightPanel {  
+  flex: 1 0 40%;  
+}
+
+.event-details-img {
+  width: 100%;  
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.event-details-description-container {
+  
+}
+
+.event-details-description-text {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.event-detail-button-right-margin {
+  margin-right: 40px;
+}
+
+/* -------------------- */
+
+
 .css-remove-styling {
   cursor: auto;
 }
@@ -10,19 +51,12 @@
   margin: 0;
 }
 
-.css-event-description-text {
-  width: 400px;
-}
 
-.css-event-detail-div {
-  margin-left: 60px;
-}
+
 
 .css-margin-top-25px {
   margin-top: 25px;
 }
-
-
 
 .css-reviews-div {
   width: 600px;
@@ -52,8 +86,4 @@
 
 .css-margin-top-0px{
   margin-top:0px;
-}
-
-.button-back-eventDetails {
-  margin-top: 20px !important;
 }

@@ -7,7 +7,7 @@ import { requireSignIn } from "../middlewares/requireSignIn.js";
 const router = Router();
 
 router.get('/api/ticket/count', requireSignIn, ticketCount);
-router.post('/api/ticket/purchase', createTicketForUser);
+router.post('/api/ticket/purchase', requireSignIn, createTicketForUser);
 router.get('/api/ticket/events/tickets/:userId', requireSignIn, getUserEventsAndTickets);
 router.post('/api/ticket', createTicket);
 router.delete('/api/ticket/:id', deleteTicketById);

@@ -33,7 +33,7 @@ export const SignIn = async (req, res) => {
 
 
 //signOut
-export const signOut = (req, res) => {
+export const SignOut = (req, res) => {
   res.clearCookie("t");
   return res.status(200).json({
     message: "Signed out succesfully",

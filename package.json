@@ -1,6 +1,6 @@
 {
-  "name": "theaterappfinalproject",
-  "version": "1.0.0",
+  "name": "theater-app",
+  "version": "2.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "An app for providing an online complete resource for arts, culture, and entertainment, featuring shows, performances, events, festivals, venues and ticket purchasing.",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",

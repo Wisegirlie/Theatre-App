@@ -16,7 +16,11 @@ const Header = () => {
 
   useEffect(() => {
       const userName = localStorage.getItem("name");
-      const role_stored = localStorage.getItem("role");      
+      const role_stored = localStorage.getItem("role");    
+      const token = localStorage.getItem('token');  
+      if (token) {
+        setIsLogged(true); // Restore auth state
+      }
       setRole(Number(role_stored));      
       if (userName) {
           setUser({ name: userName });
@@ -26,6 +30,7 @@ const Header = () => {
       // console.log('Logged: ', isLogged);
     //   console.log('Role: ', role, ' Name: ', userName)
   }, []);
+
 
   useEffect(() => {
     const userName = localStorage.getItem("name");    

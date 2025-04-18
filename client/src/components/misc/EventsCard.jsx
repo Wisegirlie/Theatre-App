@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import '../../css/eventsCard.css';
 
 const EventsCard = ({ id, image, title, description }) => {
-  return (
-    <div className='card-container fadeInDown'>
+  return (    
+      <div className='card-container fadeInDown'>
+        <Link to={`/event-detail/${id}`}>
       <div className='card-image-container'>
         <img className='card-image' src={image} alt={title + " thumbnail"} />
       </div>
@@ -15,15 +16,16 @@ const EventsCard = ({ id, image, title, description }) => {
           {description}
         </div>
         {/* <div className='card-button-container'> */}
-          <Link to={`/event-detail/${id}`}>
+          
             <button className='card-button'>View more</button>
-          </Link>
+          
           {/* <Link to={`/purchase-tickets/${id}`}>
             <button className='card-button card-button-purchase'>Purchase Tickets</button>
           </Link> */}
         {/* </div> */}
       </div>
-    </div>
+      </Link>
+    </div>    
   );
 };
 

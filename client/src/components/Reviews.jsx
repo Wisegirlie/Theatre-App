@@ -10,8 +10,8 @@ const Reviews = () => {
           <img height={35} width={35} src={userIcon} />
         </div>
         <div className='css-reviews-text-div'>
-          <p className='css-remove-styling css-margin-bottom-0px' style={{ color: "black", 'font-weight': "bold", "margin-top": 0 }}>Username</p>
-          <p className='css-remove-styling css-margin-top-0px' style={{ 'margin-bottom': 5 }}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro, deleniti? Perspiciatis veniam doloremque velit officia odit unde a illum voluptatum similique eum nobis, optio voluptatibus! Beatae assumenda ea rerum hic.</p>
+          <p className='css-remove-styling css-margin-bottom-0px' style={{ color: "black", 'fontWeight': "bold", "marginTop": 0 }}>Username</p>
+          <p className='css-remove-styling css-margin-top-0px' style={{ 'marginBottom': 5 }}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro, deleniti? Perspiciatis veniam doloremque velit officia odit unde a illum voluptatum similique eum nobis, optio voluptatibus! Beatae assumenda ea rerum hic.</p>
           <div style={{textAlign: 'left'}}>
             <img className='css-star-size' src={star}></img>
             <img className='css-star-size' src={star}></img>

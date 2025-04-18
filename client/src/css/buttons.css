@@ -17,6 +17,15 @@ button:hover{
     background-color: var(--orange-main);
 }
 
+
+.button-green {
+    padding-top: 9px;
+    padding-bottom: 10px; 
+    background-color: var(--green-button);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    transition: background-color 0.1s;    
+}
+
 .button-modify {
         background-color: #25A0BD;
         box-shadow: #0E9EA8;
@@ -53,12 +62,3 @@ button:hover{
     background-color: #ff821c;
     
 }
-
-.button-purchase {
-    width: 190px;
-  }
-
-.button-back {
-    background-color: #000000;
-    color: white;    
-  }    

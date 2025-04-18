@@ -6,7 +6,7 @@ import { requireSignIn } from "../middlewares/requireSignIn.js";
 
 const router = Router();
 
-router.get('/api/event/:id',requireSignIn, getEventById);
+router.get('/api/event/:id', getEventById);
 router.get('/api/events/count',requireSignIn, eventCount);
 router.post('/api/event', createEvent);
 router.delete('/api/event/:id', deleteEvent);
