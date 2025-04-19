@@ -43,16 +43,10 @@ const EventsDetail = () => {
                       alt={"{eventData.title} Poster"}
                   />
                   <br></br>
-                  <span className="text-data">
+                  <span className="event-details-text">
                       Available Tickets: {eventData.ticketsAvailable}
                   </span>
-                  <span
-                      style={{
-                          color: "#ff891b",
-                          fontWeight: "bold",
-                          fontSize: "15px",
-                      }}
-                  >
+                  <span className='event-details-text-orange'>
                       Get yours!
                   </span>
               </div>
@@ -85,7 +79,7 @@ const EventsDetail = () => {
                       >
                           Return
                       </button>
-                      <p
+                      {/* <p
                           className=""
                           style={{
                               fontWeight: "bold",
@@ -93,8 +87,8 @@ const EventsDetail = () => {
                               marginBottom: 20,
                           }}
                       >
-                          {/* Read Reviews */}
-                      </p>
+                          Read Reviews
+                      </p> */}
                   </div>
               </div>
           </div>

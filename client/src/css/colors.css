@@ -12,4 +12,9 @@
     --success: #5ea93c;
     --main-title-colors: #000;   /*  main titles of each page */
     --green-button: #28af43;   /*  main green color for positive buttons  */
+    --light-green-button: #4CAF50;  /*   add element button */
+    --light-green-button-hover: #29c73e;  /*   add element button hover*/
+    --cyan-button: #25A0BD;  /*  ej: modify button */
+    --cyan-button-shadow: #0E9EA8;  /*  shadow for cyan  button */
+    --cyan-button-hover: #00b0d8;   /*  hover color for cyan  button */
 }

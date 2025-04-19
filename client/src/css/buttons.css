@@ -27,12 +27,12 @@ button:hover{
 }
 
 .button-modify {
-        background-color: #25A0BD;
-        box-shadow: #0E9EA8;
+        background-color: var(--cyan-button);
+        box-shadow: var(--cyan-button-shadow)
 }
 
 .button-modify:hover {
-    background-color: #00b0d8;
+    background-color: var(--cyan-button-hover);
 }
 
 .button-delete{
@@ -46,11 +46,11 @@ button:hover{
 }
 
 .button-add{
-    background-color: #4CAF50;
+    background-color: var(--green-button);
 }
 
 .button-add:hover{
-    background-color: #29c73e;
+    background-color: var(--light-green-button-hover);
 }
 
 .button-orange {

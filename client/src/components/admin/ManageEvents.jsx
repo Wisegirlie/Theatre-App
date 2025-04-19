@@ -1,9 +1,10 @@
-import '../../css/manageEvents.css';
-import '../../css/eventsCard.css';
 import DashBar from '../../assets/dashboard/asset-dash-rounded.png';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllEvents, deleteEvent } from '../../services/eventServices.js';
+import EventsCard from './EventsCardAdmin';
+import '../../css/admin/manageEvents.css';
+import '../../css/events.css';
 
 const ManageEvents = () => {
   const [events, setEvents] = useState([]);
@@ -26,59 +27,45 @@ const ManageEvents = () => {
     navigate('/my-addEvents');
   };
 
-  const handleModifyEventClick = (id) => {
-    navigate(`/modify-event/${id}`, { state: { events } });
-  };
+  // const handleModifyEventClick = (id) => {
+  //   navigate(`/modify-event/${id}`, { state: { events } });
+  // };
 
-  const handleDeleteEvent = async (index, id) => {
-    try {
-      await deleteEvent(id);
-      const updatedEvents = events.filter((_, i) => i !== index);
-      setEvents(updatedEvents);
-    } catch (error) {
-      console.error('Failed to delete event:', error);
-    }
-  };
+  // const handleDeleteEvent = async (index, id) => {
+  //   try {
+  //     await deleteEvent(id);
+  //     const updatedEvents = events.filter((_, i) => i !== index);
+  //     setEvents(updatedEvents);
+  //   } catch (error) {
+  //     console.error('Failed to delete event:', error);
+  //   }
+  // };
 
   return (
-    <>
-      <div className='css-main'>
-        <div className='css-left-side'>
-          <div className=''>
-            <h1 className='page-main-title'>Manage Events</h1>
-            <img src={DashBar} className='dashbar-rounded dashbar-manageEvents' alt="Dash Bar" />
+      <section className="manageEvents-section-container" id="Manageevents">
+          <h1 className="page-main-title">Manage Events</h1>
+          <div className='admin-events-text'>
+            <p>Total Events registered: {events.length}</p>
+            <button className='button-add' onClick={handleAddEventClick}>
+              Add new event
+            </button>  
           </div>
-          <div>
-            <button className='button-add' onClick={handleAddEventClick}>Add new event</button>
-            <br></br>
-            <Link to="/superDashboard">
-              <button className='css-return-dashboard'>return to dashboard</button>
-            </Link>
+          
+          <div className="events-container">
+              {events.map((event) => (
+                  <EventsCard
+                      key={event._id} // Utiliza `_id` en lugar de `id` si tu backend devuelve `_id`
+                      id={event._id}
+                      image={event.image}
+                      title={event.title}
+                      description={event.description}
+                  />
+              ))}
           </div>
-          <div>
-            <div className='text-data'>Total Events registered: {events.length}</div>
-          </div>
-        </div>
+          {/* <button className='button-delete' onClick={() => handleDeleteEvent(index, event._id)}>Delete</button> */}
+      </section>
 
-        <div className='css-main-manage-events'>
-          {events.map((event, index) => (
-            <div key={index} className='css-rigth-side'>
-              <div className='css-img-div'>
-                <img className='css-event-cover' src={event.image} alt={event.title} />
-              </div>
-              <div>
-                <h1>{event.title}</h1>
-                <div>{event.description}</div>
-              </div>
-              <div>                
-                  <button className='button-modify' onClick={() => handleModifyEventClick(event._id)}>Modify</button>
-                  <button className='button-delete' onClick={() => handleDeleteEvent(index, event._id)}>Delete</button>                
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
+      
   );
 };
 

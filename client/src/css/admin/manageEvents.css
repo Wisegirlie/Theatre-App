@@ -1,0 +1,21 @@
+.manageEvents-section-container {
+  display: flex;  
+  flex: 1;
+  flex-direction: column;
+  justify-items: flex-start;
+  justify-content: center;
+  align-items: flex-start;  
+  flex-wrap: wrap;  
+  padding: 40px 10% 60px;
+}
+
+
+.admin-events-text { 
+  display: flex;
+  flex-direction: row;
+  margin-top: -5px;
+  margin-bottom: 25px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}

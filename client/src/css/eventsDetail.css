@@ -23,40 +23,35 @@
   object-fit: cover;
 }
 
-.event-details-description-container {
-  
-}
-
 .event-details-description-text {
   display: block;
   margin-bottom: 30px;
+  font-size: 17px;  
 }
 
 .event-detail-button-right-margin {
   margin-right: 40px;
 }
 
-/* -------------------- */
-
-
-.css-remove-styling {
-  cursor: auto;
+.event-details-text {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
 }
 
-.css-remove-styling:hover {
-  color: black;
+.event-details-text-orange {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--orange-main);
 }
 
-.remove-margin {
-  margin: 0;
-}
 
 
-
-
-.css-margin-top-25px {
-  margin-top: 25px;
-}
+/* ================= */
+/*       REVIEWS     */
+/* ================= */
 
 .css-reviews-div {
   width: 600px;

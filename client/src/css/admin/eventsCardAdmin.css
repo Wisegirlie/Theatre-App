@@ -1,0 +1,77 @@
+.admin-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+  cursor: pointer;
+  color: #000;    
+  background-color: #f6f5f3;    
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);  
+  width: 348px;
+  overflow: hidden;
+  transition: 0.25s;
+  flex: 1 1 calc(25% - 40px); /* 3 cards per row accounting for gap */
+  border-radius: 5px;
+  min-width: 300px;
+  max-width: 420px;  
+}
+
+.card-image-container {
+  display: block;  
+  width: 100%;
+  flex: 1;
+}
+
+.admin-card-image {    
+  width: 100%;  
+  max-width: 100%;
+  height: 220px;
+  margin: 0;
+  object-fit: cover;  
+  -o-object-fit: cover;
+}
+
+.admin-card-info-container {  
+  width: 100%;
+  /* height: 100%; */
+  padding: 15px 25px 20px;
+}
+
+.card-title {
+  text-wrap: balance;
+  font-size: 24px;  
+  margin: 0;
+  line-height: 1em;
+}
+
+.card-event-description {
+  margin-top: 15px;
+  margin-bottom: 15px;  
+  font-size: 15px;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;    /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;  
+  text-overflow: ellipsis;
+  color: var(--background-footer);
+  line-height: 1.4em;
+  /* height: calc(3 * 1.4em); /* line-height = 1.4em  */
+  /* min-height: calc(3 * 1.4em); */ /* Fallback */   
+}
+
+.card-button-container {
+  display: flex;
+  flex-direction: column;  
+  max-width: 100%;
+  width: 100%; 
+}
+
+.admin-card-button {  
+  display: block;
+  background-color: var(--cyan-button);  
+  width: 100%; 
+}
+
+.card-button:hover {
+  background-color: #5f5f5f;
+}
