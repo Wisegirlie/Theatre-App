@@ -8,11 +8,14 @@ import { useState, useEffect } from 'react';
 import { getUsersCount } from '../../services/userServices.js';
 import { getEventsCount } from '../../services/eventServices.js'
 import { getTicketsCount } from '../../services/ticketServices.js'
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 const DashboardSuper = () => {
   const [usersRegistered, setUsersRegistered] = useState(0);
   const [eventsRegistered, setEventsRegistered] = useState(0);
   const [ticketsPurchased, setTicketsPurchased] = useState(0);
+  const { isLogged, role } = useAppContext();
 
   useEffect(() => {
     const fetchCounts = async () => {
@@ -36,6 +39,8 @@ const DashboardSuper = () => {
   return (
     <>
       <div className='css-flex css-align-baseline css-dashboard-info'>
+      {isLogged && role === ROLES.ADMIN ? (
+              <>
         {/* -------- Left pane ------------*/}
         <div className='css-dashboard-div' id='div-left'>
           <h1 className='css-color-darkOrange css-margin-none'>Admin Dashboard</h1>
@@ -82,6 +87,15 @@ const DashboardSuper = () => {
             </div>
           </h3>
         </div>
+        </>
+          ) : (
+              <>
+                  <h1 className="page-main-title">Access Denied</h1>
+                  <div className="admin-events-text">
+                      <p>You don't have permission to acces this page. </p>
+                  </div>
+              </>
+          )}
       </div>
     </>
   );
