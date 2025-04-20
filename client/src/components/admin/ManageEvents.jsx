@@ -1,6 +1,6 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllEvents, deleteEvent } from '../../services/eventServices.js';
+import { getAllEvents } from '../../services/eventServices.js';
 import EventsCard from './EventsCardAdmin';
 import '../../css/admin/manageEvents.css';
 import '../../css/events.css';
@@ -27,20 +27,6 @@ const ManageEvents = () => {
     navigate('/my-addEvents');
   };
 
-  // const handleModifyEventClick = (id) => {
-  //   navigate(`/modify-event/${id}`, { state: { events } });
-  // };
-
-  // const handleDeleteEvent = async (index, id) => {
-  //   try {
-  //     await deleteEvent(id);
-  //     const updatedEvents = events.filter((_, i) => i !== index);
-  //     setEvents(updatedEvents);
-  //   } catch (error) {
-  //     console.error('Failed to delete event:', error);
-  //   }
-  // };
-
   return (
       <section className="manageEvents-section-container" id="Manageevents">
           <h1 className="page-main-title">Manage Events</h1>
@@ -58,7 +44,7 @@ const ManageEvents = () => {
                       id={event._id}
                       image={event.image}
                       title={event.title}
-                      description={event.description}
+                      description={event.description}                      
                   />
               ))}
           </div>

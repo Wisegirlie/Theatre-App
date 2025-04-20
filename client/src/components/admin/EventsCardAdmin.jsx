@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom';
 import '../../css/admin/eventsCardAdmin.css';
 
 const EventsCardAdmin = ({ id, image, title, description }) => {
+
+    // const handleModifyEventClick = (id) => {
+    //     navigate(`/modify-event/${id}`, { state: { id } });
+    //   };
+
     return (
         <div className="admin-card-container">
             <Link to={`/modify-event/${id}`}>            
@@ -17,8 +22,7 @@ const EventsCardAdmin = ({ id, image, title, description }) => {
                     <div className="card-event-description">
                         {description}
                     </div>
-                    <button className="admin-card-button button-modify">Modify</button>
-                   
+                    <button className="admin-card-button button-modify" >Modify</button>                   
                 </div>
             </Link>
         </div>

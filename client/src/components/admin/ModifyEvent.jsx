@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import DashBarRounded from "../../assets/dashboard/assets-dash-rounded.png";
+import { useNavigate, useParams } from "react-router-dom";
 import TheaterPic from "../../assets/shows/event_default_image.png";
+import { updateEvent, getEventById, deleteEvent } from "../../services/eventServices.js";
 import "../../css/admin/addEvents.css";
-import { updateEvent } from "../../services/eventServices.js";
 
-const ModifyEvent = () => {
-    const location = useLocation();
-    const { events } = location.state || { events: [] }; // Recibe los eventos de la ubicación
+const ModifyEvent = ( events ) => {
+    // const location = useLocation();
+    // const { events } = location.state || { events: [] }; // Recibe los eventos de la ubicación
     const { id } = useParams();
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
@@ -15,17 +14,25 @@ const ModifyEvent = () => {
     const [ticketsAvailable, setTicketsAvailable] = useState(0);
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(TheaterPic);
+    
 
     useEffect(() => {
-        if (Array.isArray(events)) {
-            const eventToModify = events.find((event) => event._id === id);
-            if (eventToModify) {
-                setTitle(eventToModify.title);
-                setDescription(eventToModify.description);
-                setTicketsAvailable(eventToModify.ticketsAvailable);
-                setImage(eventToModify.image);
+        const fetchEvent = async () => {
+            try {
+                const eventToModify = await getEventById(id); // API call
+                if (eventToModify) {
+                    setTitle(eventToModify.title);
+                    setDescription(eventToModify.description);
+                    setTicketsAvailable(eventToModify.ticketsAvailable);
+                    setImage(eventToModify.image);
+                    setImagePreview(eventToModify.image);
+                }
+            } catch (error) {
+                console.error("Failed to fetch event: ", error);
+                // redirect or show error message
             }
-        }
+        };
+        fetchEvent();
     }, [id, events]);
 
     const defaultImageToBlob = async (imageUrl) => {
@@ -48,10 +55,10 @@ const ModifyEvent = () => {
 
             const updatedData = await updateEvent(id, updatedEvent);
 
-            const updatedEvents = events.map((event) =>
-                event._id === id ? updatedData : event
-            );
-            navigate("/manage-events", { state: { events: updatedEvents } });
+            // // const updatedEvents = events.map((event) =>
+            // //     event._id === id ? updatedData : event
+            // );
+            navigate("/manage-events");
         } catch (error) {
             console.error("An error occurred while updating the event:", error);
         }
@@ -70,7 +77,18 @@ const ModifyEvent = () => {
 
     const handleReturn = () => {
         window.history.back();
-    };
+    };  
+
+  const handleDeleteEvent = async ( id ) => {
+    try {
+      await deleteEvent(id);
+      // const updatedEvents = events.filter((_, i) => i !== index);
+      // setEvents(updatedEvents);
+      navigate("/manage-events");
+    } catch (error) {
+      console.error('Failed to delete event:', error);
+    }
+  };
 
     return (
         <div className="event-details-main-container addEvent-main-container container">
@@ -84,7 +102,7 @@ const ModifyEvent = () => {
                         alt="Event Poster"
                     />
                     <label htmlFor="file" style={{ marginRight: "10px" }}>
-                        Event image:
+                        Event image (max 2Mb):
                     </label>
                     <input
                         type="file"
@@ -170,6 +188,20 @@ const ModifyEvent = () => {
                             }
                         />
                     </div>
+                    {/* Tickets Sold */}
+                    <div className="addEvent-container">
+                        <label
+                            htmlFor="event-tickets-available"
+                            className="addEvent-label"
+                        >
+                            Tickets sold:
+                        </label>
+                        <input
+                            name="event-tickets-available"
+                            className="addEvent-input addEvent-input-tickets-width"
+                            type="number"                                                    
+                        />
+                    </div>
                     {/* Price */}
                     <div className="addEvent-container">
                         <label htmlFor="event-price" className="addEvent-label">
@@ -184,13 +216,16 @@ const ModifyEvent = () => {
 
                     {/* Buttons */}
                     <button
-                        onClick={handleModifyEvent}
-                        className="button-cyan event-detail-button-right-margin"
+                        onClick={() => handleModifyEvent(id)}
+                        className="button-modify event-detail-button-right-margin"
                     >
-                        Modify Event
+                        Save changes
                     </button>
-                    <button onClick={handleReturn} className="button-back">
-                        Return
+                    <button onClick={handleReturn} className="button-back event-detail-button-right-margin">
+                        Cancel
+                    </button>
+                    <button onClick={() => handleDeleteEvent(id)} className="button-orange">
+                        Detele event
                     </button>
                 </div>
             </div>

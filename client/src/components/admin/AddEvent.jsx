@@ -59,7 +59,7 @@ const AddEvent = () => {
                       alt="Event Poster"
                   />
                   <label htmlFor="file" style={{ marginRight: "10px" }}>
-                      Event image:
+                        Event image (max 2Mb):
                   </label>
                   <input
                       type="file"
@@ -144,6 +144,21 @@ const AddEvent = () => {
                           }
                       />
                   </div>
+                  {/* Tickets Sold */}
+                  <div className="addEvent-container">
+                      <label
+                          htmlFor="event-tickets-available"
+                          className="addEvent-label"
+                      >
+                          Tickets sold:
+                      </label>
+                      <input
+                          name="event-tickets-available"
+                          className="addEvent-input addEvent-input-tickets-width"
+                          type="number"    
+                          value={0}                                                
+                      />
+                  </div>
                   {/* Price */}
                   <div className="addEvent-container">
                       <label htmlFor="event-price" className="addEvent-label">
@@ -161,10 +176,10 @@ const AddEvent = () => {
                       onClick={handleAddEvent}
                       className="button-green event-detail-button-right-margin"
                   >
-                      Add Event
+                      Save Event
                   </button>
                   <button onClick={handleReturn} className="button-back">
-                      Return
+                      Cancel
                   </button>
               </div>
           </div>
