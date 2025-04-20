@@ -114,14 +114,14 @@ const Header = () => {
                                     <Link to="/superDashboard">Dashboard</Link>
                                   </li>
                                   <li className="menu-li">
-                                    <Link to="/manageusers">Users</Link>
-                                  </li>
-                                  <li className="menu-li">
                                     <Link to="/manage-events">Events</Link>
                                   </li>
                                   <li className="menu-li">
                                     <Link to="/manage-tickets">Tickets</Link>
                                   </li>
+                                  <li className="menu-li">
+                                    <Link to="/manageusers">Users</Link>
+                                  </li>                                  
                                   <li className="menu-li">
                                       <Link to="/profileSuper">Account</Link>
                                   </li>      

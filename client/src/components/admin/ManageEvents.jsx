@@ -1,16 +1,14 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllEvents, deleteEvent } from '../../services/eventServices.js';
-import { useAppContext } from '../../context/useAppContext';
-import { ROLES } from '../../constants/roles.js';
 import EventsCard from './EventsCardAdmin';
 import '../../css/admin/manageEvents.css';
 import '../../css/events.css';
 
+
 const ManageEvents = () => {
   const [events, setEvents] = useState([]);
-  const navigate = useNavigate();
-  const { isLogged, role } = useAppContext();
+  const navigate = useNavigate();  
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -45,39 +43,26 @@ const ManageEvents = () => {
 
   return (
       <section className="manageEvents-section-container" id="Manageevents">
-          {isLogged && role === ROLES.ADMIN ? (
-              <>
-                  <h1 className="page-main-title">Manage Events</h1>
-                  <div className="admin-events-text">
-                      <p>Total Events registered: {events.length}</p>
-                      <button
-                          className="button-add"
-                          onClick={handleAddEventClick}
-                      >
-                          Add new event
-                      </button>
-                  </div>
+          <h1 className="page-main-title">Manage Events</h1>
+          <div className="admin-events-text">
+              <p>Total Events registered: {events.length}</p>
+              <button className="button-add" onClick={handleAddEventClick}>
+                  Add new event
+              </button>
+          </div>
 
-                  <div className="events-container">
-                      {events.map((event) => (
-                          <EventsCard
-                              key={event._id} // Utiliza `_id` en lugar de `id` si tu backend devuelve `_id`
-                              id={event._id}
-                              image={event.image}
-                              title={event.title}
-                              description={event.description}
-                          />
-                      ))}
-                  </div>
-              </>
-          ) : (
-              <>
-                  <h1 className="page-main-title">Access Denied</h1>
-                  <div className="admin-events-text">
-                      <p>You don't have permission to acces this page. </p>
-                  </div>
-              </>
-          )}
+          <div className="events-container">
+              {events.map((event) => (
+                  <EventsCard
+                      key={event._id} // Utiliza `_id` en lugar de `id` si tu backend devuelve `_id`
+                      id={event._id}
+                      image={event.image}
+                      title={event.title}
+                      description={event.description}
+                  />
+              ))}
+          </div>
+
           {/* <button className='button-delete' onClick={() => handleDeleteEvent(index, event._id)}>Delete</button> */}
       </section>
   );

@@ -4,7 +4,6 @@ import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
 import defaultPic from '../../assets/profile/icon-user-for-profile.png';
 import { ModifyingUser } from '../../services/userServices.js';
 import { useAppContext } from '../../context/useAppContext';
-import { ROLES } from '../../constants/roles.js';
 
 const handleReturn = () => {
   window.history.back(); 
@@ -21,7 +20,7 @@ const ModifyUser = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const [passwordInputValue, setPasswordInputValue] = useState('••••••••'); // Valor ficticio para la entrada de contraseña
-  const { isLogged, role, setRole } = useAppContext();
+  const { role, setRole } = useAppContext();
 
   useEffect(() => {
     if (Array.isArray(users)) {

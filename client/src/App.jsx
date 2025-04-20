@@ -23,6 +23,7 @@ import ManageEvents from "./components/admin/ManageEvents";
 import ManageUsers from "./components/admin/ManageUsers";
 import ProfileSuperUser from "./components/admin/ProfileSuperUser.jsx";
 import AddEvent from "./components/admin/AddEvent";
+import VerifyAuthAdmin from './components/admin/verifyAuthAdmin.jsx';
 
 
 
@@ -45,17 +46,17 @@ function App() {
           <Route path="/profile" element={<Layout><ProfileUser /></Layout>} /> 
           <Route path="/purchase-tickets/:id" element={<Layout><PurchaseTicket /></Layout>}/>          
           {/* SUPER USER ROUTES */}
-          <Route path="/superDashboard" element={<Layout><DashboardSuper /></Layout>} />
-          <Route path="/manageusers"    element={<Layout><ManageUsers /></Layout>} />
-          <Route path="/add-User" element={<Layout><AddUser /></Layout>} />
-          <Route path="/modify-User/:id" element={<Layout><ModifyUser /></Layout>} />
-          <Route path="/manage-tickets" element={<Layout><ManageTickets /></Layout>}/>
-          <Route path="/addTickets"  element={<Layout><AddTickets /></Layout>} />          
-          <Route path="/manage-events"  element={<Layout><ManageEvents /></Layout>} />
-          <Route path="/my-addEvents"   element={<Layout><AddEvent /></Layout>} />
-          <Route path="/modify-event/:id"   element={<Layout><ModifyEvent /></Layout>} />
-          <Route path="/modify-ticket/:id" element={<Layout><ModifyTickets /></Layout>}/>
-          <Route path="/profileSuper"   element={<Layout><ProfileSuperUser /></Layout>} />          
+          <Route path="/superDashboard" element={<Layout><VerifyAuthAdmin><DashboardSuper /></VerifyAuthAdmin></Layout>} />
+          <Route path="/manageusers"    element={<Layout><VerifyAuthAdmin><ManageUsers /></VerifyAuthAdmin></Layout>} />
+          <Route path="/add-User" element={<Layout><VerifyAuthAdmin><AddUser /></VerifyAuthAdmin></Layout>} />
+          <Route path="/modify-User/:id" element={<Layout><VerifyAuthAdmin><ModifyUser /></VerifyAuthAdmin></Layout>} />
+          <Route path="/manage-tickets" element={<Layout><VerifyAuthAdmin><ManageTickets /></VerifyAuthAdmin></Layout>}/>
+          <Route path="/addTickets"  element={<Layout><VerifyAuthAdmin><AddTickets /></VerifyAuthAdmin></Layout>} />          
+          <Route path="/manage-events"  element={<Layout><VerifyAuthAdmin><ManageEvents /></VerifyAuthAdmin></Layout>} />
+          <Route path="/my-addEvents"   element={<Layout><VerifyAuthAdmin><AddEvent /></VerifyAuthAdmin></Layout>} />
+          <Route path="/modify-event/:id"   element={<Layout><VerifyAuthAdmin><ModifyEvent /></VerifyAuthAdmin></Layout>} />
+          <Route path="/modify-ticket/:id" element={<Layout><VerifyAuthAdmin><ModifyTickets /></VerifyAuthAdmin></Layout>}/>
+          <Route path="/profileSuper"   element={<Layout><VerifyAuthAdmin><ProfileSuperUser /></VerifyAuthAdmin></Layout>} />          
         </Routes>
       </AppProvider>
     

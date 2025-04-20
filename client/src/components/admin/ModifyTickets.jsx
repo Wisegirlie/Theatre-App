@@ -6,8 +6,7 @@ import { updateTicket } from '../../services/ticketServices.js';
 import { getAllEvents } from '../../services/eventServices.js';
 import { getAllUsers } from '../../services/userServices.js';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { useAppContext } from '../../context/useAppContext';
-import { ROLES } from '../../constants/roles.js';
+
 
 const handleReturn = () => {
   window.history.back(); 
@@ -26,8 +25,7 @@ const ModifyTickets = () => {
   const [eventTitles, setEventTitles] = useState([]);
   const [eventTitle, setEventTitle] = useState('');
   const [numberTickets, setNumberTickets] = useState(0);
-  const [error, setError] = useState('')
-  const { isLogged, role } = useAppContext();
+  const [error, setError] = useState('')  
 
 
   useEffect(() => {
