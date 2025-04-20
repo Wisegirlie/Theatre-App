@@ -26,6 +26,11 @@ button:hover{
     transition: background-color 0.1s;    
 }
 
+/* .button-green:hover {
+    transform: scaleX(1.05);
+    transition: transform 0.2s;
+} */
+
 .button-modify {
         background-color: var(--cyan-button);
         box-shadow: var(--cyan-button-shadow)

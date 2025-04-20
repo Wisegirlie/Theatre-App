@@ -4,12 +4,15 @@ import DashBar from '../../assets/dashboard/asset-dash-rounded.png';
 import UserIcon from '../../assets/login/icon-user.png';
 import '../../css/admin/manageUsers.css';
 import { deleteUser, getAllUsers } from '../../services/userServices';
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { isLogged, role } = useAppContext();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -52,6 +55,8 @@ const ManageUsers = () => {
   return (
     <>
       <div className='css-main-div css-align-baseline css-dashboard-info'>
+      {isLogged && role === ROLES.ADMIN ? (
+              <>
         <div>
           <div className='css-dashboard-div'>
             <h1 className='css-color-darkOrange css-margin-none'>Manage Users</h1>                        
@@ -97,7 +102,16 @@ const ManageUsers = () => {
               </div>
             </div>                    
           ))}  
-        </div>              
+        </div>   
+        </>
+          ) : (
+              <>
+                  <h1 className="page-main-title">Access Denied</h1>
+                  <div className="admin-events-text">
+                      <p>You don't have permission to acces this page. </p>
+                  </div>
+              </>
+          )}           
       </div>
     </>
   );

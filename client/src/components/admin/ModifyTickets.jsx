@@ -1,11 +1,13 @@
-import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
-import TicketPic from '../assets/dashboard/asset-ticket.png';
-import '../css/addTickets.css';
+import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
+import TicketPic from '../../assets/dashboard/asset-ticket.png';
+import '../../css/addTickets.css';
 import { useState, useEffect } from 'react';
-import { updateTicket } from '../services/ticketServices';
-import { getAllEvents } from '../services/eventServices';
-import { getAllUsers } from '../services/userServices';
+import { updateTicket } from '../../services/ticketServices.js';
+import { getAllEvents } from '../../services/eventServices.js';
+import { getAllUsers } from '../../services/userServices.js';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 const handleReturn = () => {
   window.history.back(); 
@@ -25,6 +27,7 @@ const ModifyTickets = () => {
   const [eventTitle, setEventTitle] = useState('');
   const [numberTickets, setNumberTickets] = useState(0);
   const [error, setError] = useState('')
+  const { isLogged, role } = useAppContext();
 
 
   useEffect(() => {

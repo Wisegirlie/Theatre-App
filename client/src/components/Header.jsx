@@ -1,17 +1,24 @@
 import '../css/header.css'
 import Logo from '../assets/logos/LOGO-for-DARK-background.png'
 import SignoutIcon from '../assets/header/icon-signout.png';
+import { ROLES } from '../constants/roles';
 import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from '../services/authSignOut';
 import { useEffect, useState } from 'react';
 import { useAppContext } from '../context/useAppContext';
 import userImg from '../assets/profile/icon-user-for-profile.png';
 
+
 const Header = () => {
 
   const [user, setUser] = useState({ name: '' });
-  const [role, setRole] = useState(0);
-  const { isLogged, setIsLogged } = useAppContext();
+  const { 
+    isLogged, 
+    setIsLogged,
+    role,
+    setRole 
+  } = useAppContext();
+  
   const navigate = useNavigate(); 
 
   useEffect(() => {
@@ -90,7 +97,7 @@ const Header = () => {
                               </Link>
                           </li>
                           {/*  Menu options only for logged user  */}
-                          {isLogged && role === 2 && (
+                          {isLogged && role === ROLES.USER && (
                               <>                                  
                                   <li className="menu-li">
                                       <Link to="/tickets">My Tickets</Link>
@@ -101,7 +108,7 @@ const Header = () => {
                               </>
                           )}
                           {/*  Menu options only for logged admins  */}
-                          {isLogged && role === 1 && (
+                          {isLogged && role === ROLES.ADMIN && (
                               <>
                                   <li className="menu-li">
                                     <Link to="/superDashboard">Dashboard</Link>

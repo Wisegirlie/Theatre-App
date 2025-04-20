@@ -3,10 +3,13 @@ import TicketImg from '../../assets/dashboard/asset-ticket.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllTickets, deleteTicket } from '../../services/ticketServices';
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 const ManageTickets = () => {
   const [tickets, setTickets] = useState([]);
   const [totalTickets, setTotalTickets] = useState(0);
+  const { isLogged, role } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,6 +45,8 @@ const ManageTickets = () => {
 
   return (
     <div className="manage-tickets-container">
+      {isLogged && role === ROLES.ADMIN ? (
+         <>
       <div className="sidebar">
         <h1 className='page-main-title'>Manage Tickets</h1>
         <div className="progress-bar"></div>
@@ -66,6 +71,15 @@ const ManageTickets = () => {
           </div>
         ))}
       </div>
+       </>
+      ) : (
+          <>
+              <h1 className="page-main-title">Access Denied</h1>
+              <div className="admin-events-text">
+                  <p>You don't have permission to acces this page. </p>
+              </div>
+          </>
+      )}
     </div>
   );
 };

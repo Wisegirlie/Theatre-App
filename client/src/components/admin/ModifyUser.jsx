@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
-import defaultPic from '../assets/profile/icon-user-for-profile.png';
-import { ModifyingUser } from '../services/userServices';
+import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
+import defaultPic from '../../assets/profile/icon-user-for-profile.png';
+import { ModifyingUser } from '../../services/userServices.js';
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 const handleReturn = () => {
   window.history.back(); 
@@ -15,11 +17,11 @@ const ModifyUser = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
+  const [email, setEmail] = useState('');  
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const [passwordInputValue, setPasswordInputValue] = useState('••••••••'); // Valor ficticio para la entrada de contraseña
+  const { isLogged, role, setRole } = useAppContext();
 
   useEffect(() => {
     if (Array.isArray(users)) {

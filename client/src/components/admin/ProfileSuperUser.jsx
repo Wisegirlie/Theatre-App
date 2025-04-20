@@ -3,6 +3,8 @@ import '../../css/profileUser.css'
 import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 
 // functionality for the return button
@@ -12,6 +14,7 @@ const handleReturn = () => {
 
 const ProfileSuperUser = () => {
   const [user, setUser] = useState({ name: '', email: '' });
+  const { isLogged, role } = useAppContext();
 
   useEffect (() => {
     const userName = localStorage.getItem('name');

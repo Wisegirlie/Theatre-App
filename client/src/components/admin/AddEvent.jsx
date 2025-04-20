@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
-import TheaterPic from '../assets/shows/event_default_image.png';
-import '../css/addEvents.css';
-import { createEvent } from '../services/eventServices.js'; 
+import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
+import TheaterPic from '../../assets/shows/event_default_image.png';
+import '../../css/admin/addEvents.css';
+import { createEvent } from '../../services/eventServices.js'; 
+import { useAppContext } from '../../context/useAppContext';
+import { ROLES } from '../../constants/roles.js';
 
 const AddEvent = () => {
   const [image, setImage] = useState(null);
@@ -11,6 +13,7 @@ const AddEvent = () => {
   const [description, setDescription] = useState('');
   const [ticketsAvailable, setTicketsAvailable] = useState(0);
   const navigate = useNavigate();
+  const { isLogged, role } = useAppContext();
 
   const defaultImageToBlob = async (imageUrl) => {
     const response = await fetch(imageUrl);
@@ -51,6 +54,8 @@ const AddEvent = () => {
   return (
     <>
       <div className='css-flex css-content-ticket'>
+      {isLogged && role === ROLES.ADMIN ? (
+              <>
         <div className='css-dashboard-div css-margin-right-0'>
           <h1 className='page-main-title'>Add Event</h1>
           <img className='css-dashbarRounded' src={DashBarRounded} alt="Dash Rounded" />
@@ -103,6 +108,15 @@ const AddEvent = () => {
             </div>
           </div>
         </div>
+        </>
+          ) : (
+              <>
+                  <h1 className="page-main-title">Access Denied</h1>
+                  <div className="admin-events-text">
+                      <p>You don't have permission to acces this page. </p>
+                  </div>
+              </>
+          )}
       </div>
     </>
   );

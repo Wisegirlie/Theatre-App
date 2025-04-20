@@ -7,21 +7,23 @@ import Dashboard from "./components/Dashboard"
 import SignUp from "./components/SignUp";
 import AddTickets from "./components/AddTickets";
 import Tickets from "./components/Tickets";
-import AddEvent from "./components/AddEvent";
-import ManageEvents from "./components/admin/ManageEvents";
-import ManageUsers from "./components/admin/ManageUsers";
 import ProfileUser from "./components/ProfileUser.jsx";
-import ProfileSuperUser from "./components/admin/ProfileSuperUser.jsx";
 import DashboardSuper from "./components/admin/DashboardSuper";
 import EventsDetail from "./components/EventsDetail";
 import RegisteredConfirmation from "./components/RegisteredConfirmation.jsx";
 import { AppProvider } from "./context/AppProvider.jsx";
 import PurchaseTicket from "./components/PurchaseTickets";
+// ADMIN
 import ManageTickets from "./components/admin/ManageTickets.jsx";
-import AddUser from "./components/AddUser.jsx"
-import ModifyUser from './components/ModifyUser.jsx'
-import ModifyEvent from "./components/ModifyEvent.jsx";
-import ModifyTickets from "./components/ModifyTickets.jsx";
+import AddUser from "./components/admin/AddUser.jsx"
+import ModifyUser from './components/admin/ModifyUser.jsx'
+import ModifyEvent from "./components/admin/ModifyEvent.jsx";
+import ModifyTickets from "./components/admin/ModifyTickets.jsx";
+import ManageEvents from "./components/admin/ManageEvents";
+import ManageUsers from "./components/admin/ManageUsers";
+import ProfileSuperUser from "./components/admin/ProfileSuperUser.jsx";
+import AddEvent from "./components/admin/AddEvent";
+
 
 
 function App() {
