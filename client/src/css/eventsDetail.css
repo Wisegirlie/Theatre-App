@@ -1,5 +1,6 @@
 .event-details-main-container {
   padding: 40px 40px;
+  padding-bottom: 50px;
 }
 
 .event-details-container {
@@ -15,6 +16,8 @@
 
 .event-details-rightPanel {  
   flex: 1 0 40%;  
+  width: 100%;
+  flex-direction: column;
 }
 
 .event-details-img {

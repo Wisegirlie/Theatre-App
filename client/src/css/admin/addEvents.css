@@ -1,23 +1,63 @@
-.css-textarea-description {
-  box-sizing: border-box;
-  resize: none;
-  width: 250px;
-  height: 150px;
+.addEvent-main-container {
+  padding-bottom: 70px;
 }
 
-.css-description-container {
-  display: inline;
+.addEvent-leftPanel {
+  flex: 1 1 45%;  
 }
 
-.css-margin-left-50px{
-  margin-left: 50px;
+.addEvent-rightPanel {  
+  flex: 1 0 45%;    
 }
 
-.css-margin-top-25px{
-  margin-top: 25px;
+.addEvent-container {
+  display: flex;     
+  flex-direction: row;   
+  align-items: flex-start;  
+  justify-items: flex-start;  
+  /* gap: 40px;            */
+  width: 100%;        
+  margin-bottom: 12px;  
 }
 
-.css-dashbarRounded{
-  width: 155px;
-  height: 10px;
+.addEvent-label {
+  flex-shrink: 0; 
+  color: black;
+  font-weight: bold;  
+  margin-top: 5px;
+  width: 150px;
 }
+
+.addEvent-input {
+  flex: 1;   
+  padding: 5px 10px;
+  min-width: 280px;
+  border-radius: 10px;
+  border: none;
+  height: 35px;
+  font-size: 16px;
+  background-color:rgb(239, 239, 239);
+  outline: none;  
+}
+
+.event-input-file {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.addEvent-input-textarea {
+  height: 150px;  
+}
+
+.addEvent-input-tickets-width {
+  flex: 0;
+  width: 80px;
+  min-width: 80px;
+}
+
+.addEvent-input-date-width {
+  flex: 0;
+  width: 150px;
+  min-width: 150px;
+}
+

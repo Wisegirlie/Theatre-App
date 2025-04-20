@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashBarRounded from '../../assets/dashboard/assets-dash-rounded.png';
 import TheaterPic from '../../assets/shows/event_default_image.png';
+import '../../css/eventsDetail.css'
 import '../../css/admin/addEvents.css';
-import { createEvent } from '../../services/eventServices.js'; 
+import { createEvent, deleteEvent } from '../../services/eventServices.js'; 
 import { useAppContext } from '../../context/useAppContext';
 import { ROLES } from '../../constants/roles.js';
 
@@ -52,63 +52,145 @@ const AddEvent = () => {
   };
 
   return (
-    <>
-      <div className='css-flex css-content-ticket'>
-      {isLogged && role === ROLES.ADMIN ? (
+      <div className="event-details-main-container addEvent-main-container container">
+          {isLogged && role === ROLES.ADMIN ? (
               <>
-        <div className='css-dashboard-div css-margin-right-0'>
-          <h1 className='page-main-title'>Add Event</h1>
-          <img className='css-dashbarRounded' src={DashBarRounded} alt="Dash Rounded" />
-        </div>
-        <div className='css-flex css-margin-top-25px'>
-          <div>
-            <img className='css-event-cover' src={image ? URL.createObjectURL(image) : TheaterPic} alt='event img' />
-            <input type='file' onChange={handleImageChange} />
-          </div>
-          <div className='css-margin-left-40px'>
-            <div className='css-margin-bottom-30px'>
-              <span className='css-black-bold'>Title:</span>
-              <input
-                className='css-input-insert css-margin-left-50px'
-                type='text'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <br />
-            </div>
-            <div className='css-margin-bottom-30px'>
-              <div className='css-flex'>
-                <div className='css-description-div'>
-                  <span className='css-black-bold'>Description:</span>
-                </div>
-                <div className='css-description-div'>
-                  <textarea
-                    placeholder='Tell users what is this Event about'
-                    className='css-input-insert css-textarea-description'
-                    type='text'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-              <br />
-              <div className='css-margin-bottom-30px'></div>
-              <span className='css-black-bold'>Tickets Available:</span>
-              <input
-                className='css-input-insert css-tickets-width'
-                type='number'
-                value={ticketsAvailable}
-                onChange={(e) => setTicketsAvailable(parseInt(e.target.value))}
-              />
-              <br />
-              <button onClick={handleAddEvent} className='button-add' style={{ marginRight: '40px' }}>
-                Add Event
-              </button>
-              <button onClick={handleReturn} className='button-back'>Return</button>
-            </div>
-          </div>
-        </div>
-        </>
+                  <h1 className="page-main-title">Add Event</h1>
+                  <div className="event-details-container">
+                      <div className="event-details-leftPanel addEvent-leftPanel">
+                          <img
+                              className="event-details-img"
+                              src={
+                                  image
+                                      ? URL.createObjectURL(image)
+                                      : TheaterPic
+                              }
+                              alt="Event Poster"
+                          />
+                          <input
+                              type="file"
+                              onChange={handleImageChange}
+                              className="event-input-file"
+                          />
+                      </div>
+                      <div className="event-details-rightPanel addEvent-rightPanel">
+                          {/* Event title */}
+                          <div className="addEvent-container">
+                              <label
+                                  htmlFor="event-title"
+                                  className="addEvent-label"
+                              >
+                                  Title:
+                              </label>
+                              <input
+                                  type="text"
+                                  id="event-title"
+                                  name="event-title"
+                                  className="addEvent-input"
+                                  placeholder="Enter event title"
+                                  onChange={(e) => setTitle(e.target.value)}
+                              />
+                          </div>
+                          {/* Event description */}
+                          <div className="addEvent-container">
+                              <label
+                                  htmlFor="event-description"
+                                  className="addEvent-label"
+                              >
+                                  Description:
+                              </label>
+                              <textarea
+                                  name='event-description'
+                                  placeholder="Enter event description and highlights"
+                                  className="addEvent-input addEvent-input-textarea"
+                                  type="text"
+                                  value={description}
+                                  onChange={(e) =>
+                                      setDescription(e.target.value)
+                                  }
+                              />
+                          </div>
+                          {/* Venue */}
+                          <div className="addEvent-container">
+                              <label
+                                  htmlFor="venue"
+                                  className="addEvent-label"
+                              >
+                                  Venue:
+                              </label>
+                              <input
+                                  type="text"
+                                  id="venue"
+                                  name="venue"
+                                  className="addEvent-input"
+                                  placeholder="Where is the event taking place"
+                              />                            
+                          </div>     
+                           
+                          {/* From Date */}
+                          <div className="addEvent-container">
+                              <label
+                                  htmlFor="event-date"
+                                  className="addEvent-label"
+                              >
+                                  Date:
+                              </label>
+                              <input
+                                name='event-date'
+                                  className="addEvent-input addEvent-input-date-width"
+                                  type="date"                                  
+                              />
+                          </div>                            
+                                     {/* Tickets Available */}
+                          <div className="addEvent-container">
+                              <label
+                                  htmlFor="event-tickets-available"
+                                  className="addEvent-label"
+                              >
+                                  Tickets Available:
+                              </label>
+                              <input
+                                name='event-tickets-available'
+                                  className="addEvent-input addEvent-input-tickets-width"
+                                  type="number"
+                                  value={ticketsAvailable}
+                                  onChange={(e) =>
+                                      setTicketsAvailable(
+                                          parseInt(e.target.value)
+                                      )
+                                  }
+                              />
+                          </div>             
+                          {/* Price */}
+                          <div className="addEvent-container">
+                              <label
+                                  htmlFor="event-price"
+                                  className="addEvent-label"
+                              >
+                                  Price:
+                              </label>
+                              <input
+                                name='event-price'
+                                  className="addEvent-input addEvent-input-tickets-width"
+                                  type="number"
+                              />
+                          </div> 
+
+                                      <button
+                                          onClick={handleAddEvent}
+                                          className="button-green event-detail-button-right-margin"    
+                                      >
+                                          Add Event
+                                      </button>
+                                      <button
+                                          onClick={handleReturn}
+                                          className="button-back"
+                                      >
+                                          Return
+                                      </button>
+                      </div>
+                  </div>
+              </>
           ) : (
               <>
                   <h1 className="page-main-title">Access Denied</h1>
@@ -118,7 +200,6 @@ const AddEvent = () => {
               </>
           )}
       </div>
-    </>
   );
 };
 

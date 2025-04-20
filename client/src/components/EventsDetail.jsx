@@ -70,7 +70,7 @@ const EventsDetail = () => {
                           className="no-underline"
                       >
                           <button className="button-green event-detail-button-right-margin">
-                              Get Ticket
+                              Get Tickets
                           </button>
                       </Link>
                       <button
