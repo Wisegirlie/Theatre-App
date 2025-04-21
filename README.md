@@ -13,6 +13,7 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
 - Portal for site managers
 - Full create, read, update, and delete functionality for site managers
 - Site managers can only be assigned by managers. 
+- Ready-made databases for quick import
 - Friendly and Easy-to-use interface  
 ... More features to be implemented.
 
@@ -41,7 +42,10 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
    - Run ***"MongoD"*** only if you are running MongoDB locally.
    - go to the client folder and run ***"npm run dev"***
    - on the project folder run ***"npm run dev***  
-  
+5. Import databases
+   - Databases samples with complete data provided to easily import them to your MongoDB.
+
+ 
 ### Notes
 
 * I am using a local MongoDB Database for testing during development. You can connect the app to an MongoDB on the cloud to provide full availavility of data in any context. 
