@@ -3,6 +3,8 @@
 This app is designed to be a comprehensive online resource for the performing arts, culture, and entertainment.
 It features shows, performances, events, festivals, venues, and ticket purchasing options, among other features.
 
+(Currently under development)
+
 ## Features  
 - Navigate all existing events
 - See event details
@@ -52,7 +54,7 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
 
 ## Release information 
 
-### Version: 2.0. April 2025. (still under development)
+### Version: 2.0. April 2025 (still under development)
 Extreme makeover to achieve an appealing and fully functional app.
 by Gabriela Waisman
 *  100% Complete Front-End makeover. 
@@ -74,4 +76,14 @@ Contributors:
 - Gabriela Waisman
 - Santiago Navarrete
 - Jordan Coque  
+
+## Screenshots
+
+![image](./screenshots/Screenshot-01-home_4.jpg)
+
+![image](./screenshots/Screenshot-02-eventDetails_2.jpg)
+
+![image](./screenshots/Screenshot-03-addEvent_2.jpg)
+
+![image](./screenshots/Screenshot-04-modifyEvent_2.jpg)
 
