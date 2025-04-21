@@ -130,7 +130,6 @@ export const getEventsCount = async () => {
 // get event by ID
 export const getEventById = async (id) => {
   const token = localStorage.getItem('token');
-
   const response = await fetch(`${API_URL}/api/event/${id}`, {
     method: 'GET',
     headers: {

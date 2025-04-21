@@ -5,6 +5,8 @@ import '../css/events.css';
 
 const Events = ( props ) => {
   const [eventsData, setEventsData] = useState([]);
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
 
 
   useEffect(() => {
@@ -12,6 +14,7 @@ const Events = ( props ) => {
       try {
         const events = await getAllEvents();
         setEventsData(events);
+        setLoading(false);
       } catch (error) {
         console.error('Failed to fetch events:', error);
       }
@@ -20,6 +23,9 @@ const Events = ( props ) => {
     fetchEvents();
   }, []);
 
+  if (loading) return <div className="container"></div>;
+  if (error) return <div className="container">Error: {error}</div>;
+  if (!eventsData) return <div className="container">Events not found</div>;
 
   return (
       <section className="events-section-container" id="events">

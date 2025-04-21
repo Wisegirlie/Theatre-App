@@ -9,12 +9,16 @@ import '../../css/events.css';
 const ManageEvents = () => {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();  
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const data = await getAllEvents();
         setEvents(data);
+        setLoading(false);
       } catch (error) {
         console.error('Failed to fetch events:', error);
       }
@@ -26,6 +30,11 @@ const ManageEvents = () => {
   const handleAddEventClick = () => {
     navigate('/my-addEvents');
   };
+
+  if (loading) return <div className="container"></div>;
+  if (error) return <div className="container">Error: {error}</div>;
+  if (!events) return <div className="container">Events not found</div>;
+
 
   return (
       <section className="manageEvents-section-container" id="Manageevents">
