@@ -3,13 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import TheaterPic from '../../assets/shows/event_default_image.png';
 import '../../css/eventsDetail.css'
 import '../../css/admin/addEvents.css';
-import { createEvent, deleteEvent } from '../../services/eventServices.js'; 
+import { createEvent } from '../../services/eventServices.js'; 
 
 const AddEvent = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('');  
   const [ticketsAvailable, setTicketsAvailable] = useState(0);
+  const [venue, setVenue] = useState('');
+  const [ticketsSold, setTicketsSold] = useState(0);
+  const [eventDate, setEventDate] = useState(new Date());
+  const [price, setPrice] = useState(0.00);
   const navigate = useNavigate();
   
   const defaultImageToBlob = async (imageUrl) => {
@@ -24,8 +28,12 @@ const AddEvent = () => {
       await createEvent({
         image: finalImage,
         title,
-        description,
-        ticketsAvailable,
+        description, 
+        ticketsAvailable,       
+        venue, 
+        eventDate, 
+        ticketsSold, 
+        price
       });
 
       navigate('/manage-events');
@@ -107,11 +115,13 @@ const AddEvent = () => {
                           Venue:
                       </label>
                       <input
-                          type="text"
-                          id="venue"
                           name="venue"
+                          type="text"
+                          id="venue"                          
+                          value={venue}
                           className="addEvent-input"
                           placeholder="Where is the event taking place"
+                          onChange={(e) => setVenue(e.target.value)}
                       />
                   </div>
 
@@ -124,6 +134,8 @@ const AddEvent = () => {
                           name="event-date"
                           className="addEvent-input addEvent-input-date-width"
                           type="date"
+                          value={eventDate}
+                          onChange={(e) => setEventDate(e.target.value)}
                       />
                   </div>
                   {/* Tickets Available */}
@@ -139,9 +151,7 @@ const AddEvent = () => {
                           className="addEvent-input addEvent-input-tickets-width"
                           type="number"
                           value={ticketsAvailable}
-                          onChange={(e) =>
-                              setTicketsAvailable(parseInt(e.target.value))
-                          }
+                          onChange={(e) => setTicketsAvailable(parseInt(e.target.value))}
                       />
                   </div>
                   {/* Tickets Sold */}
@@ -156,7 +166,8 @@ const AddEvent = () => {
                           name="event-tickets-available"
                           className="addEvent-input addEvent-input-tickets-width"
                           type="number"    
-                          value={0}                                                
+                          value={ticketsSold}      
+                          onChange={(e) => setTicketsSold(parseInt(e.target.value))}                                          
                       />
                   </div>
                   {/* Price */}
@@ -168,6 +179,8 @@ const AddEvent = () => {
                           name="event-price"
                           className="addEvent-input addEvent-input-tickets-width"
                           type="number"
+                          value={price}
+                          onChange={(e) => setPrice(Number(e.target.value))}                                          
                       />
                   </div>
 

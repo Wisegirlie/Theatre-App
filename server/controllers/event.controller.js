@@ -9,11 +9,14 @@ const upload = multer({ storage: storage }).single('image');
 export const createEvent = async (req, res) => {
   upload(req, res, async (err) => {
     if (err) {
-      return res.status(500).json({ message: 'Error uploading file' });
+      return res.status(500).json({ message: 'Error uploading file while creating event' });
     }
 
     try {
-      const { title, description, ticketsAvailable } = req.body;
+      const { title, description, ticketsAvailable, venue, eventDate, ticketsSold, price } = req.body;
+
+      const isoDate = new Date(eventDate).toISOString();
+
       const image = req.file ? {
         data: req.file.buffer.toString('base64'),
         contentType: req.file.mimetype
@@ -23,7 +26,11 @@ export const createEvent = async (req, res) => {
         image,
         title,
         description,
-        ticketsAvailable
+        ticketsAvailable,
+        venue,
+        eventDate: isoDate, 
+        ticketsSold,
+        price
       });
 
       const formattedEvent = {
@@ -32,6 +39,7 @@ export const createEvent = async (req, res) => {
       };
 
       res.status(201).json(formattedEvent);
+
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -61,30 +69,40 @@ export const updateEvent = async (req, res) => {
 
     try {
       const { id } = req.params;
-      const { title, description, ticketsAvailable } = req.body;
+      const { title, description, ticketsAvailable, venue, eventDate, ticketsSold, price } = req.body;
       const image = req.file ? {
         data: req.file.buffer.toString('base64'),
         contentType: req.file.mimetype
       } : undefined;
 
-      
       const event = await Event.findById(id);
       if (!event) {
         return res.status(404).json({ message: 'Event not found' });
       }
-
       
+
       event.title = title || event.title;
       event.description = description || event.description;
       event.ticketsAvailable = ticketsAvailable !== undefined ? ticketsAvailable : event.ticketsAvailable;
+      event.ticketsSold = ticketsSold !== undefined ? ticketsSold : event.ticketsSold;
+      event.venue = venue || event.venue;      
+      event.price = price || event.price;    
+
+      // Handle eventDate conversion to ISO string
+      if (eventDate) {
+        event.eventDate = new Date(eventDate).toISOString();
+      } else if (eventDate === null || eventDate === '') {
+        // If you want to allow clearing the date
+        // event.eventDate = null;
+      }
+      // If eventDate is undefined, keep the existing value
+
+
       if (image) {
         event.image = image;
       }
 
-      
       await event.save();
-
-      
       const formattedEvent = {
         ...event._doc,
         image: event.image ? `data:${event.image.contentType};base64,${event.image.data}` : null
@@ -101,18 +119,17 @@ export const updateEvent = async (req, res) => {
 export const getAllEvents = async (req, res) => {
   try {
     const events = await Event.find();
-    
 
     const formattedEvents = events.map(event => {
       const formattedEvent = {
         ...event._doc,
         image: event.image ? `data:${event.image.contentType};base64,${event.image.data}` : null
       };
-      
+
       return formattedEvent;
     });
 
-    
+
     res.status(200).json(formattedEvents);
   } catch (error) {
     console.error('Error retrieving events:', error.message);
@@ -122,7 +139,7 @@ export const getAllEvents = async (req, res) => {
 
 
 //Event Count
-export const eventCount = async (req,res) => {
+export const eventCount = async (req, res) => {
   try {
     const count = await Event.countDocuments();
     res.status(200).json({ count });

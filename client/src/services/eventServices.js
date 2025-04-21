@@ -8,6 +8,10 @@ export const createEvent = async (eventData) => {
   formData.append('title', eventData.title);
   formData.append('description', eventData.description);
   formData.append('ticketsAvailable', eventData.ticketsAvailable);
+  formData.append('venue', eventData.venue);
+  formData.append('eventDate', eventData.eventDate);
+  formData.append('ticketsSold', eventData.ticketsSold);
+  formData.append('price', eventData.price);
 
   const response = await fetch(`${API_URL}/api/event`, {
     method: 'POST',
@@ -46,6 +50,10 @@ export const updateEvent = async (id, eventData) => {
   formData.append('title', eventData.title);
   formData.append('description', eventData.description);
   formData.append('ticketsAvailable', eventData.ticketsAvailable);
+  formData.append('venue', eventData.venue);
+  formData.append('eventDate', eventData.eventDate);
+  formData.append('ticketsSold', eventData.ticketsSold);
+  formData.append('price', eventData.price);
 
   const response = await fetch(`${API_URL}/api/event/${id}`, {
     method: 'PUT',

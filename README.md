@@ -4,12 +4,17 @@ This app is designed to be a comprehensive online resource for the performing ar
 It features shows, performances, events, festivals, venues, and ticket purchasing options, among other features.
 
 ## Features  
-- Includes a portal for the regular customer and a different portal for the site manager. 
-- User Authentication with email and password.
-- Full create, read, update, and delete (CRUD) functionality for site managers
+- Navigate all existing events
+- See event details
+- Ticket purchase simulation
+- View user profile and orders
+- User Login and Authentication
+- Portal for regular customers 
+- Portal for site managers
+- Full create, read, update, and delete functionality for site managers
 - Site managers can only be assigned by managers. 
-- Easy-to-use interface  
-... More features to be implemented in future updates.
+- Friendly and Easy-to-use interface  
+... More features to be implemented.
 
 ## Languages, Databases, APIs and Frameworks used:
 * React 
@@ -33,7 +38,7 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
    - Add the following variable to connect to the mongoDB on your desired location:
      - ***MONGO_URI=your-mongo-uri***
 4. Run the app:
-   - Run ***"MongoD"*** if you are running MongoDB locally.
+   - Run ***"MongoD"*** only if you are running MongoDB locally.
    - go to the client folder and run ***"npm run dev"***
    - on the project folder run ***"npm run dev***  
   
@@ -44,19 +49,21 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
 ## Release information 
 
 ### Version: 2.0. April 2025. (still under development)
-Remade by Gabriela Waisman. 
+Extreme makeover to achieve an appealing and fully functional app.
+by Gabriela Waisman
 *  100% Complete Front-End makeover. 
+*  Back-End makeover, enhaced reliance and optimization
 *  UI / UX Enhancement
-*  Responsiveness Addition
+*  Responsive design added
 *  Navigation enhancement
-*  Back-End optimization
-*  Addition of new fields in the database
+*  Dialogue windows for response messages 
+*  Addition of new fields and tables in the database
 *  New features
 *  New app design
 
 ### Version 1.0. August 2024. 
-Creation of a working app with basic operations.
-This initial version was developed quickly for demonstration purposes, so most features were not included, and database fields were kept to a minimum.
+Creation of a working app with basic crud operations.
+This initial version was developed quickly for demonstration purposes of crud operations and login authentication, so most features were not included, it didn't have a frontend proper design, and database fields and tables were kept to a minimum.
 Contributors:
 - Rebecca Liu 
 - Mauro Zegarra 

@@ -14,6 +14,10 @@ const ModifyEvent = ( events ) => {
     const [ticketsAvailable, setTicketsAvailable] = useState(0);
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(TheaterPic);
+    const [venue, setVenue] = useState('');
+    const [ticketsSold, setTicketsSold] = useState(0);
+    const [eventDate, setEventDate] = useState('');
+    const [price, setPrice] = useState(0.00);
     
 
     useEffect(() => {
@@ -21,11 +25,15 @@ const ModifyEvent = ( events ) => {
             try {
                 const eventToModify = await getEventById(id); // API call
                 if (eventToModify) {
-                    setTitle(eventToModify.title);
-                    setDescription(eventToModify.description);
-                    setTicketsAvailable(eventToModify.ticketsAvailable);
-                    setImage(eventToModify.image);
-                    setImagePreview(eventToModify.image);
+                    setTitle(eventToModify.title || "");
+                    setDescription(eventToModify.description || "");
+                    setTicketsAvailable(eventToModify.ticketsAvailable || 0);
+                    setVenue(eventToModify.venue || "");
+                    setTicketsSold(eventToModify.ticketsSold || 0);
+                    setPrice(eventToModify.price || 0);
+                    setEventDate(eventToModify.eventDate?.slice(0, 10) || "");
+                    setImage(eventToModify.image || null);
+                    setImagePreview(eventToModify.image || TheaterPic);
                 }
             } catch (error) {
                 console.error("Failed to fetch event: ", error);
@@ -51,6 +59,10 @@ const ModifyEvent = ( events ) => {
                 title,
                 description,
                 ticketsAvailable,
+                venue, 
+                eventDate,         
+                ticketsSold, 
+                price
             };
 
             const updatedData = await updateEvent(id, updatedEvent);
@@ -153,9 +165,11 @@ const ModifyEvent = ( events ) => {
                         <input
                             type="text"
                             id="venue"
-                            name="venue"
+                            name="venue"                            
                             className="addEvent-input"
                             placeholder="Where is the event taking place"
+                            value={venue}
+                            onChange={(e) => setVenue(e.target.value)}
                         />
                     </div>
 
@@ -168,6 +182,9 @@ const ModifyEvent = ( events ) => {
                             name="event-date"
                             className="addEvent-input addEvent-input-date-width"
                             type="date"
+                            id="eventDate"
+                            value={eventDate}
+                            onChange={(e) => setEventDate(e.target.value)}
                         />
                     </div>
                     {/* Tickets Available */}
@@ -183,9 +200,7 @@ const ModifyEvent = ( events ) => {
                             className="addEvent-input addEvent-input-tickets-width"
                             type="number"
                             value={ticketsAvailable}
-                            onChange={(e) =>
-                                setTicketsAvailable(parseInt(e.target.value))
-                            }
+                            onChange={(e) => setTicketsAvailable(parseInt(e.target.value))}
                         />
                     </div>
                     {/* Tickets Sold */}
@@ -199,7 +214,11 @@ const ModifyEvent = ( events ) => {
                         <input
                             name="event-tickets-available"
                             className="addEvent-input addEvent-input-tickets-width"
-                            type="number"                                                    
+                            type="number"  
+                            value={ticketsSold}
+                            onChange={(e) =>
+                                setTicketsSold(parseInt(e.target.value))
+                            }                                                  
                         />
                     </div>
                     {/* Price */}
@@ -211,6 +230,10 @@ const ModifyEvent = ( events ) => {
                             name="event-price"
                             className="addEvent-input addEvent-input-tickets-width"
                             type="number"
+                            value={price}
+                            onChange={(e) =>
+                                setPrice(Number(e.target.value))
+                            }    
                         />
                     </div>
 
