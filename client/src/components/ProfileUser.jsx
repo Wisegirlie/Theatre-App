@@ -1,8 +1,9 @@
-import iconUser from '../assets/profile/icon-user-for-profile.png';
-import DashBarRounded from '../assets/dashboard/assets-dash-rounded.png';
 import '../css/profileUser.css';
 import { useEffect, useState } from 'react';
+import { useAppContext } from '../context/useAppContext.jsx';
+import { ROLES } from '../constants/roles.js';
 import { getUserEventsAndTickets } from '../services/ticketServices';
+import BackPicture from '../assets/variety-images/theatre-day_2.jpg';
 
 // functionality for the return button
 const handleReturn = () => {
@@ -12,6 +13,7 @@ const handleReturn = () => {
 const ProfileUser = () => {
   const [user, setUser] = useState({ name: '', email: '' });
   const [ticketsPurchased, setTicketsPurchased] = useState(0);
+  const { isLogged, role } = useAppContext();
 
   useEffect(() => {
     const userName = localStorage.getItem('name');
@@ -40,41 +42,54 @@ const ProfileUser = () => {
   }, []);
 
   return (
-    <>
-      <div className='css-flex css-flex-align' id='div-main'>
-        <div className='profile-title-div'>
-          <h1 className='page-main-title'>User Profile</h1>
-          <img className='css-dashbarRounded dashbar-user-title' src={DashBarRounded} alt="Dash Rounded" />
-        </div>
-        <div className='profile-card'>
-          <div id='div-left' className='css-dashboard-div'>
-            <img src={iconUser} alt="User icon" className='profile-user-icon' />
+      <div className="profile-main-container" id="profile">
+          {/*  Background  */}
+          <img
+              className="profile-hero-img"
+              alt="Theatre General Image"
+              src={BackPicture}
+          />
+
+          <div className="profile-card">
+              {/* User icon */}
+              <div className="profile-user-img-container">
+                  <span className="fa fa-user-o"></span>
+              </div>
+              {/* Name */}
+              <div className="profile-label">User Name</div>
+              <div className="profile-data" style={{ fontSize: "29px" }}>
+                  {user.name}
+              </div>
+              {/* Email */}
+              <div className="profile-label">Email</div>
+              <div className="profile-data">{user.email}</div>
+              {/* Role - only admin */}
+              {isLogged && role === ROLES.ADMIN && (
+                  <>
+                      <div className="profile-label">Role</div>
+                      <div
+                          className="profile-data"
+                          style={{ color: "var(--light-green-button)" }}
+                      >
+                          System Administrator
+                      </div>
+                  </>
+              )}
+              {/* Role - only general user */}
+              {isLogged && role === ROLES.USER && (
+                  <>
+                      <br />
+                      <div className="profile-data profile-tickets">
+                          Total tickets purchased: &nbsp;{ticketsPurchased}
+                      </div>
+                  </>
+              )}
+
+              <button onClick={handleReturn} className="button-back">
+                  Return
+              </button>
           </div>
-          <div id='div-right' className='css-padding-top-30'>
-            <h3>
-              <span className='css-color-darkGrey css-margin-right-10'>
-                User Name:&nbsp;&nbsp;
-              </span>
-              <span className='css-font-bold css-font-size-bigger'>
-                {user.name}
-              </span>
-            </h3>
-            <h3>
-              <span className='css-color-darkGrey css-margin-right-10'>
-                E-mail:&nbsp;&nbsp;
-              </span>
-              <span className='css-font-bold css-font-size-bigger'>
-                {user.email}
-              </span>
-            </h3>
-            <h3 className='css-color-darkGrey gray-text-medium-size'>
-              Tickets Purchased: &nbsp;&nbsp; {ticketsPurchased}
-            </h3>
-            <button onClick={handleReturn} className='button-back'>Return</button>
-          </div>
-        </div>
       </div>
-    </>
   );
 }
 

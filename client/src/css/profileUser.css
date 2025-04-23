@@ -1,51 +1,86 @@
-.css-flex {
-    display: flex;    
-  }
+.profile-main-container {
+  display: flex; 
+  flex-direction: column;   
+  width: 100%;  
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  text-align: center;
+}
 
-  .css-dashboard-div {
-    margin-right: 100px;
-    text-align: center;
-    display: inline-block;
-  }
-  
-  .css-color-lightOrange {
-    color: #eb9318
-  }
-  
-  .css-color-darkGrey {
-    color: #676767;
-  }
-  
-  .css-font-bold {
-    font-weight: bold;
-  }
-  
-  .css-margin-none {
-    margin: 0;
-  }
-  
-  
-  .css-margin-bottom {
-    margin-bottom: 80px;
-  }
-  
-  .css-margin-right-10 {
-    margin-right: 10px;
-  }
+.profile-hero-img {    
+  position: absolute;
+  background-color: var(--background-gray);
+  width: 100%;
+  height: 100%; 
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center center;    
+  z-index: -1;    
+}
 
-  .css-flex-align {
-    align-items:start;
-  }
-  
-  .css-font-size {
-    font-size: 16px;
-    
-  }
 
-  .css-font-size-bigger {
-    font-size: 22px;
-    
-  }
+.profile-card {
+  display: flex;
+  width: 100%;
+  max-width:800px;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 120px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;  
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);    
+}
+
+.profile-user-img-container {
+    width: 140px;
+    height: 140px;
+    background: var(--orange-light);
+    border-radius: 50%;
+    font-size: 30px;
+    margin: 0 auto 40px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-user-img-container .fa-user-o {
+  color: #FFF;  
+  font-size: 45px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+.profile-label {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  
+}
+
+.profile-data {
+  font-size: 28px;  
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.profile-main-container .button-back {
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+.profile-tickets {
+  font-size: 18px; 
+  color: #777777;
+  font-weight: 400;
+}
+
+/*  MOVE THE FOLLOwinG TO APPROPRIATE FILE --- next update*/
   
   .css-tickets-info {
     display: flex;
@@ -81,56 +116,4 @@
     
   .css-margin-top-none {
     margin-top: 0;
-  }
-
-  .profile-user-icon {
-    height: 120px;    
-    margin-top: 20px;   
-
-  }
-
- h3 {
-    margin-bottom: 10px;
- }
-
- .gray-text-medium-size {
-    font-size: 18px;
-    color: #696969;
-    margin-top: 60px;
- }
-
- .css-padding-top-30 {
-    padding-top: 10px;
- }
-
- #div-right {
-    display: inline-block;
- }
-
- #div-left {
-    display: inline-block;
- }
-
- #div-main {
-    margin: 40px;
- }
-
-
-  .button-back {
-    margin-top: 50px !important;
-  }
-
-  .profile-card {
-    display: flex;
-    width: 80%;
-    align-items: start;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 30px;
-  }
-
-  .profile-title-div {
-    width: 250px;
   }

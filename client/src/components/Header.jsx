@@ -123,7 +123,7 @@ const Header = () => {
                                     <Link to="/manageusers">Users</Link>
                                   </li>                                  
                                   <li className="menu-li">
-                                      <Link to="/profileSuper">Account</Link>
+                                      <Link to="/profile">Account</Link>
                                   </li>      
                               </>
                           )}
