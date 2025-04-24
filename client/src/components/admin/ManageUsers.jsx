@@ -4,6 +4,7 @@ import DashBar from '../../assets/dashboard/asset-dash-rounded.png';
 import UserIcon from '../../assets/login/icon-user.png';
 import '../../css/admin/manageUsers.css';
 import { deleteUser, getAllUsers } from '../../services/userServices';
+import { ROLES } from '../../constants/roles.js';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -84,8 +85,8 @@ const ManageUsers = () => {
                     <h4>{user.name}</h4>
                     <h4>{user.email}</h4>
                     <h4>Role: 
-                      <span className={user.role === 1 ? 'text-orange' : '' }>
-                        {user.role === 1 ? " System Administrator" : " Regular User"}
+                      <span className={user.role === ROLES.ADMIN ? 'text-orange' : '' }>
+                        {user.role === ROLES.ADMIN ? " System Administrator" : " Regular User"}
                       </span>
                     </h4>
                   </div>

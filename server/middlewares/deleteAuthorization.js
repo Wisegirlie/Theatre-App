@@ -1,9 +1,10 @@
-import User from '../models/user.model.js';
+// import User from '../models/user.model.js';
+import { ROLES } from '../../client/src/constants/roles.js';
 
 const deleteAuthorization = async (req, res, next) => {
   try {
     
-    if (req.auth && req.auth.role === 1) {
+    if (req.auth && req.auth.role === ROLES.ADMIN) {
       next();
     } else {
       return res.status(403).json({

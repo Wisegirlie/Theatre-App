@@ -3,8 +3,7 @@ import '../css/login.css'
 import { SignIn, Register } from '../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/useAppContext';
-
-
+import { ROLES } from '../constants/roles';
 
 const SignUp = () => {
 
@@ -33,11 +32,11 @@ const SignUp = () => {
         const data = await SignIn(email, password);            
         console.log('Login successfully');            
         setIsLogged(true);
-        if (data.user.role === 1) {
+        if (data.user.role === ROLES.ADMIN) {
           setTimeout(() => {        
             navigate('/superDashboard');
           }, 1450);          
-        } else if (data.user.role === 2) {
+        } else if (data.user.role === ROLES.USER) {
           setTimeout(() => {        
             navigate('/');
           }, 1450);   

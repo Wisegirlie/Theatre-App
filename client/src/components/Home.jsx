@@ -5,12 +5,15 @@ import Hero from './misc/Hero';
 
 const Home = () => {
     return (
-        <>
-            <div className="home-container">                
-                <Hero picture={TheatrePic} title={"All in one place"}  buttonText={"Explore what’s on"} scrollId={"events"}/>                
-                <Events title="Upcoming Events"/>
-            </div>
-        </>
+        <div className="home-container">
+            <Hero
+                picture={TheatrePic}
+                title={"All in one place"}
+                buttonText={"Explore what’s on"}
+                scrollId={"events"}
+            />
+            <Events title="Upcoming Events" />
+        </div>
     );
 };
 

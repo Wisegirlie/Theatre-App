@@ -34,7 +34,7 @@
     padding: 25px;
   }
   
-  .ticket-image {
+  /* .ticket-image {
     width: 65px;
     height: auto;
     margin: 20px 30px 0px 5px;
@@ -44,7 +44,7 @@
   .ticket-info {
     flex-grow: 1;
     width: 300px;
-  }
+  } */
   
   .ticket-actions {
     display: flex;

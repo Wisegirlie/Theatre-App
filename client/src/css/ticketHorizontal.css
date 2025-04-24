@@ -1,0 +1,100 @@
+.ticket {
+    width: 300px;
+    height: 500px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    /* background-image: url('your-image.jpg'); */
+    background-size: cover;
+    background-position: center;
+    color: rgb(193, 63, 63);
+    /* Adjust text color for visibility */
+}
+
+.ticket::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 10%, #333 50%, transparent 90%);
+}
+
+.ticket-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.live-badge {
+    background-color: #ff0000;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.event-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 5px 0;
+    letter-spacing: 1px;
+}
+
+.event-subtitle {
+    font-size: 24px;
+    margin: 5px 0 20px;
+    color: #555;
+}
+
+.event-date {
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.event-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.event-address {
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.ticket-number {
+    font-size: 14px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.seat-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.seat-item {
+    text-align: center;
+}
+
+.seat-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.seat-value {
+    font-size: 24px;
+    font-weight: bold;
+}

@@ -1,8 +1,9 @@
-import DashBar from '../assets/dashboard/asset-dash-rounded.png';
-import DashboardTickets from './DashboardTickets';
-import '../css/dashboard.css';
 import { useEffect, useState } from 'react';
 import { getUserEventsAndTickets } from '../services/ticketServices';
+import Ticket from './misc/ticket';
+import Hero from './misc/Hero';
+import HeroImage from '../assets/variety-images/pair_2.jpg';
+import '../css/tickets.css';
 
 // functionality for the return button
 const handleReturn = () => {
@@ -10,52 +11,86 @@ const handleReturn = () => {
 };
 
 const Tickets = () => {
-  const [ticketData, setTicketData] = useState([]);
-  const [totalTickets, setTotalTickets] = useState(0);
+    const [ticketData, setTicketData] = useState([]);
+    const [totalTickets, setTotalTickets] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  // Obtener el userId del localStorage
-  const userId = localStorage.getItem('userId'); 
+    // Obtener el userId del localStorage
+    const userId = localStorage.getItem("userId");
 
-  useEffect(() => {
-    const fetchTickets = async () => {
-      try {
-        const tickets = await getUserEventsAndTickets(userId);
-        setTicketData(tickets);
-        const total = tickets.reduce((sum, ticket) => sum + ticket.numberTickets, 0);
-        setTotalTickets(total);
-      } catch (error) {
-        console.error('Error fetching tickets:', error);
-      }
-    };
+    useEffect(() => {
 
-    if (userId) {
-      fetchTickets();
-    } else {
-      console.error('User ID not found in localStorage');
-    }
-  }, [userId]);
+           const fetchTickets = async () => {            
+            try {
+                const tickets = await getUserEventsAndTickets(userId);
+                setTicketData(tickets);
+                // console.log(tickets);
+                const total = tickets.reduce(
+                    (sum, ticket) => sum + ticket.numberTickets,
+                    0
+                );
+                setTotalTickets(total);
+            } catch (error) {
+                console.error("Error fetching tickets:", error);
+                setError("Error fetching tickets:");
+            }
+        };
 
-  return (
-    <>
-      <div className='css-flex css-align-baseline css-dashboard-info'>
-        <div className='css-dashboard-div'>
-          <h1 className='page-main-title'>My Tickets</h1>
-          <img className='css-dashbar' src={DashBar} />
-          <div className='text-data'>
-            Tickets Purchased:&nbsp;&nbsp; {totalTickets}
-          </div>
+        if (userId) {
+            fetchTickets();
+        } else {
+            console.error("User ID not found in localStorage");
+            setError("User ID not found in localStorage");
+        }
+        setLoading(false);
+    }, [userId]);
+
+    if (loading) return <div className="loading"></div>;
+    if (error) return <div className="error">Error: {error}</div>;
+
+    return (
+        <div className="tickets-main-container">
+            <Hero
+                picture={HeroImage}
+                title={"My tickets"}
+                buttonText={"Explore my purchases"}
+                scrollId={"tickets"}
+                size={"350px"}
+            />
+
+            <div className="tickets-text-header">
+                <h1 className="page-main-title">My purchases</h1>
+                {/* <div className="ticket-totals">
+                    Total Tickets Purchased:&nbsp;&nbsp; {totalTickets}
+                </div> */}
+            </div>
+
+            <div className="tickets-container" id="tickets">
+                {ticketData.map((ticket, index) => (                    
+                    <Ticket
+                        key={index}
+                        title={ticket.eventTitle}                        
+                        ticketsNum={ticket.numberTickets}
+                        venue={ticket.event.venue}
+                        eventDate={ new Date(ticket.event.eventDate).toLocaleDateString('en-GB', {
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                        address={ticket.event.address}
+                        ticketId={ticket._id.toString().toUpperCase()}
+                        price={ticket.event.price}                        
+                        image={ticket.event.image}
+                    />
+                ))}
+            </div>
+
+            <button onClick={handleReturn} className="tickets-button-back">
+                Return
+            </button>
         </div>
-        <div>
-          {ticketData.map((ticket, index) => (
-            <DashboardTickets key={index} title={ticket.eventTitle} ticketsNum={ticket.numberTickets} />
-          ))}
-        </div>
-      </div>
-      <div style={{ display: 'block', textAlign: 'center' }}>
-        <button onClick={handleReturn} className='button-back'>Return</button>
-      </div>
-    </>
-  );
+    );
 }
 
 export default Tickets;

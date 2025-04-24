@@ -91,11 +91,8 @@ export const ticketCount = async (req,res) =>{
 };
 
 
-
-
 export const getUserEventsAndTickets = async (req, res) => {
   const userId = req.params.userId;
-
 
   try {
     const userEventsAndTickets = await Ticket.aggregate([
@@ -115,16 +112,30 @@ export const getUserEventsAndTickets = async (req, res) => {
       },
       {
         $project: {
-          _id: 0,
-          eventTitle: '$eventDetails.title',
-          numberTickets: '$numberTickets'
+          _id: 1,
+          eventTitle: '$eventDetails.title',          
+          numberTickets: '$numberTickets',
+          event: '$eventDetails'          
         }
       }
-    ]);
+    ]);  
 
+    const formattedResults = userEventsAndTickets.map(ticket => {
+      const imageData = ticket.event?.image;
+      return {
+        ...ticket,
+        event: {
+          ...ticket.event,
+          image: imageData?.data
+            ? `data:${imageData.contentType};base64,${imageData.data}`
+            : null
+        }
+      };
+    });
 
-
-    res.status(200).json(userEventsAndTickets);
+    res.status(200).json(formattedResults);
+    
+    // res.status(200).json(userEventsAndTickets);
   } catch (error) {
 
     res.status(500).json({ message: 'Error retrieving user events and tickets' });

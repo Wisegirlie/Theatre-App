@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { SignIn } from '../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/useAppContext';
+import { ROLES } from '../constants/roles.js';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,9 +15,9 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    // if (data.user.role === 1) {
+    // if (data.user.role === ROLES.ADMIN) {
     //   navigate('/superDashboard'); 
-    // } else if (data.user.role === 2) {
+    // } else if (data.user.role === ROLES.USER) {
     //   navigate('/my-dashboard'); 
     // }
 
@@ -27,9 +28,9 @@ const Login = () => {
       console.log('Login successfully');
       setError('')
       setIsLogged(true);
-      if (data.user.role === 1) {
+      if (data.user.role === ROLES.ADMIN) {
         navigate('/superDashboard');        
-      } else if (data.user.role === 2) {
+      } else if (data.user.role === ROLES.USER) {
         navigate('/');
       }
     } catch (error) {

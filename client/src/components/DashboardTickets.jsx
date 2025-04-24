@@ -1,5 +1,5 @@
 import TicketPic from '../assets/dashboard/asset-ticket.png'
-import '../css/dashboardTickets.css'
+import '../css/tickets.css'
 
 const DashboardTickets = ({ title, ticketsNum }) => {
 
