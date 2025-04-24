@@ -48,7 +48,7 @@ const Login = () => {
                   <span className='fa fa-user-o'></span>
               </div>
               <p className="login-form-text">
-                Log in into your account
+                Sign in to your account
               </p>
               <form onSubmit={handleLogin}>
                   <input

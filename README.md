@@ -83,7 +83,11 @@ Contributors:
 
 ![image](./screenshots/Screenshot-02-eventDetails_2.jpg)
 
-![image](./screenshots/Screenshot-03-addEvent_2.jpg)
-
 ![image](./screenshots/Screenshot-04-modifyEvent_2.jpg)
+
+![image](./screenshots/Screenshot-05-sign in_2.jpg)
+
+![image](./screenshots/Screenshot-07-tickets_2.jpg)
+
+![image](./screenshots/Screenshot-06-super user profile_2.jpg)
 
