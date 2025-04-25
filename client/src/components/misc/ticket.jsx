@@ -1,4 +1,5 @@
 import '../../css/ticket.css';
+import Barcode from '../../assets/misc/barcodeHoriz.png';
 
 export default function Ticket ( { title, ticketsNum, venue, eventDate, address, ticketId, price, image } ) {
 
@@ -29,6 +30,13 @@ export default function Ticket ( { title, ticketsNum, venue, eventDate, address,
                 TICKET NUMBER:
                 <br />
                 {ticketId}
+            </div>
+            <div className="ticket-barcode-container">
+                <img
+                    src={Barcode}
+                    alt={`Ticket Barcode`}
+                    className="ticket-barcode-img"
+                />
             </div>
 
             <div className="ticket-seat-container">

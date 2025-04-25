@@ -1,37 +1,49 @@
-.ticket {
-    width: 300px;
-    height: 500px;
-    background-color: #f8f8f8;
+.ticketHorizontal {        
+    background-color: #f4f4f4;
     border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    /* background-image: url('your-image.jpg'); */
-    background-size: cover;
-    background-position: center;
-    color: rgb(193, 63, 63);
-    /* Adjust text color for visibility */
+    overflow: hidden;    
+    color: #000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;    
+    border: 1px solid #d9d9d9;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: row;
 }
 
-.ticket::before {
+.ticketHorizontal::before {
     content: "";
     position: absolute;
     top: 0;
     left: 20px;
-    right: 20px;
+    right: 20px;                 
     height: 3px;
-    background: linear-gradient(90deg, transparent 10%, #333 50%, transparent 90%);
+             background: linear-gradient(90deg, transparent 10%, #737373 50%, transparent 90%);
 }
 
-.ticket-header {
-    text-align: center;
-    margin-bottom: 30px;
+/*   IMAGE  */
+.ticketHorizontal-image-div {
+    width: 200px;          
 }
 
-.live-badge {
-    background-color: #ff0000;
+.ticketHorizontal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*   DATA   */
+.ticketHorizontal-data {        
+    padding: 25px;    
+    margin-left: auto;
+    margin-right: auto ;
+    width: 500px;
+}
+
+
+.ticketHorizontal-badge {
+    background-color: #ff3300;
     color: white;
     padding: 4px 12px;
     border-radius: 20px;
@@ -41,60 +53,87 @@
     margin-bottom: 10px;
 }
 
-.event-title {
+.ticketHorizontal-event-title {
     font-size: 32px;
     font-weight: bold;
     margin: 5px 0;
     letter-spacing: 1px;
 }
 
-.event-subtitle {
+.ticketHorizontal-event-subtitle {
     font-size: 24px;
     margin: 5px 0 20px;
     color: #555;
 }
 
-.event-date {
+.ticketHorizontal-event-date {
     font-size: 18px;
-    margin-bottom: 25px;
+    margin-bottom: 18px;
     text-align: center;
 }
 
-.event-price {
+.ticketHorizontal-event-price {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.event-address {
+.ticketHorizontal-event-venue {
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     line-height: 1.4;
 }
 
-.ticket-number {
+.ticketHorizontal-number {
     font-size: 14px;
     margin-bottom: 30px;
     letter-spacing: 2px;
 }
 
-.seat-info {
+.ticketHorizontal-seat-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-top: 30px;
+    align-items: center;
+    justify-items: flex-start;    
+    padding: 15px 0px;
+    width: 80px;
 }
 
-.seat-item {
+.ticketHorizontal-seat-item {
     text-align: center;
 }
 
-.seat-label {
+.ticketHorizontal-seat-label {
     font-size: 14px;
     color: #666;
     margin-bottom: 5px;
 }
 
-.seat-value {
+.ticketHorizontal-seat-value {
     font-size: 24px;
     font-weight: bold;
 }
+
+.ticketHorizontal-barcode-container {
+    width: 25px;
+    margin: 20px 0;
+
+    }
+
+.ticketHorizontal-barcode-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
+@media (max-width: 630px) { 
+  
+    .ticketHorizontal {
+      display: none;
+    }  
+  
+  }
+  

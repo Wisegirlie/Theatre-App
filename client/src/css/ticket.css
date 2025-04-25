@@ -1,4 +1,6 @@
 .ticket {    
+    display: none;
+    flex-direction: column;
     width: 300px;
     background-color: #f4f4f4;
     border-radius: 12px;
@@ -85,12 +87,27 @@
     letter-spacing: 2px;
 }
 
+/*   BARCODE  */
+.ticket-barcode-container {
+    height: 22px;
+    margin: 25px 30px 5px; 
+    overflow: hidden;  
+}
+
+.ticket-barcode-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/*   SEATING INFO  */
 .ticket-seat-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
-    padding-left: 25px;
-    padding-right: 25px;
+    margin-top: 2px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-bottom: 5px;
     margin-bottom: 5px;
 }
@@ -109,3 +126,13 @@
     font-size: 24px;
     font-weight: bold;
 }
+
+
+@media (max-width: 630px) { 
+    
+    .ticket {
+      display: flex;
+    }    
+  
+  }
+  

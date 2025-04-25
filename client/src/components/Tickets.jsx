@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getUserEventsAndTickets } from '../services/ticketServices';
 import Ticket from './misc/ticket';
+import TicketHorizontal from './misc/ticketHorizontal';
 import Hero from './misc/Hero';
 import HeroImage from '../assets/variety-images/pair_2.jpg';
 import '../css/tickets.css';
+import '../css/ticketHorizontal.css';
 
 // functionality for the return button
 const handleReturn = () => {
@@ -60,27 +62,48 @@ const Tickets = () => {
             />
 
             <div className="tickets-text-header">
-                <h1 className="page-main-title">My purchases</h1>
+                <h1 className="page-main-title"></h1>
                 {/* <div className="ticket-totals">
                     Total Tickets Purchased:&nbsp;&nbsp; {totalTickets}
                 </div> */}
             </div>
 
             <div className="tickets-container" id="tickets">
-                {ticketData.map((ticket, index) => (                    
-                    <Ticket
-                        key={index}
-                        title={ticket.eventTitle}                        
+                {ticketData.map((ticket) => (
+                    <TicketHorizontal
+                        key={ticket._id}
+                        title={ticket.eventTitle}
                         ticketsNum={ticket.numberTickets}
                         venue={ticket.event.venue}
-                        eventDate={ new Date(ticket.event.eventDate).toLocaleDateString('en-GB', {
-                            day: '2-digit',
-                            month: 'short',
-                            year: 'numeric'
-                          })}
+                        eventDate={new Date(
+                            ticket.event.eventDate
+                        ).toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                        })}
                         address={ticket.event.address}
                         ticketId={ticket._id.toString().toUpperCase()}
-                        price={ticket.event.price}                        
+                        price={ticket.event.price}
+                        image={ticket.event.image}
+                    />
+                ))}
+                {ticketData.map((ticket, index) => (
+                    <Ticket
+                        key={index}
+                        title={ticket.eventTitle}
+                        ticketsNum={ticket.numberTickets}
+                        venue={ticket.event.venue}
+                        eventDate={new Date(
+                            ticket.event.eventDate
+                        ).toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                        })}
+                        address={ticket.event.address}
+                        ticketId={ticket._id.toString().toUpperCase()}
+                        price={ticket.event.price}
                         image={ticket.event.image}
                     />
                 ))}

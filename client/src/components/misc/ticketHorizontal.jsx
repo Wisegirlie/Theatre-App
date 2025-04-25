@@ -1,39 +1,73 @@
-import '../../css/ticketHorizontal.css';
+import '../../css/ticket.css';
+import Barcode from '../../assets/misc/barcodeVert.png';
 
-export default function TicketHorizontal () {
+export default function TicketHorizontal ( { title, ticketsNum, venue, eventDate, address, ticketId, price, image } ) {
 
     return (
-        <div className="ticket">
-        <div className="ticket-header">
-            <div className="live-badge">LIVE MUSIC</div>
-            <div className="event-title">MUSIC</div>
-            <div className="event-subtitle">NIGHT</div>
-        </div>
-
-        <div className="event-date">JUNE 12, 10:00 PM</div>
-
-        <div className="event-price">PRICE: $45</div>
-        <div className="event-address">
-            123 Anywhere st.,<br />
-            Any City
-        </div>
-
-        <div className="ticket-number">TICKET NUMBER:<br />0123456789</div>
-
-        <div className="seat-info">
-            <div className="seat-item">
-                <div className="seat-label">Gate</div>
-                <div className="seat-value">12</div>
+        <div className="ticketHorizontal">
+            <div className="ticketHorizontal-image-div">
+                <img
+                    src={image}
+                    alt={`Event image of ${title}`}
+                    className="ticketHorizontal-image"
+                />
             </div>
-            <div className="seat-item">
-                <div className="seat-label">Row</div>
-                <div className="seat-value">07</div>
+            <div className="ticketHorizontal-data">
+                <div className="ticketHorizontal-badge">TICKET</div>
+                <div className="ticketHorizontal-event-title">{title}</div>
+                {/* <div className="ticketHorizontal-event-subtitle">
+                    General Admission
+                </div> */}
+                <div className="ticketHorizontal-event-date">{eventDate}</div>
+
+                <div className="ticketHorizontal-event-price">
+                    PRICE: ${price}
+                </div>
+                <div className="ticketHorizontal-event-venue">
+                    {venue}
+                    <br />
+                    {address}
+                </div>
+{/* 
+                <div className="ticketHorizontal-number">
+                    TICKET NUMBER:
+                    <br />
+                    {ticketId}
+                </div> */}                
             </div>
-            <div className="seat-item">
-                <div className="seat-label">Seat</div>
-                <div className="seat-value">35</div>
+            <div className="ticketHorizontal-barcode-container">
+                <img
+                    src={Barcode}
+                    alt={`Ticket Barcode`}
+                    className="ticketHorizontal-barcode-img"
+                />
             </div>
+            <div className="ticketHorizontal-seat-container">
+                    <div className="ticketHorizontal-seat-item">
+                        <div className="ticketHorizontal-seat-label">
+                            Tickets
+                        </div>
+                        <div className="ticketHorizontal-seat-value">
+                            {ticketsNum}
+                        </div>
+                    </div>
+                    <div className="ticketHorizontal-seat-item">
+                        <div className="ticketHorizontal-seat-label">Gate</div>
+                        <div className="ticketHorizontal-seat-value">
+                            {String(
+                                Math.floor(Math.random() * 24) + 1
+                            ).padStart(2, "0")}
+                        </div>
+                    </div>
+                    <div className="ticketHorizontal-seat-item">
+                        <div className="ticketHorizontal-seat-label">Row</div>
+                        <div className="ticketHorizontal-seat-value">
+                            {String(
+                                Math.floor(Math.random() * 41) + 1
+                            ).padStart(2, "0")}
+                        </div>
+                    </div>
+                </div>
         </div>
-    </div>
-    )
+    );
 }
