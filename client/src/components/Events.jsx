@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getAllEvents } from '../services/eventServices';
 import EventsCard from './misc/EventsCard';
 import '../css/events.css';
+import DataNotFound from './misc/DataNotFound';
 
 const Events = ( props ) => {
   const [eventsData, setEventsData] = useState([]);
@@ -17,6 +18,7 @@ const Events = ( props ) => {
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch events:', error);
+        setError(error);
       }
     };
 
@@ -29,9 +31,12 @@ const Events = ( props ) => {
 
   return (
       <section className="events-section-container" id="events">
+         { eventsData.length > 0 && 
           <h1 className="page-main-title">
-            {props.title}
-          </h1>
+              {props.title}
+            </h1>          
+}
+          { eventsData.length > 0 && (
           <div className="events-container">
               {eventsData.map((event) => (
                   <EventsCard
@@ -42,7 +47,9 @@ const Events = ( props ) => {
                       description={event.description}
                   />
               ))}              
-          </div>
+          </div>) }
+          { eventsData.length == 0 && <DataNotFound message="No events available" />  }
+
       </section>
   );
 };

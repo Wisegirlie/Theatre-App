@@ -6,6 +6,7 @@ import Hero from './misc/Hero';
 import HeroImage from '../assets/variety-images/pair_2.jpg';
 import '../css/tickets.css';
 import '../css/ticketHorizontal.css';
+import DataNotFound from './misc/DataNotFound';
 
 // functionality for the return button
 const handleReturn = () => {
@@ -68,6 +69,9 @@ const Tickets = () => {
                 </div> */}
             </div>
 
+            { totalTickets == 0 && <DataNotFound message="You haven't purchased any ticket yet." />  }
+
+            { totalTickets > 0 && 
             <div className="tickets-container" id="tickets">
                 {ticketData.map((ticket) => (
                     <TicketHorizontal
@@ -107,7 +111,8 @@ const Tickets = () => {
                         image={ticket.event.image}
                     />
                 ))}
-            </div>
+            </div>  
+            }
 
             <button onClick={handleReturn} className="tickets-button-back">
                 Return

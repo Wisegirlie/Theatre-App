@@ -1,10 +1,11 @@
 import '../../css/ticket.css';
 import Barcode from '../../assets/misc/barcodeVert.png';
 
+// eslint-disable-next-line react/prop-types
 export default function TicketHorizontal ( { title, ticketsNum, venue, eventDate, address, ticketId, price, image } ) {
 
     return (
-        <div className="ticketHorizontal">
+        <div className="ticketHorizontal" id={ticketId}>
             <div className="ticketHorizontal-image-div">
                 <img
                     src={image}

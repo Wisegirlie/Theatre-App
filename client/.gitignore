@@ -24,5 +24,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# others
+# Recursive match (anywhere in project)
 **/[Originals]/
+/.[Originals]/
+**/[Oo]riginals/
+**/.[Oo]riginals/

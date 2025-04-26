@@ -1,6 +1,7 @@
 import '../../css/ticket.css';
 import Barcode from '../../assets/misc/barcodeHoriz.png';
 
+// eslint-disable-next-line react/prop-types
 export default function Ticket ( { title, ticketsNum, venue, eventDate, address, ticketId, price, image } ) {
 
     return (
