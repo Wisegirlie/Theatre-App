@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SignIn } from '../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/useAppContext';
-import { ROLES } from '../constants/roles.js';
+// import { ROLES } from '../constants/roles.js';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -28,11 +28,12 @@ const Login = () => {
       console.log('Login successfully');
       setError('')
       setIsLogged(true);
-      if (data.user.role === ROLES.ADMIN) {
-        navigate('/superDashboard');        
-      } else if (data.user.role === ROLES.USER) {
-        navigate('/');
-      }
+      navigate('/');
+      // if (data.user.role === ROLES.ADMIN) {
+      //   navigate('/superDashboard');        
+      // } else if (data.user.role === ROLES.USER) {
+      //   navigate('/');
+      // }
     } catch (error) {
       setError(error.message)
     }
@@ -44,7 +45,6 @@ const Login = () => {
           <div className="login-content-container">
             <div className="login-content-container-inner-border">
               <div className="login-user-img-container">
-                  {/* <img src={UserIcon} /> */}
                   <span className='fa fa-user-o'></span>
               </div>
               <p className="login-form-text">

@@ -16,8 +16,8 @@ export default function DialogAwait({ isOpen, title = "Message", message = "", e
             if (dialogRef.current?.open) {
               dialogRef.current.close();
             }
-            resolvePromise?.(); // ✅ This is the critical part
-            onClose?.();        // Optional state cleanup
+            resolvePromise?.(); 
+            onClose?.();       
           };
 
     return (        
@@ -42,3 +42,48 @@ export default function DialogAwait({ isOpen, title = "Message", message = "", e
         </dialog>
     );    
 }
+
+
+// ======================================================
+//  TO BE USED WHEN CALLING DIALOG FROM OTHER COMPONENTS 
+// ======================================================
+
+
+// import DialogAwait from './misc/dialogAwait';
+
+//   Dialog Modal Fields
+    // const [dialogTitle, setDialogTitle] = useState("");
+    // const [dialogMessage, setDialogMessage] = useState("");
+    // const [dialogIsError, setDialoIsgError] = useState("false");
+    // const [isDialogOpen, setIsDialogOpen] = useState(false);
+    // const [dialogPromiseResolver, setDialogPromiseResolver] = useState(null);
+
+// Add this function
+    // const showDialog = (title, message, errorState) => {
+    //     return new Promise((resolve) => {
+    //         setDialogTitle(title);
+    //         setDialogMessage(message);
+    //         setIsDialogOpen(true);
+    //         setDialogIsError(errorState);
+    //         setDialogPromiseResolver(() => () => {
+    //             resolve(); 
+    //         });
+    //     });
+    // };
+
+//   Handle Process
+    // await showDialog(
+    //     "Sign Up Successful",
+    //     "Your account has been successfully created. \nYou will now be redirected to the home page",
+    //     false
+    // );
+
+//  Dialog in Dom
+    // <DialogAwait
+    //     title={dialogTitle}
+    //     message={dialogMessage}
+    //     error={dialogError}
+    //     isOpen={isDialogOpen}
+    //     onClose={() => setIsDialogOpen(false)}
+    //     resolvePromise={dialogPromiseResolver}
+    // />;

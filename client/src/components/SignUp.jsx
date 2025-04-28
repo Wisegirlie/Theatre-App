@@ -28,7 +28,7 @@ const SignUp = () => {
             setIsDialogOpen(true);
             setDialogError(errorState);
             setDialogPromiseResolver(() => () => {
-                resolve(); // ✅ This is the final piece
+                resolve(); 
             });
         });
     };
