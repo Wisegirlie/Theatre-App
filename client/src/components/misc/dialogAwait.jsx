@@ -20,15 +20,17 @@ export default function DialogAwait({ isOpen, title = "Message", message = "", e
             onClose?.();       
           };
 
-    return (        
+    return (
         <dialog ref={dialogRef} onClose={onClose}>
             <form method="dialog">
                 <div className="dialog-innercontainer">
-                    <img
-                        className="dialog-icon"
-                        src={error ? Cancel : Check}
-                        alt="Dialog Message Icon"
-                    />
+                    {error !== null && (
+                        <img
+                            className="dialog-icon"
+                            src={error ? Cancel : Check}
+                            alt="Dialog Message Icon"
+                        />
+                    )}
                     <div className="dialog-title">{title}</div>
                     <div
                         className="dialog-message"
@@ -36,7 +38,12 @@ export default function DialogAwait({ isOpen, title = "Message", message = "", e
                     >
                         {message}
                     </div>
-                    <button className="dialog-close-button" onClick={handleClose}>Close</button>
+                    <button
+                        className="dialog-close-button"
+                        onClick={handleClose}
+                    >
+                        Close
+                    </button>
                 </div>
             </form>
         </dialog>

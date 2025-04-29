@@ -44,7 +44,7 @@ export default function Dialog({ title = "Message", message = "", error,  isOpen
 //          Version 2 with Href and <dialog>
 // ======================================================
 
-// import Dialog from './misc/dialogAwait';
+// import Dialog from './misc/dialog';
 
 //   Declare Dialog Modal Fields
     // const [dialogTitle, setDialogTitle] = useState("");
@@ -56,7 +56,7 @@ export default function Dialog({ title = "Message", message = "", error,  isOpen
     // setDialogTitle('title');
     // setDialogMessage('message');
     // setIsDialogOpen(true);
-    // setDialogIsError(errorState);
+    // setDialogIsError(false);
 
     // <Dialog
     //     title={dialogTitle}

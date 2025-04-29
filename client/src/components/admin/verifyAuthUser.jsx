@@ -2,14 +2,14 @@ import { useAppContext } from '../../context/useAppContext.jsx';
 import { ROLES } from '../../constants/roles.js';
 import AccessDenied from "../accessDenied.jsx";
 
-const VerifyAuth = ({ children }) => {
+const VerifyAuthUser = ({ children }) => {
     const { isLogged, role } = useAppContext();
 
     return (
         <>
-            {isLogged && role === ROLES.ADMIN ? children : <AccessDenied />}
+            {isLogged && role === ROLES.USER ? children : <AccessDenied />}
         </>
     );
 };
 
-export default VerifyAuth;
+export default VerifyAuthUser;

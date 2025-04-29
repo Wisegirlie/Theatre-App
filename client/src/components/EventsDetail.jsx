@@ -1,5 +1,5 @@
 import '../css/eventsDetail.css'
-import Reviews from './Reviews'
+// import Reviews from './Reviews'
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -50,7 +50,9 @@ const EventsDetail = () => {
                   />
                   <br></br>
                   <span className="event-details-text">
-                      Remaining Tickets: {eventData.ticketsAvailable}
+                       {eventData.ticketsAvailable > 0
+                        ? `Remaining Tickets: ${eventData.ticketsAvailable}`
+                        : "This event is Sold Out"}
                   </span>
                   <span className='event-details-text-orange'>
                       Get yours!

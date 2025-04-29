@@ -10,9 +10,8 @@ import Tickets from "./components/Tickets";
 import ProfileUser from "./components/ProfileUser.jsx";
 import DashboardSuper from "./components/admin/DashboardSuper";
 import EventsDetail from "./components/EventsDetail";
-import RegisteredConfirmation from "./components/RegisteredConfirmation.jsx";
 import { AppProvider } from "./context/AppProvider.jsx";
-import PurchaseTicket from "./components/PurchaseTickets";
+import TicketPurchase from "./components/ticketPurchase";
 // ADMIN
 import ManageTickets from "./components/admin/ManageTickets.jsx";
 import AddUser from "./components/admin/AddUser.jsx"
@@ -23,6 +22,7 @@ import ManageEvents from "./components/admin/ManageEvents";
 import ManageUsers from "./components/admin/ManageUsers";
 import AddEvent from "./components/admin/AddEvent";
 import VerifyAuthAdmin from './components/admin/verifyAuthAdmin.jsx';
+import VerifyAuthUser from './components/admin/verifyAuthUser.jsx';
 
 
 
@@ -37,13 +37,12 @@ function App() {
           <Route path='/register' element={<Layout><SignUp /></Layout>} />  
           {/* REGULAR USER ROUTES */}       
           <Route path="/my-home" element={<Layout><Home /></Layout>} />   
-          <Route path="/my-dashboard" element={<Layout><Dashboard /></Layout>} />     
-          <Route path="/confirmation" element={<Layout><RegisteredConfirmation/></Layout>} />
+          <Route path="/my-dashboard" element={<Layout><VerifyAuthUser><Dashboard /></VerifyAuthUser></Layout>} />     
           <Route path="/events" element={<Layout><Events /></Layout>} />  
           <Route path="/event-detail/:id" element={<Layout><EventsDetail /></Layout>} />             
-          <Route path="/tickets" element={<Layout><Tickets /></Layout>} />            
-          <Route path="/profile" element={<Layout><ProfileUser /></Layout>} /> 
-          <Route path="/purchase-tickets/:id" element={<Layout><PurchaseTicket /></Layout>}/>          
+          <Route path="/tickets" element={<Layout><VerifyAuthUser><Tickets /></VerifyAuthUser></Layout>} />            
+          <Route path="/profile" element={<Layout><VerifyAuthUser><ProfileUser /></VerifyAuthUser></Layout>} /> 
+          <Route path="/purchase-tickets/:id" element={<Layout><VerifyAuthUser><TicketPurchase /></VerifyAuthUser></Layout>}/>          
           {/* SUPER USER ROUTES */}
           <Route path="/superDashboard" element={<Layout><VerifyAuthAdmin><DashboardSuper /></VerifyAuthAdmin></Layout>} />
           <Route path="/manageusers"    element={<Layout><VerifyAuthAdmin><ManageUsers /></VerifyAuthAdmin></Layout>} />
