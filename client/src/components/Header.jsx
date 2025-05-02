@@ -125,15 +125,16 @@ const Header = () => {
                     </button>
 
                     {/* Menu options */}
-                    <nav className="menu-options-div">
+                    <nav className="menu-options-div" aria-label="Main navigation">
                         <ul
                             className={`menu-ul ${
                                 isMobileMenuOpen ? "active" : ""
                             }`}
+                            
                         >
                             <li className="menu-li">
                                 <Link to="/" onClick={closeMenu}>
-                                    <i className="fa fa-star"></i>
+                                <span aria-hidden="true"><i className="fa fa-star"></i></span>
                                     What's on
                                 </Link>
                             </li>
@@ -208,6 +209,7 @@ const Header = () => {
                                             src={SignoutIcon}
                                             onClick={handleSignOut}
                                             alt="Sign Out button"
+                                            aria-label="Sign out"
                                         />
                                         <span className="tooltip">
                                             Sign out
@@ -271,6 +273,7 @@ const Header = () => {
                                     src={SignoutIcon}
                                     onClick={handleSignOut}
                                     alt="Sign Out button"
+                                    aria-label="Sign out"
                                 />
                                 <span className="tooltip">Sign out</span>
                             </div>

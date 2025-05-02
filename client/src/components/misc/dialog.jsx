@@ -21,7 +21,7 @@ export default function Dialog({ title = "Message", message = "", error,  isOpen
               };
 
     return (
-        <dialog className="dialog-container" id="popup" ref={dialogRef} onClose={onClose}>
+        <dialog className="dialog-container" id="popup" ref={dialogRef} onClose={onClose} aria-live="System Message">
             <div className="dialog-innercontainer">      
             {error !== null && (
                 <img className="dialog-icon" src={error ? Cancel : Check} alt="Dialog Message Icon" />  

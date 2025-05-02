@@ -9,9 +9,9 @@ const EventsCard = ({ id, image, title, description }) => {
         <img className='card-image' src={image} alt={title + " thumbnail"} />
       </div>
       <div className='card-info-container'>
-        <h3 className='card-title'>
+        <h2 className='card-title'>
           {title}
-        </h3>
+        </h2>
         <div className='card-event-description'>
           {description}
         </div>
