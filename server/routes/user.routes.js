@@ -13,9 +13,9 @@ const router = Router();
 router.get('/api/users/count',requireSignIn, usersCount);
 router.post('/api/users', createUser);
 router.get('/api/users', getAllUsers);
-router.get('/api/users/:id',requireSignIn, hasAuthorization, getUser);
+router.get('/api/users/:id',requireSignIn, getUser);
 router.get('/api/users',requireSignIn, hasAuthorization, getAllUsers);
-router.put('/api/users/:id',requireSignIn,updateUser);
+router.put('/api/users/:id',requireSignIn, updateUser);
 router.delete('/api/users/:id',requireSignIn, deleteAuthorization, deleteUser);
 
 

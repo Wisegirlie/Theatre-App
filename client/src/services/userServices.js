@@ -105,3 +105,27 @@ export const getUsersCount = async () => {
   const data = await response.json();
   return data.count;
 }
+
+
+//get user by ID
+export const GetUserById = async ( id ) => {
+  const token = localStorage.getItem('token');   
+  if (!token) throw new Error('No authentication token found');
+  // console.log("token: " + token);
+
+  const response = await fetch(`${API_URL}/${id}`, { 
+    method: 'GET',
+    headers: {      
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    console.error('Failed to fetch user:', errorData.message || 'Unknown error');
+    throw new Error(errorData.message || 'Failed to fetch user');
+  }
+  const data = await response.json();
+  // console.log("Retrieved data by GetUserByID: ",  data);
+  return data;
+};

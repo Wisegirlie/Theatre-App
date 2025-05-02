@@ -14,12 +14,12 @@ import { AppProvider } from "./context/AppProvider.jsx";
 import TicketPurchase from "./components/ticketPurchase";
 // ADMIN
 import ManageTickets from "./components/admin/ManageTickets.jsx";
-import AddUser from "./components/admin/AddUser.jsx"
-import ModifyUser from './components/admin/ModifyUser.jsx'
+import AddUser from "./components/admin/userAdd.jsx"
+import ModifyUser from './components/admin/UserModify.jsx'
 import ModifyEvent from "./components/admin/ModifyEvent.jsx";
 import ModifyTickets from "./components/admin/ModifyTickets.jsx";
 import ManageEvents from "./components/admin/ManageEvents";
-import ManageUsers from "./components/admin/ManageUsers";
+import ManageUsers from "./components/admin/UsersManage.jsx";
 import AddEvent from "./components/admin/AddEvent";
 import VerifyAuthAdmin from './components/admin/verifyAuthAdmin.jsx';
 import VerifyAuthUser from './components/admin/verifyAuthUser.jsx';
@@ -54,7 +54,7 @@ function App() {
           <Route path="/my-addEvents"   element={<Layout><VerifyAuthAdmin><AddEvent /></VerifyAuthAdmin></Layout>} />
           <Route path="/modify-event/:id"   element={<Layout><VerifyAuthAdmin><ModifyEvent /></VerifyAuthAdmin></Layout>} />
           <Route path="/modify-ticket/:id" element={<Layout><VerifyAuthAdmin><ModifyTickets /></VerifyAuthAdmin></Layout>}/>
-          <Route path="/profile"   element={<Layout><VerifyAuthAdmin><ProfileUser /></VerifyAuthAdmin></Layout>} />          
+          <Route path="/profile-admin"   element={<Layout><VerifyAuthAdmin><ProfileUser /></VerifyAuthAdmin></Layout>} />          
         </Routes>
       </AppProvider>
     

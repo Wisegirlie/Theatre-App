@@ -39,6 +39,7 @@ export const getUser = async (req, res) => {
   try {
 
     const user = await User.findById(req.params.id)
+    console.log("backend id: " + req.params.id)
 
     if (!user) {
 
@@ -49,7 +50,9 @@ export const getUser = async (req, res) => {
 
   } catch (error) {
 
+    console.log(`User fetch failed for ID ${req.params.id}`, error);
     res.status(500).json({ message: 'Error fetching user', error });
+
   }
 }
 

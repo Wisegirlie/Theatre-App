@@ -20,6 +20,10 @@ const ProfileUser = () => {
     const userEmail = localStorage.getItem('email');
     const userId = localStorage.getItem('userId'); 
 
+    
+    // console.log("Profile - isLogged: " + isLogged);
+    // console.log("Profile - role: " + role);
+
     if (userName && userEmail) {
       setUser({ name: userName, email: userEmail });
     }

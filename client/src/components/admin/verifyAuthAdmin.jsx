@@ -5,6 +5,9 @@ import AccessDenied from "../accessDenied.jsx";
 const VerifyAuth = ({ children }) => {
     const { isLogged, role } = useAppContext();
 
+    // console.log("isLogged: " + isLogged);
+    // console.log("role: " + role);
+
     return (
         <>
             {isLogged && role === ROLES.ADMIN ? children : <AccessDenied />}
