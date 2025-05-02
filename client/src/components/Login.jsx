@@ -16,7 +16,7 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     // if (data.user.role === ROLES.ADMIN) {
-    //   navigate('/superDashboard'); 
+    //   navigate('/dashboard-super'); 
     // } else if (data.user.role === ROLES.USER) {
     //   navigate('/my-dashboard'); 
     // }
@@ -30,7 +30,7 @@ const Login = () => {
       setIsLogged(true);
       navigate('/');
       // if (data.user.role === ROLES.ADMIN) {
-      //   navigate('/superDashboard');        
+      //   navigate('/dashboard-super');        
       // } else if (data.user.role === ROLES.USER) {
       //   navigate('/');
       // }

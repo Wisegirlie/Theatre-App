@@ -100,7 +100,7 @@ const Header = () => {
                           {isLogged && role === ROLES.USER && (
                               <>                                  
                                   <li className="menu-li">
-                                      <Link to="/tickets">My Tickets</Link>
+                                      <Link to="/my-tickets">My Tickets</Link>
                                   </li>
                                   <li className="menu-li">
                                       <Link to="/profile">Account</Link>
@@ -110,9 +110,9 @@ const Header = () => {
                           {/*  Menu options only for logged admins  */}
                           {isLogged && role === ROLES.ADMIN && (
                               <>
-                                  <li className="menu-li">
-                                    <Link to="/superDashboard">Dashboard</Link>
-                                  </li>
+                                  {/* <li className="menu-li">
+                                    <Link to="/dashboard-super">Dashboard</Link>
+                                  </li> */}
                                   <li className="menu-li">
                                     <Link to="/manage-events">Events</Link>
                                   </li>
@@ -120,7 +120,7 @@ const Header = () => {
                                     <Link to="/manage-tickets">Tickets</Link>
                                   </li>
                                   <li className="menu-li">
-                                    <Link to="/manageusers">Users</Link>
+                                    <Link to="/manage-users">Users</Link>
                                   </li>                                  
                                   <li className="menu-li">
                                       <Link to="/profile-admin">Account</Link>

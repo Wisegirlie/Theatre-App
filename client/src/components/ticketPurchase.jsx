@@ -88,7 +88,7 @@ function PurchaseTicket() {
                     "Your ticket has been added to your account.",
                     false
                 );
-                navigate("/tickets");
+                navigate("/my-tickets");
             } catch (error) {
                 console.error("Error updating event:", error);
                 // alert("Purchase failed");
@@ -160,11 +160,7 @@ function PurchaseTicket() {
                         </div>
                     </>
                 )}
-                <div className="ticket-purchase-availableTickets">
-                    {eventData.ticketsAvailable > 0
-                        ? `Tickets available: ${eventData.ticketsAvailable}`
-                        : "This event is Sold Out"}
-                </div>
+               
                 {eventData.ticketsAvailable > 0 && (
                     <button
                         className="button-green"
@@ -174,6 +170,11 @@ function PurchaseTicket() {
                         Confirm Purchase
                     </button>
                 )}
+                 <div className="ticket-purchase-availableTickets">
+                    {eventData.ticketsAvailable > 0
+                        ? `Tickets available: ${eventData.ticketsAvailable}`
+                        : "This event is Sold Out"}
+                </div>
                 <button
                     onClick={handleReturn}
                     className="button-back button-back-margint-top"

@@ -58,7 +58,7 @@ const SignUp = () => {
                 navigate("/");
                 // if (data.user.role === ROLES.ADMIN) {
                 //   setTimeout(() => {
-                //     navigate('/superDashboard');
+                //     navigate('/dashboard-super');
                 //   }, 1450);
                 // } else if (data.user.role === ROLES.USER) {
                 //   setTimeout(() => {

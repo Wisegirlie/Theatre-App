@@ -28,7 +28,7 @@ const ManageEvents = () => {
   }, []);
 
   const handleAddEventClick = () => {
-    navigate('/my-addEvents');
+    navigate('/add-event');
   };
 
   if (loading) return <div className="container"></div>;

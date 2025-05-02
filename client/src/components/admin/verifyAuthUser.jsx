@@ -7,7 +7,7 @@ const VerifyAuthUser = ({ children }) => {
 
     return (
         <>
-            {isLogged && role === ROLES.USER ? children : <AccessDenied />}
+            {isLogged && (role === ROLES.USER || role === ROLES.ADMIN ) ? children : <AccessDenied />}
         </>
     );
 };

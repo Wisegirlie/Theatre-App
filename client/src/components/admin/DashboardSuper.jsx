@@ -52,7 +52,7 @@ const DashboardSuper = () => {
         <div id='div-right'>
           <h3 className='css-margin-none super-options-container'>
             <div className="super-options">
-              <Link to="/manageusers" className="no-underline">
+              <Link to="/manage-users" className="no-underline">
                 <div className="super-options-img-div">
                   <img src={iconUser} alt="Manage Users" className='super-options-img'/>
                 </div>              

@@ -101,7 +101,7 @@ const ModifyUser = () => {
             setDialogMessage('User Successfully updated');
             setIsDialogOpen(true);
             setDialogIsError(false);
-            // navigate("/manageusers");
+            // navigate("/manage-users");
         } catch (error) {
             console.log("Update failed");
             setError(error.message);

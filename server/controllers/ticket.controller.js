@@ -113,12 +113,16 @@ export const getUserEventsAndTickets = async (req, res) => {
       {
         $project: {
           _id: 1,
-          eventTitle: '$eventDetails.title',          
+          eventTitle: '$eventDetails.title',
           numberTickets: '$numberTickets',
-          event: '$eventDetails'          
+          event: '$eventDetails',
+          ticketDate: '$createdAt'
         }
+      },
+      {
+        $sort: { ticketDate: -1 } // Sort by event date in descending order (newest first)
       }
-    ]);  
+    ]);
 
     const formattedResults = userEventsAndTickets.map(ticket => {
       const imageData = ticket.event?.image;
@@ -135,13 +139,11 @@ export const getUserEventsAndTickets = async (req, res) => {
 
     res.status(200).json(formattedResults);
     
-    // res.status(200).json(userEventsAndTickets);
   } catch (error) {
 
     res.status(500).json({ message: 'Error retrieving user events and tickets' });
   }
 };
-
 
 // Create Ticket for User Purchase
 export const createTicketForUser = async (req, res) => {

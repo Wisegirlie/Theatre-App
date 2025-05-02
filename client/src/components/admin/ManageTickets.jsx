@@ -46,7 +46,7 @@ const ManageTickets = () => {
       <div className="sidebar">
         <h1 className='page-main-title'>Manage Tickets</h1>
         <div className="progress-bar"></div>
-        <Link to="/addTickets">
+        <Link to="/add-ticket">
           <button className="button-add">Add new ticket</button>
         </Link>
         <div className='text-data'>Total Tickets Purchased: {totalTickets}</div>

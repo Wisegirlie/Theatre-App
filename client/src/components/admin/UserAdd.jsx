@@ -33,7 +33,7 @@ const AddUser = () => {
       setRole('');
       setSuccess("user Successfully created")
       setError('')
-      navigate('/manageusers');
+      navigate('/manage-users');
     } catch (error) {
       console.log('create failed');
       setError(error.message);
