@@ -12,6 +12,8 @@ export const signOut = async () => {
       const errorData = await response.json();
       throw new Error(errorData.message || 'Logout failed');
     }
+    localStorage.clear();
+    sessionStorage.clear();
     return await response.json();
     
   } catch (error) {

@@ -1,11 +1,23 @@
-# Theatre-App
+# 🎭 Theatre-App
 
 This app is designed to be a comprehensive online resource for the performing arts, culture, and entertainment.
 It features shows, performances, events, festivals, venues, and ticket purchasing options, among other features.
 
 (Currently under development)
 
-## Features  
+## 🛠️ Tech Stack: Languages, Databases, APIs and Frameworks used:
+* React 
+* Vite
+* Node.js
+* Express
+* MongoDB
+* JavaScript
+* REST API
+* HTML
+* CSS
+* Git 
+
+## ✨ Features  
 - Navigate all existing events
 - See event details
 - Ticket purchase simulation
@@ -19,19 +31,7 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
 - Friendly and Easy-to-use interface  
 ... More features to be implemented.
 
-## Languages, Databases, APIs and Frameworks used:
-* React 
-* Vite
-* Node.js
-* Express
-* MongoDB
-* JavaScript
-* REST API
-* HTML
-* CSS
-* Git 
-
-## Installation  
+## ⚙️ Installation
 1. Clone the repository  
 2. Install dependencies:
    - Navigate to the project folder and run ***"npm install"***
@@ -43,16 +43,22 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
 4. Run the app:
    - Run ***"MongoD"*** only if you are running MongoDB locally.
    - go to the client folder and run ***"npm run dev"***
-   - on the project folder run ***"npm run dev***  
+   - on the project folder run ***"npm run dev"***  
 5. Import databases
-   - Databases samples with complete data provided to easily import them to your MongoDB.
-
+   - Sample databases are located in the ***server/models/database samples*** folder. They include collections for events, users, and tickets with pre-filled data to facilitate testing and setup.
+   - Example:
+     ```bash
+     mongoimport --uri "your-mongo-uri" --collection events --file ./server/models/database samples/events.json --jsonArray
+     mongoimport --uri "your-mongo-uri" --collection users --file ./server/models/database samples/users.json --jsonArray
+     ```
+   - Replace `your-mongo-uri` with your MongoDB connection string.
+   - Ensure the "server/models/database samples" folder contains the `.json` files for the respective collections.
  
 ### Notes
 
 * I am using a local MongoDB Database for testing during development. You can connect the app to an MongoDB on the cloud to provide full availavility of data in any context. 
 
-## Release information 
+## 📝 Release information 
 
 ### Version: 2.0. April 2025 (still under development)
 Extreme makeover to achieve an appealing and fully functional app.
@@ -62,9 +68,9 @@ by Gabriela Waisman
 *  UI / UX Enhancement
 *  Responsive design added
 *  Navigation enhancement
-*  Dialogue windows for response messages 
-*  Addition of new fields and tables in the database
-*  New features
+*  Interactive dialog windows for user feedback and notifications
+*  Expanded database schema with additional fields and collections
+*  New features added
 *  New app design
 
 ### Version 1.0. August 2024. 
@@ -77,7 +83,7 @@ Contributors:
 - Santiago Navarrete
 - Jordan Coque  
 
-## Screenshots
+## 📸 Screenshots
 
 ![image](./screenshots/Screenshot-01-home_4.jpg)
 
@@ -90,4 +96,14 @@ Contributors:
 ![image](./screenshots/Screenshot-07-tickets_2.jpg)
 
 ![image](./screenshots/Screenshot-06-superUserProfile_2.jpg)
+
+
+## 🤝 Contributing
+Contributions are welcome! Here’s how:
+
+Fork the repository.
+
+Improve the code (e.g., add features, fix bugs, enhance security).
+Submit a Pull Request with a clear description.
+If you have suggestions, bug fixes, unit tests, or improvements, feel free to open an issue or submit a pull request.
 

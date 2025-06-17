@@ -13,8 +13,8 @@ export const SignIn = async (email, password) =>{
   if (!response.ok){
     const errorData = await response.json();
     throw new Error(errorData.message || 'User login failed');
-  }
-
+  }  
+  sessionStorage.clear();
   const data = await response.json();
   localStorage.setItem('token', data.token);
   localStorage.setItem('userId', data.user._id);

@@ -39,5 +39,5 @@ export const SignOut = (req, res) => {
   res.clearCookie("t");
   return res.status(200).json({
     message: "Signed out succesfully",
-  });
+  });  
 };
