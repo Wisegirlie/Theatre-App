@@ -36,6 +36,12 @@
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);    
 }
 
+@media (max-width: 350px) {
+  .profile-card {
+    padding: 50px 40px;
+  }
+}
+
 .profile-user-img-container {
     width: 140px;
     height: 140px;

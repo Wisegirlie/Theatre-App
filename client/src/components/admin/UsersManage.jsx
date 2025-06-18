@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import UserIcon from '../../assets/login/icon-user.png';
+import { Link } from 'react-router-dom';
 import '../../css/admin/usersManage.css';
 import { deleteUser, getAllUsers } from '../../services/userServices.js';
 import { ROLES } from '../../constants/roles.js';
+import { useNavigate } from 'react-router-dom';
+// import UserIcon from '../../assets/login/icon-user.png';
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-
  
     useEffect(() => {
         const fetchUsers = async () => {
@@ -47,7 +47,8 @@ const ManageUsers = () => {
 
     // functionality for the return button
     const handleReturn = () => {
-        window.history.back();
+        // window.history.back();
+        navigate('/');
     };
 
     return (

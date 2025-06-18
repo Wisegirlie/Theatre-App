@@ -171,7 +171,7 @@ const AddEvent = () => {
                       />
                   </div>
                   {/* Price */}
-                  <div className="addEvent-container">
+                  <div className="addEvent-container addEvent-margin-bottom">
                       <label htmlFor="event-price" className="addEvent-label">
                           Price:
                       </label>

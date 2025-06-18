@@ -222,7 +222,7 @@ const ModifyEvent = ( events ) => {
                         />
                     </div>
                     {/* Price */}
-                    <div className="addEvent-container">
+                    <div className="addEvent-container addEvent-margin-bottom">
                         <label htmlFor="event-price" className="addEvent-label">
                             Price:
                         </label>
@@ -248,7 +248,7 @@ const ModifyEvent = ( events ) => {
                         Cancel
                     </button>
                     <button onClick={() => handleDeleteEvent(id)} className="button-orange">
-                        Detele event
+                        Delete event
                     </button>
                 </div>
             </div>

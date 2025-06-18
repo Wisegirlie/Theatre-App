@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import DashBarRounded from "../../assets/dashboard/assets-dash-rounded.png";
-import defaultPic from "../../assets/profile/icon-user-for-profile.png";
 import { ModifyingUser } from "../../services/userServices.js";
 import { GetUserById } from "../../services/userServices.js";
 import { ROLES } from "../../constants/roles.js";
 import Dialog from "../misc/dialog";
+import "../../css/admin/userModify.css";
 
 const handleReturn = () => {
     window.history.back();
@@ -72,7 +71,7 @@ const ModifyUser = () => {
             setIsDialogOpen(true);
             setDialogIsError(true);
         }
-    }, [id]);
+    }, [id, error]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -102,6 +101,7 @@ const ModifyUser = () => {
             setIsDialogOpen(true);
             setDialogIsError(false);
             // navigate("/manage-users");
+            // window.history.back();
         } catch (error) {
             console.log("Update failed");
             setError(error.message);
@@ -120,8 +120,8 @@ const ModifyUser = () => {
     };
 
     return (
-        <>
-            <div className="css-flex css-content-ticket">
+        <div className="userModify-background">
+            <div className="userModify-form-container">
                 <Dialog
                     title={dialogTitle}
                     message={dialogMessage}
@@ -129,106 +129,103 @@ const ModifyUser = () => {
                     isOpen={isDialogOpen}
                     onClose={() => setIsDialogOpen(false)}
                 />
-                ;
-                <div className="css-dashboard-div css-margin-right-0">
-                    <h1 className="css-color-darkOrange css-margin-none">
+                
+                <div className="userModify-form-header">
+                    <h1 className="page-main-title">
                         Modify User
-                    </h1>
-                    <img
-                        className="css-dashbarRounded"
-                        src={DashBarRounded}
-                        alt="Dash Rounded"
-                    />
+                    </h1>                    
                 </div>
-                <div className="css-flex">
-                    <div>
-                        <img src={defaultPic} alt="Profile" />
-                    </div>
-                    <div className="css-margin-left-40px">
-                        <div className="css-margin-bottom-30px">
-                            <span className="css-black-bold">Username:</span>
+                
+                <div className="userModify-form-content">                    
+                    {/* User icon */}
+                    <div className="profile-user-img-container userModify-user-avatar-space">
+                        <span className="fa fa-user-o"></span>
+                    </div>   
+                    
+                    <div className="userModify-form-fields">
+                        <div className="userModify-form-group">
+                            <label htmlFor="username" className="userModify-form-label">Username</label>
                             <input
-                                className="css-input-insert"
+                                id="username"
+                                name="username"
+                                className="userModify-form-input"
                                 type="text"
                                 value={inputName}
                                 onChange={(e) => setInputName(e.target.value)}
                             />
-                            <br></br>
                         </div>
-                        <div className="css-margin-bottom-30px">
-                            <span className="css-black-bold">Email:</span>
+                        
+                        <div className="userModify-form-group">
+                            <label htmlFor="email" className="userModify-form-label">Email</label>
                             <input
-                                className="css-input-insert"
-                                type="text"
+                                id="email"
+                                name="email"
+                                className="userModify-form-input"
+                                type="email"
                                 value={inputEmail}
                                 onChange={(e) => setInputEmail(e.target.value)}
                             />
-                            <br></br>
-                            <div className="css-margin-bottom-30px"></div>
-                            <div className="css-margin-bottom-30px">
-                                <span className="css-black-bold">
-                                    Password:
-                                </span>
-                                <input
-                                    className="css-input-insert"
-                                    type="password"
-                                    value={inputPasswordValue}
-                                    onChange={handlePasswordChange}
-                                    disabled
-                                />
-                                <br></br>
-                            </div>
-                            <span className="css-black-bold">Role:</span>
+                        </div>
+                        
+                        <div className="userModify-form-group">
+                            <label htmlFor="password" className="userModify-form-label">Password</label>
                             <input
-                                className="css-input-insert css-tickets-width"
-                                type="text"
-                                min={ROLES.ADMIN}
-                                max={ROLES.USER}
-                                value={inputRole}
-                                onChange={(e) =>
-                                    setInputRole(e.target.valueAsNumber)
-                                }
+                                id="password"
+                                name="password"                                
+                                className="userModify-form-input"
+                                type="password"
+                                placeholder="Enter new password"
+                                value={inputPasswordValue}
+                                onChange={handlePasswordChange}
                             />
+                            <small className="text-muted">Leave blank to keep current password</small>
+                        </div>
+                        
+                        <div className="userModify-form-group">
+                            <label htmlFor="role" className="userModify-form-label">Role</label>
                             <select
+                                id="role"
+                                name="role"
+                                className="userModify-form-select"
                                 value={inputRole}
                                 onChange={(e) => setInputRole(Number(e.target.value))}
-                                className="css-input-insert css-tickets-width"
+                                
                             >
-                                <option value={ROLES.ADMIN}>
-                                    Administrator
-                                </option>
                                 <option value={ROLES.USER}>Regular user</option>
+                                <option value={ROLES.ADMIN}>Administrator</option>
+                                
                             </select>
-                            <br></br>
+                        </div>
+                        
+                        <div className="userModify-button-group">
                             <button
                                 className="button-modify"
                                 onClick={handleSubmit}
-                                style={{ marginRight: "40px" }}
                             >
-                                Modify User
+                                Save Changes
                             </button>
                             <button
                                 onClick={handleReturn}
-                                className="button-back"
+                                className="button-modify userModify-button-secondary"
                             >
                                 Return
                             </button>
-                            {error && (
-                                <p style={{ color: "red", fontSize: 15 }}>
-                                    {error}
-                                </p>
-                            )}
-                            {success && (
-                                <span style={{ color: "green", fontSize: 15 }}>
-                                    <br />{success}
-                                </span>
-                            )}
                         </div>
+                        
+                        {error && (
+                            <div className="userModify-status-message userModify-error-message">
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div className="userModify-status-message userModify-success-message">
+                                {success}
+                            </div>
+                        )}
                     </div>
                 </div>
-            </div>
-            <div></div>
-        </>
+            </div>            
+        </div>
     );
 };
 
