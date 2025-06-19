@@ -61,22 +61,22 @@ It features shows, performances, events, festivals, venues, and ticket purchasin
 ## 📝 Release information 
 
 ### Version: 2.0. April 2025 (still under development)
-Extreme makeover to achieve an appealing and fully functional app.
-by Gabriela Waisman
+I am working in an extreme makeover to achieve an appealing and fully functional app.
+
 *  100% Complete Front-End makeover. 
-*  Back-End makeover, enhaced reliance and optimization
 *  UI / UX Enhancement
-*  Responsive design added
 *  Navigation enhancement
+*  Responsive design 
+*  Back-End makeover, enhaced reliance and optimization
 *  Interactive dialog windows for user feedback and notifications
 *  Expanded database schema with additional fields and collections
 *  New features added
-*  New app design
+*  New design
 
 ### Version 1.0. August 2024. 
 Creation of a working app with basic crud operations.
-This initial version was developed quickly for demonstration purposes of crud operations and login authentication, so most features were not included, it didn't have a frontend proper design, and database fields and tables were kept to a minimum.
-Contributors:
+This initial version was developed quickly for demonstration purposes of CRUD operations and login authentication, so most features were not included, it didn't have an appropriate frontend design, and database fields and tables were kept to a minimum.
+Contributors for the first version:
 - Rebecca Liu 
 - Mauro Zegarra 
 - Gabriela Waisman
