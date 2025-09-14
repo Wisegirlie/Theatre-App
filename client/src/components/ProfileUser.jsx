@@ -70,7 +70,7 @@ const ProfileUser = () => {
               {/* Role - only admin */}
               {isLogged && role === ROLES.ADMIN && (
                   <>
-                      <div className="profile-label">Role</div>
+                      <div className="profile-label" style={{marginTop: '20px'}}>Role</div>
                       <div
                           className="profile-data"
                           style={{ color: "var(--light-green-button)" }}

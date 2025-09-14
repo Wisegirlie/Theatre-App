@@ -166,57 +166,6 @@ const AddUser = () => {
                     </div>
                 </div>            
             </div>
-
-            // -----------------
-
-
-
-    // <>
-    //   <div className='css-flex css-content-ticket'>
-    //     <div className='css-dashboard-div css-margin-right-0'>
-    //       <h1 className='css-color-darkOrange css-margin-none'>Add User</h1>
-    //       <img className='css-dashbarRounded' src={DashBarRounded} />
-    //     </div>
-    //     <div className='css-flex'>
-    //       <div>
-    //         <img src={defaultPic} />
-    //       </div>
-    //       <div className='css-margin-left-40px'>
-    //         <div className='css-margin-bottom-30px'>
-    //           <span className='css-black-bold'>Username:</span>
-    //           <input className='css-input-insert' type='text' value={name} onChange={(e) => setName(e.target.value)} />
-    //           <br></br>
-    //         </div>
-    //         <div className='css-margin-bottom-30px'>
-    //           <span className='css-black-bold'>Email:</span>
-    //           <input className='css-input-insert' type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
-    //           <br></br>
-    //           <div className='css-margin-bottom-30px'>
-    //           </div>
-    //           <div className='css-margin-bottom-30px'>
-    //             <span className='css-black-bold'>Password:</span>
-    //             <input className='css-input-insert' type='text' value={password} onChange={(e) => setPassword(e.target.value)} />
-    //             <br></br>
-    //           </div>
-    //           <span className='css-black-bold'>Role:</span>
-    //           <input className='css-input-insert css-tickets-width' type='number' min={1}
-    //             max={2} value={role} onChange={(e) => setRole(e.target.valueAsNumber)} />
-    //           <br></br>
-    //           <button className='button-add' onClick={handleSubmit} style={{ marginRight: '40px' }}>
-    //             Add User
-    //           </button>
-    //           <button onClick={handleReturn} className='button-back'>Return</button>
-    //           {error && <p style={{ color: 'red', fontSize: 15 }}>{error}</p>}
-    //           {success && <p style={{ color: 'green', fontSize: 20 }}>{success}</p>}
-    //         </div>
-            
-              
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div>
-    //   </div>
-    // </>
   )
 }
 

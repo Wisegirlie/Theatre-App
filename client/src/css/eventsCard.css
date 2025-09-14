@@ -12,7 +12,7 @@
   overflow: hidden;
   transition: 0.25s;
   flex: 1 1 calc(33.333% - 40px); /* 3 cards per row accounting for gap */
-  border-radius: 5px;
+  border-radius: 10px;
   min-width: 300px;
   max-width: 420px;
   
@@ -49,7 +49,7 @@
   margin-top: 15px;
   margin-bottom: 15px;  
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   display: -webkit-box;
   -webkit-line-clamp: 3;    /* Number of lines to show */
   -webkit-box-orient: vertical;

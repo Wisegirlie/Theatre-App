@@ -9,12 +9,13 @@
   width: 62%;
   display: flex;
   flex-direction: column;
+  flex: 1;
 } 
 
 .userModify-form-container {
   max-width: 800px;
   margin: 2rem auto 2.2rem;
-  padding: 2rem 2.5rem;
+  padding: 2rem 3.9rem 2rem 2.5rem;  
   background: white;
   border-radius: 12px;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
@@ -23,7 +24,7 @@
 .userModify-form-header {
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
   /* padding-bottom: 1rem; */
   border-bottom: 1px solid #eaeaea;
 }
@@ -35,7 +36,8 @@
 }
 
 .userModify-user-avatar-space {
-  margin-right: 20px;
+  margin-left: 0px;
+  margin-right: 40px;  
 }
 
 .userModify-form-fields {
@@ -59,7 +61,7 @@
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   transition: border-color 0.2s;
   background-color: #efefef;
 }
@@ -84,7 +86,7 @@
 .userModify-button-group {
   display: flex;
   gap: 1rem;
-  margin-top: 2.1rem;
+  margin-top: 2.9rem;
   flex-wrap: wrap;
 }
 
@@ -113,7 +115,7 @@
   color: #2e7d32;
 }
 
-@media (max-width: 580px) {  
+@media (max-width: 640px) {  
 
 
     .userModify-form-header {    
@@ -123,6 +125,7 @@
     .userModify-form-content {
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
 
     .userModify-form-container {
@@ -134,7 +137,23 @@
   }
 
   .userModify-user-avatar-space {
-    margin-right: auto;    
+    margin-inline: auto;    
   }
-  
+
+  .userModify-form-label {
+     text-align: center; 
+  }
+
+  .userModify-button-group {
+    justify-content: center;
+  }
+
+  .userModify-form-input, .userModify-form-select {
+    text-align: center;
+  }
+
+  .text-muted {
+    text-align: center;
+  }
+
 }

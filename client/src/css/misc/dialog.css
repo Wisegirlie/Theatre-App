@@ -39,7 +39,7 @@ dialog::backdrop {
     margin-top: 50px;
     padding: 10px 0;    
     /* background-color: #007a7a; */
-    background-color: var(--cyan-button);
+    background-color: #000000;
     color: #ffffff;
     border: 0;
     outline: none;
