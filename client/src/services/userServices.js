@@ -55,7 +55,7 @@ export const getAllUsers = async () => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    console.error('Failed to fetch users:', errorData.message || 'Unknown error');
+    console.error('Failed to fetch users: ', errorData.message || 'Unknown error');
     throw new Error(errorData.message || 'Failed to fetch users');
   }
 
@@ -113,19 +113,29 @@ export const GetUserById = async ( id ) => {
   if (!token) throw new Error('No authentication token found');
   // console.log("token: " + token);
 
-  const response = await fetch(`${API_URL}/${id}`, { 
-    method: 'GET',
-    headers: {      
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (response.status === 401) {
+      throw new Error('Session expired or unauthorized.\nPlease log in again.');
     }
-  });
-  if (!response.ok) {
-    const errorData = await response.json();
-    console.error('Failed to fetch user:', errorData.message || 'Unknown error');
-    throw new Error(errorData.message || 'Failed to fetch user');
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Failed to fetch user: ', errorData.message || 'Unknown error');
+      throw new Error(errorData.message || 'Failed to fetch user');
+    }
+    const data = await response.json();
+    // console.log("Retrieved data by GetUserByID: ",  data);
+    return data;
+
+  } catch (error) {
+    console.error('Error fetching user by ID: ', error);
+    throw error;    
   }
-  const data = await response.json();
-  // console.log("Retrieved data by GetUserByID: ",  data);
-  return data;
+  
 };

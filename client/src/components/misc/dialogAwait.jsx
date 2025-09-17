@@ -90,7 +90,7 @@ export default function DialogAwait({ isOpen, title = "Message", message = "", e
     //     });
     // };
 
-//   Handle Process
+//   Handle Process -- How to call dialog
     // await showDialog(
     //     "Sign Up Successful",
     //     "Your account has been successfully created. \nYou will now be redirected to the home page",

@@ -39,7 +39,7 @@ export const getUser = async (req, res) => {
   try {
 
     const user = await User.findById(req.params.id)
-    console.log("backend id: " + req.params.id)
+    // console.log("backend id: " + req.params.id)
 
     if (!user) {
 

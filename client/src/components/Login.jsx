@@ -15,29 +15,17 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    // if (data.user.role === ROLES.ADMIN) {
-    //   navigate('/dashboard-super'); 
-    // } else if (data.user.role === ROLES.USER) {
-    //   navigate('/my-dashboard'); 
-    // }
-
     try {
       // console.log('attempting login with', email, password);
-      const data = await SignIn(email, password);
-      // console.log('Login successfully:', data);
+      const data = await SignIn(email, password);      
       console.log('Login successfully');
       setError('')
       setIsLogged(true);
-      navigate('/');
-      // if (data.user.role === ROLES.ADMIN) {
-      //   navigate('/dashboard-super');        
-      // } else if (data.user.role === ROLES.USER) {
-      //   navigate('/');
-      // }
+      navigate('/');      
     } catch (error) {
       setError(error.message)
     }
-    }
+  }
 
   return (
       <div className="login-container">

@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ModifyingUser } from "../../services/userServices.js";
 import { GetUserById } from "../../services/userServices.js";
 import { ROLES } from "../../constants/roles.js";
 import Dialog from "../misc/dialog";
+import DialogAwait from "../misc/dialogAwait";
 import "../../css/admin/userModify.css";
-
+import { signOut } from "../../services/authSignOut";
+import { useAppContext } from "../../context/useAppContext";
 
 const ModifyUser = () => {
 
     const [userToModify, setUserToModify] = useState("");
     const { id } = useParams();
+    const { setIsLogged } = useAppContext();
+    const navigate = useNavigate();
 
     // const navigate = useNavigate();
     const [inputName, setInputName] = useState("");
@@ -26,9 +30,37 @@ const ModifyUser = () => {
     const [dialogMessage, setDialogMessage] = useState("");
     const [dialogIsError, setDialogIsError] = useState("false");
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isDialogOpenAwait, setIsDialogOpenAwait] = useState(false);
+    const [dialogPromiseResolver, setDialogPromiseResolver] = useState(null);
 
     // console.log("id: ", id);
     
+    const handleSignOut = async () => {
+        try {
+            const result = await signOut();
+            console.log(result.message);
+            // Clear all client-side state
+            localStorage.clear();
+            sessionStorage.clear();
+            setIsLogged(false);            
+            navigate("/");
+        } catch (error) {
+            console.error("An error occurred while signing out:", error);
+        }
+    };
+
+    const showDialog = (title, message, errorState) => {
+        return new Promise((resolve) => {
+            setDialogTitle(title);
+            setDialogMessage(message);
+            setIsDialogOpen(true);
+            setDialogIsError(errorState);
+            setDialogPromiseResolver(() => () => {
+                resolve(); 
+            });
+        });
+    };
+
     useEffect(() => {
         const fetchUser = async (id) => {
             try {
@@ -43,22 +75,37 @@ const ModifyUser = () => {
                     setIsDialogOpen(true);
                     setDialogIsError(true);
                 }
-
                 if (userToModify) {
                     setInputName(userToModify.name);
                     setInputEmail(userToModify.email);
                     setInputRole(userToModify.role);
                 }
             } catch (error) {
-                //  Set Dialog fields
-                setDialogTitle("Error fetching User");
-                setDialogMessage(error);
-                setIsDialogOpen(true);
-                setDialogIsError(true);
-
-                console.error("Error fetching User at GetUserByID: ", error);
-                setError("Error fetching User at GetUserByID.");
-                
+                //  Session expired
+                if (error.message && error.message.includes("Session expired or unauthorized")) {
+                    setDialogTitle("Session Expired");
+                    setDialogMessage(
+                        "Your session has expired.\nPlease log in again."
+                    );
+                    setDialogIsError(true);
+                    setIsDialogOpenAwait(true);  // Open Await dialog
+                    await showDialog(
+                        dialogTitle,
+                        dialogMessage,
+                        dialogIsError
+                    );
+                    handleSignOut();         
+                    navigate("/login");                               
+                } else {
+                    setDialogTitle("Error fetching User");
+                    setDialogMessage(error.message);
+                    setIsDialogOpen(true);
+                    setDialogIsError(true);
+                }
+                console.error(
+                    "Modify User - Error fetching User at GetUserByID: ",
+                    error.message
+                );
             }
         };
         if (id) {
@@ -85,14 +132,14 @@ const ModifyUser = () => {
         try {
             console.log(
                 // `attempting modifying user with ${id}, ${inputName}, ${inputEmail}, ${inputPassword}, ${inputRole}`
-            );
+            );     
             const updatedUser = await ModifyingUser(
                 id,
                 inputName,
                 inputEmail,
                 inputPassword,
                 inputRole
-            );
+            );       
             console.log(`User Successfully updated`);   // add ${updatedUser} to show new data
             setSuccess("User Successfully updated");
             setError("");
@@ -125,7 +172,6 @@ const ModifyUser = () => {
         window.history.back();
     };
 
-
     return (
         <div className="userModify-background">
             <div className="userModify-form-container">
@@ -136,22 +182,33 @@ const ModifyUser = () => {
                     isOpen={isDialogOpen}
                     onClose={() => setIsDialogOpen(false)}
                 />
+                {/* //  Dialog Await for user close to proceed */}
+                <DialogAwait
+                    title={dialogTitle}
+                    message={dialogMessage}
+                    error={dialogIsError}
+                    isOpen={isDialogOpenAwait}
+                    onClose={() => setIsDialogOpen(false)}
+                    resolvePromise={dialogPromiseResolver}
+                />
                 
                 <div className="userModify-form-header">
-                    <h1 className="page-main-title">
-                        Modify User
-                    </h1>                    
+                    <h1 className="page-main-title">Modify User</h1>
                 </div>
-                
-                <div className="userModify-form-content">                    
+                <div className="userModify-form-content">
                     {/* User icon */}
                     <div className="profile-user-img-container userModify-user-avatar-space">
                         <span className="fa fa-user-o"></span>
-                    </div>   
-                    
+                    </div>
+
                     <div className="userModify-form-fields">
                         <div className="userModify-form-group">
-                            <label htmlFor="username" className="userModify-form-label">Username</label>
+                            <label
+                                htmlFor="username"
+                                className="userModify-form-label"
+                            >
+                                Username
+                            </label>
                             <input
                                 id="username"
                                 name="username"
@@ -161,9 +218,14 @@ const ModifyUser = () => {
                                 onChange={(e) => setInputName(e.target.value)}
                             />
                         </div>
-                        
+
                         <div className="userModify-form-group">
-                            <label htmlFor="email" className="userModify-form-label">Email</label>
+                            <label
+                                htmlFor="email"
+                                className="userModify-form-label"
+                            >
+                                Email
+                            </label>
                             <input
                                 id="email"
                                 name="email"
@@ -173,37 +235,51 @@ const ModifyUser = () => {
                                 onChange={(e) => setInputEmail(e.target.value)}
                             />
                         </div>
-                        
+
                         <div className="userModify-form-group">
-                            <label htmlFor="password" className="userModify-form-label">Password</label>
+                            <label
+                                htmlFor="password"
+                                className="userModify-form-label"
+                            >
+                                Password
+                            </label>
                             <input
                                 id="password"
-                                name="password"                                
+                                name="password"
                                 className="userModify-form-input"
                                 type="password"
                                 placeholder="Enter new password"
                                 value={inputPasswordValue}
                                 onChange={handlePasswordChange}
                             />
-                            <small className="text-muted">Leave blank to keep current password</small>
+                            <small className="text-muted">
+                                Leave blank to keep current password
+                            </small>
                         </div>
-                        
+
                         <div className="userModify-form-group">
-                            <label htmlFor="role" className="userModify-form-label">Role</label>
+                            <label
+                                htmlFor="role"
+                                className="userModify-form-label"
+                            >
+                                Role
+                            </label>
                             <select
                                 id="role"
                                 name="role"
                                 className="userModify-form-select"
                                 value={inputRole}
-                                onChange={(e) => setInputRole(Number(e.target.value))}
-                                
+                                onChange={(e) =>
+                                    setInputRole(Number(e.target.value))
+                                }
                             >
                                 <option value={ROLES.USER}>Regular user</option>
-                                <option value={ROLES.ADMIN}>Administrator</option>
-                                
+                                <option value={ROLES.ADMIN}>
+                                    Administrator
+                                </option>
                             </select>
                         </div>
-                        
+
                         <div className="userModify-button-group">
                             <button
                                 className="button-modify"
@@ -218,7 +294,7 @@ const ModifyUser = () => {
                                 Return
                             </button>
                         </div>
-                        
+
                         {error && (
                             <div className="userModify-status-message userModify-error-message">
                                 {error}
@@ -231,7 +307,7 @@ const ModifyUser = () => {
                         )}
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     );
 };
