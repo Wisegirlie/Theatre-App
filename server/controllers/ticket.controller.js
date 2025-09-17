@@ -9,7 +9,7 @@ export const createTicket = async (req, res) => {
     
     try {
       
-      const user = await User.findOne({ name: userName });
+      const user = await User.findById( userName );
       if (!user) {
         return res.status(400).json({ message: 'User not found' });
       }
@@ -59,13 +59,13 @@ export const getAllTickets = async (req, res) => {
 // Update Ticket by ID
 export const updateTicket = async (req, res) => {
   const { id } = req.params;
-  const { numberTickets } = req.body;
+  const { userName, eventTitle, numberTickets } = req.body;
   
   try {
     
     const ticket = await Ticket.findByIdAndUpdate(
       id,
-      { numberTickets },
+      { userName, eventTitle, numberTickets },
       { new: true }
     );
 

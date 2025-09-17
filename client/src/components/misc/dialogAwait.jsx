@@ -3,6 +3,18 @@ import '../../css/misc/dialog.css';
 import Check from '../../assets/misc/icon_check.png'
 import Cancel from '../../assets/misc/icon_cancel.png'
 
+// DialogAwait Component
+// This component displays a modal dialog with a title, message, and an icon indicating success or error.
+// It waits for the user's acknowledgment of the dialog before the page proceeds with a navigation.
+// Props:
+// - isOpen: Boolean to control the visibility of the dialog.
+// - title: Title text for the dialog.
+// - message: Message text for the dialog.
+// - error: Boolean indicating if the dialog represents an error (true) or success (false).
+// - onClose: Function to call when the dialog is closed.
+// - resolvePromise: Function to call to resolve the promise when the dialog is closed.
+
+
 export default function DialogAwait({ isOpen, title = "Message", message = "", error = false, onClose, resolvePromise }) {
         const dialogRef = useRef();
       

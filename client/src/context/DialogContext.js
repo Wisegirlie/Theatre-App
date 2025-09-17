@@ -2,6 +2,7 @@
 //   COMPONENT MADE FOR FUTURE IMPLEMENTATION
 //            Not currently in use
 //  ==========================================
+// Modal Dialog for Context
 
 // src/context/DialogContext.js
 import { createContext, useContext, useRef, useState } from "react";

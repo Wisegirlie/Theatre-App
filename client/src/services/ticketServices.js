@@ -35,13 +35,17 @@ export const deleteTicket = async (id) => {
   };
 
 //update ticket
-export const updateTicket = async (id, numberTickets) => {
+export const updateTicket = async (id, userName, eventTitle, numberTickets) => {
   const response = await fetch(`${API_URL}/api/ticket/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ numberTickets }),
+    },    
+    body: JSON.stringify({
+      userName,
+      eventTitle,
+      numberTickets,
+    }),
   });
 
   if (!response.ok) {

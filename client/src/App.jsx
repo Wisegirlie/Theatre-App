@@ -2,10 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home"
 import Layout from './components/Layout'
 import Login from './components/Login'
-import Events from './components/Events'
 import Dashboard from "./components/Dashboard"
 import SignUp from "./components/SignUp";
-import AddTickets from "./components/AddTickets";
+import AddTickets from "./components/admin/TicketsAdd.jsx";
 import Tickets from "./components/Tickets";
 import ProfileUser from "./components/ProfileUser.jsx";
 import DashboardSuper from "./components/admin/DashboardSuper";
@@ -13,14 +12,14 @@ import EventsDetail from "./components/EventsDetail";
 import { AppProvider } from "./context/AppProvider.jsx";
 import TicketPurchase from "./components/ticketPurchase";
 // ADMIN
-import ManageTickets from "./components/admin/ManageTickets.jsx";
+import ManageTickets from "./components/admin/TicketsManage.jsx";
 import AddUser from "./components/admin/userAdd.jsx"
 import ModifyUser from './components/admin/UserModify.jsx'
-import ModifyEvent from "./components/admin/ModifyEvent.jsx";
-import ModifyTickets from "./components/admin/ModifyTickets.jsx";
-import ManageEvents from "./components/admin/ManageEvents";
+import ModifyEvent from "./components/admin/EventModify.jsx";
+import ModifyTickets from "./components/admin/TicketsModify.jsx";
+import ManageEvents from "./components/admin/EventsManage";
 import ManageUsers from "./components/admin/UsersManage.jsx";
-import AddEvent from "./components/admin/AddEvent";
+import AddEvent from "./components/admin/EventAdd";
 import VerifyAuthAdmin from './components/admin/verifyAuthAdmin.jsx';
 import VerifyAuthUser from './components/admin/verifyAuthUser.jsx';
 

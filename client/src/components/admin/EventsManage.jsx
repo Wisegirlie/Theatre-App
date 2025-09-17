@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllEvents } from '../../services/eventServices.js';
-import EventsCard from './EventsCardAdmin';
+import EventsCard from './EventsCardAdmin.jsx';
 import '../../css/admin/manageEvents.css';
 import '../../css/events.css';
 

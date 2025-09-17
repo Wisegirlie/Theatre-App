@@ -1,60 +1,187 @@
-.css-block {
+.ticketModify-background {
+  /* background-color: #e9b587; */
+  background-color: #a09e9b;
+  width: 100%;
+  align-content: center;
+  padding-bottom: 20px;
+}
+
+.ticketModify-form {
+  width: 62%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+} 
+
+.ticketModify-form-container {
+  max-width: 800px;
+  margin: 2rem auto 2.2rem;
+  padding: 2rem 3.9rem 2rem 2.5rem;  
+  background: white;
+  border-radius: 12px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ticketModify-form-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  /* padding-bottom: 1rem; */
+  border-bottom: 1px solid #eaeaea;
+}
+
+.ticketModify-form-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;    
+}
+
+.ticketModify-user-avatar-space {
+  margin-left: 0px;
+  margin-right: 40px;  
+}
+
+.ticketModify-form-fields {
+  flex: 1;
+}
+
+.ticketModify-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.ticketModify-form-label {
   display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #505050;
 }
 
-
-.css-black-bold {
-  color: black;
-  font-weight: bold;
-  margin-right: 30px;
+.ticketModify-form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: border-color 0.2s;
+  background-color: #efefef;
 }
 
-.css-input-insert {
-  padding: 2px 10px;
-  width: 250px;
-  border-radius: 10px;
-  border: none;
-  height: 35px;
-  background-color:rgb(239, 239, 239);
+.ticketModify-form-input:focus {
+  border-color: #4a90e2;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
-.css-input-insert:focus {
-  border: 1.5px solid #f18424;
-  background-color: white;
+.ticketModify-form-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  /* background-color: white; */
+  background-color: #efefef;
 }
 
-.css-tickets-width{
-  width: 80px;
+.ticketModify-button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.9rem;
+  flex-wrap: wrap;
 }
 
-.css-button-width{
-  width: 150px;
-  height: 30px;
+.ticketModify-button-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
 
+.ticketModify-button-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.ticketModify-status-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+.ticketModify-error-message {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.ticketModify-success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.ticketModify-PNG-container {
+    width: 140px;
+    height: 140px;    
+    border-radius: 50%;
+    font-size: 30px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
+    margin-right: 40px;
+}
+
+.ticketModify-PNG {
+    width: 140px;
+    height: 140px;    
+}
+
+.ticketModify-width80px {
+  width: 120px;
 }
 
 
-.css-margin-top-40px{
-  margin-top: 40px;
+/* RESPONSIVE */
+
+@media (max-width: 640px) {  
+
+
+    .ticketModify-form-header {    
+      justify-content: center;
+  }
+
+    .ticketModify-form-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ticketModify-form-container {
+      padding-inline: 0;
+    }
+
+    .ticketModify-form {
+      width: 70%;   
+  }
+
+  .ticketModify-PNG-container {
+    margin-inline: auto;    
+  }
+
+  .ticketModify-form-label {
+     text-align: center; 
+  }
+
+  .ticketModify-button-group {
+    justify-content: center;
+  }
+
+  .ticketModify-form-input, .ticketModify-form-select {
+    text-align: center;
+  }
+
+  .text-muted {
+    text-align: center;
+  }
+
 }
 
-.css-margin-left-40px{
-  margin-left: 40px
-}
-
-.css-dashbar{
-  width: 95%;
-  height: auto;
-}
-
-.css-content-ticket{
-  padding-top: 40px;
-  width: 900px;
-  align-items:flex-start;
-  justify-content: space-around;
-}
-
-.css-margin-right-0{
-margin-right: 0px;
-}

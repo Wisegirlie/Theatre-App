@@ -3,6 +3,17 @@ import Check from '../../assets/misc/icon_check.png'
 import Cancel from '../../assets/misc/icon_cancel.png'
 import { useEffect, useRef } from 'react';
 
+// Dialog Component
+// This component displays a modal dialog with a title, message, and an icon indicating success or error.
+// Props:
+// - title: Title text for the dialog.
+// - message: Message text for the dialog.
+// - error: Boolean indicating if the dialog represents an error (true) or success (false), so the icon changes.
+// - isOpen: Boolean to control the visibility of the dialog.
+// - onClose: Function to call when the dialog is closed.
+
+
+
 export default function Dialog({ title = "Message", message = "", error,  isOpen, onClose }) {
 
     const dialogRef = useRef();

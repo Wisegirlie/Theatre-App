@@ -6,13 +6,12 @@ import { ROLES } from "../../constants/roles.js";
 import Dialog from "../misc/dialog";
 import "../../css/admin/userModify.css";
 
-const handleReturn = () => {
-    window.history.back();
-};
 
 const ModifyUser = () => {
+
     const [userToModify, setUserToModify] = useState("");
     const { id } = useParams();
+
     // const navigate = useNavigate();
     const [inputName, setInputName] = useState("");
     const [inputPassword, setInputPassword] = useState("");
@@ -29,35 +28,37 @@ const ModifyUser = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     // console.log("id: ", id);
-
+    
     useEffect(() => {
         const fetchUser = async (id) => {
             try {
                 const userToModify = await GetUserById(id);
                 setUserToModify(userToModify);
 
-                if (!userToModify) { 
-                  setError("ID not found");
-                  //  Set Dialog fields
-                  setDialogTitle("User not found");
-                  setDialogMessage(error);
-                  setIsDialogOpen(true);
-                  setDialogIsError(true);                
+                if (!userToModify) {
+                    setError("ID not found");
+                    //  Set Dialog fields
+                    setDialogTitle("User not found");
+                    setDialogMessage(error);
+                    setIsDialogOpen(true);
+                    setDialogIsError(true);
                 }
-                
+
                 if (userToModify) {
                     setInputName(userToModify.name);
                     setInputEmail(userToModify.email);
                     setInputRole(userToModify.role);
                 }
             } catch (error) {
-                console.error("Error fetching User at GetUserByID: ", error);
-                setError("Error fetching User at GetUserByID.");
                 //  Set Dialog fields
-                setDialogTitle("User not found");
+                setDialogTitle("Error fetching User");
                 setDialogMessage(error);
                 setIsDialogOpen(true);
                 setDialogIsError(true);
+
+                console.error("Error fetching User at GetUserByID: ", error);
+                setError("Error fetching User at GetUserByID.");
+                
             }
         };
         if (id) {
@@ -118,6 +119,12 @@ const ModifyUser = () => {
         setInputPasswordValue(e.target.value);
         setInputPassword(e.target.value);
     };
+
+
+    const handleReturn = () => {
+        window.history.back();
+    };
+
 
     return (
         <div className="userModify-background">
