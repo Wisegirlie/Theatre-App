@@ -1,5 +1,5 @@
-import Logo from '../assets/logos/LOGO-for-DARK-background.png'
-import '../css/footer.css'
+import Logo from '../../assets/logos/LOGO-for-DARK-background.png'
+import '../../css/layout/footer.css'
 
 
 

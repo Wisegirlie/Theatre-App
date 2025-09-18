@@ -1,6 +1,6 @@
 import { useAppContext } from '../../context/useAppContext.jsx';
 import { ROLES } from '../../constants/roles.js';
-import AccessDenied from "../accessDenied.jsx";
+import AccessDenied from "../layout/accessDenied.jsx";
 
 const VerifyAuthUser = ({ children }) => {
     const { isLogged, role } = useAppContext();

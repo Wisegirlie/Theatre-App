@@ -1,14 +1,14 @@
-import "../css/header.css";
-import Logo from "../assets/logos/LOGO-for-DARK-background.png";
-import SignoutIcon from "../assets/header/icon-signout.png";
-import { ROLES } from "../constants/roles";
+import "../../css/layout/header.css";
+import Logo from "../../assets/logos/LOGO-for-DARK-background.png";
+import SignoutIcon from "../../assets/header/icon-signout.png";
+import { ROLES } from "../../constants/roles";
 import { Link, useNavigate } from "react-router-dom";
-import { signOut } from "../services/authSignOut";
+import { signOut } from "../../services/authSignOut";
 import { useEffect, useState, useRef } from "react";
-import { useAppContext } from "../context/useAppContext";
-import userImg from "../assets/profile/icon-user-for-profile.png";
-import DialogAwait from "./misc/dialogAwait";
-import { isTokenExpired } from '../services/jwt';
+import { useAppContext } from "../../context/useAppContext";
+import userImg from "../../assets/profile/icon-user-for-profile.png";
+import DialogAwait from "../misc/dialogAwait";
+import { isTokenExpired } from '../../services/jwt';
 
 const Header = () => {
     const [user, setUser] = useState({ name: "" });

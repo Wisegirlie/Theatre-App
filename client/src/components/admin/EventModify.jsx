@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TheaterPic from "../../assets/shows/event_default_image.png";
 import { updateEvent, getEventById, deleteEvent } from "../../services/eventServices.js";
-import "../../css/admin/addEvents.css";
+import "../../css/admin/eventsAdd.css";
 
 const ModifyEvent = ( events ) => {
     // const location = useLocation();

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TheaterPic from '../../assets/shows/event_default_image.png';
 import '../../css/eventsDetail.css'
-import '../../css/admin/addEvents.css';
+import '../../css/admin/eventsAdd.css';
 import { createEvent } from '../../services/eventServices.js'; 
 
 const AddEvent = () => {

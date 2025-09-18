@@ -1,4 +1,4 @@
-import '../../css/colors.css';
+import '../../css/layout/colors.css';
 import '../../css/misc/spinner.css';
 
 

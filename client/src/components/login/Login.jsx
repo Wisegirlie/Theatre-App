@@ -1,9 +1,9 @@
-import '../css/login/login.css'
-import '../css/buttons.css'
+import '../../css/login/login.css'
+import '../../css/layout/buttons.css'
 import { useState } from 'react';
-import { SignIn } from '../services/authService';
+import { SignIn } from '../../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppContext } from '../context/useAppContext';
+import { useAppContext } from '../../context/useAppContext';
 // import { ROLES } from '../constants/roles.js';
 
 const Login = () => {

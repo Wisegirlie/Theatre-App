@@ -1,4 +1,4 @@
-import '../../css/hero.css';
+import '../../css/misc/hero.css';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
