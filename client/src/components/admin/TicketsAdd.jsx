@@ -1,4 +1,4 @@
-import '../../css/addTickets.css'
+import '../../css//admin/ticketsAdd.css'
 import { useState, useEffect } from 'react';
 import { createTicket } from '../../services/ticketServices';
 import { getAllEvents } from '../../services/eventServices';

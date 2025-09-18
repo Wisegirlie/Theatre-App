@@ -12,10 +12,17 @@
   position: relative;
 }
 
-.container {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+.container {  
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 100%;
 }
 
 /* =====================

@@ -18,7 +18,7 @@
   width: 100%;
   height: 100%;
   background-color: #1a1a1a;
-  background-image: url('../assets/variety-images/variety-31.jpg');
+  background-image: url('../../assets/variety-images/variety-31.jpg');
   filter: saturate(0.5) brightness(0.9);
   background-size: cover;
   background-position: center;
@@ -27,7 +27,8 @@
 }
 
 .login-content-container {
-  display: block;    
+  display: block;  
+  width: 435px;  
   max-width: 480px;
   background: #fff;
   border-radius: 10px;
@@ -110,9 +111,9 @@
 }
 
 .login-form-input::placeholder{
-  color: #9b9b9b;
+  color: #8f8b89;
   font-size: 14px;
-  /* font-weight: bold; */
+  font-weight: 400;
   letter-spacing: 0.02em;
 }
 
@@ -167,14 +168,15 @@
   font-weight: bold;
 }
 
-.login-bottom-link {
-  /* color: var(--orange-light);   */  
+.login-bottom-link {  
   cursor: pointer;    
+  font-weight: 600;
 }
 
 .login-bottom-text {
-  color:#b1b1b1;
-  padding-right: 8px;  
+  color: #a2a1a1;
+  padding-right: 8px;
+  font-weight: 600;
 }
 
 .login-bottom-link:hover {

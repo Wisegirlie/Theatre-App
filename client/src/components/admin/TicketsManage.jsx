@@ -62,7 +62,7 @@ const ManageTickets = () => {
     };
 
 
-  if (loading) return <div className="container"></div>;
+  if (loading) return <div className="loader-container"></div>;
   if (error) return <div className="container">{error}</div>;
   if (!tickets) return <div className="container">Ticets not found</div>;
 

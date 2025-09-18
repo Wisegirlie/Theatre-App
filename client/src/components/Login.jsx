@@ -1,4 +1,4 @@
-import '../css/login.css'
+import '../css/login/login.css'
 import '../css/buttons.css'
 import { useState } from 'react';
 import { SignIn } from '../services/authService';
@@ -72,7 +72,7 @@ const Login = () => {
                       </span>
                       <Link to="/register">
                           <span className="login-bottom-link">
-                            Register
+                            Create account
                           </span>
                       </Link>
                   </p>

@@ -1,0 +1,32 @@
+/* Spinner styles - uses --background-gray from colors.css */
+.spinner-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top-color: #8a8a8a;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;  
+  animation: spin 1s linear infinite;   
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Small helper to center a full-screen loader */
+.spinner-fullscreen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+}
+
