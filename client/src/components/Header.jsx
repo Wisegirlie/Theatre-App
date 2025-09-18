@@ -7,6 +7,8 @@ import { signOut } from "../services/authSignOut";
 import { useEffect, useState, useRef } from "react";
 import { useAppContext } from "../context/useAppContext";
 import userImg from "../assets/profile/icon-user-for-profile.png";
+import DialogAwait from "./misc/dialogAwait";
+import { isTokenExpired } from '../services/jwt';
 
 const Header = () => {
     const [user, setUser] = useState({ name: "" });
@@ -14,6 +16,13 @@ const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { isLogged, setIsLogged, role, setRole } = useAppContext();
     const navigate = useNavigate();
+
+    //   Declare Dialog Modal Fields
+    const [dialogTitle, setDialogTitle] = useState("");
+    const [dialogMessage, setDialogMessage] = useState("");
+    const [dialogIsError, setDialogIsError] = useState("false");
+    const [isDialogOpenAwait, setIsDialogOpenAwait] = useState(false);
+    const [dialogPromiseResolver, setDialogPromiseResolver] = useState(null);
 
     // Determine role class for responsive behavior
     const roleClass = isLogged
@@ -23,12 +32,30 @@ const Header = () => {
         : "";
 
 
+    const handleSessionExpired = async () => {
+        await showDialog(
+            "Session Expired",
+            "Your session has expired.\nPlease log in again.",
+            true
+        );
+        handleSignOut();
+    };
+
     // Set initial user infor for header
     useEffect(() => {
         const userName = localStorage.getItem("name");
         const role_stored = localStorage.getItem("role");
         const token = localStorage.getItem("token");
         if (token) {
+            if (isTokenExpired(token)) {
+                // Token expired: sign out user
+                setDialogTitle("Session Expired");
+                setDialogMessage("Your session has expired.\nPlease log in again.");
+                setDialogIsError(true);
+                setIsDialogOpenAwait(true); // Open Await dialog
+                handleSessionExpired();          
+                return;
+            }
             setIsLogged(true); // Restore auth state
         }
         setRole(Number(role_stored));
@@ -40,6 +67,18 @@ const Header = () => {
         // console.log('Logged: ', isLogged);
         //   console.log('Role: ', role, ' Name: ', userName)
     }, []);
+
+    const showDialog = (title, message, errorState) => {
+        return new Promise((resolve) => {
+            setDialogTitle(title);
+            setDialogMessage(message);            
+            setDialogIsError(errorState);
+            setIsDialogOpenAwait(true);
+            setDialogPromiseResolver(() => () => {
+                resolve(); 
+            });
+        });
+    };
 
     useEffect(() => {
         const userName = localStorage.getItem("name");
@@ -63,7 +102,7 @@ const Header = () => {
             sessionStorage.clear();
             setIsLogged(false);
             setUser({ name: "" });
-            navigate("/");
+            navigate("/login");
         } catch (error) {
             console.error("An error occurred while signing out:", error);
         }
@@ -125,16 +164,20 @@ const Header = () => {
                     </button>
 
                     {/* Menu options */}
-                    <nav className="menu-options-div" aria-label="Main navigation">
+                    <nav
+                        className="menu-options-div"
+                        aria-label="Main navigation"
+                    >
                         <ul
                             className={`menu-ul ${
                                 isMobileMenuOpen ? "active" : ""
                             }`}
-                            
                         >
                             <li className="menu-li">
                                 <Link to="/" onClick={closeMenu}>
-                                <span aria-hidden="true"><i className="fa fa-star"></i></span>
+                                    <span aria-hidden="true">
+                                        <i className="fa fa-star"></i>
+                                    </span>
                                     What's on
                                 </Link>
                             </li>
@@ -315,6 +358,15 @@ const Header = () => {
                 </div>
                 <div className="orange-line"></div>
             </header>
+            {/* //  Dialog Await for user close to proceed */}
+            <DialogAwait
+                title={dialogTitle}
+                message={dialogMessage}
+                error={dialogIsError}
+                isOpen={isDialogOpenAwait}
+                onClose={() => setIsDialogOpenAwait(false)}
+                resolvePromise={dialogPromiseResolver}
+            />
         </>
     );
 };

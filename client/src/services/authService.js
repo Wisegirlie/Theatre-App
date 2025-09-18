@@ -43,7 +43,6 @@ export const Register = async (name, email, password) =>{
 }
 
 
-
 //this one is only for debugging in order to know which part went wrong, when there is no error, we will switch to the code above
 // const API_URL = "http://localhost:3000/auth";
 
