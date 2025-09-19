@@ -1,14 +1,25 @@
 const API_URL = "http://localhost:3000/api/users";
 
+import { Capitalize } from './utils';
 
 //add user
-export const AddingUser = async (name, email, password, role) =>{
+export const AddingUser = async (firstName, lastName, userName, email, password, role) =>{
+  
+  // Normalize values
+  firstName = firstName.trim();
+  firstName = Capitalize(firstName);
+  lastName = lastName.trim();
+  lastName = Capitalize(lastName);
+  userName = userName.trim().toLowerCase();
+  email = email.trim().toLowerCase();
+  password = password.trim();
+
   const response = await fetch(`${API_URL}`, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json',
     },
-    body:JSON.stringify({name, email, password, role}),
+    body: JSON.stringify({ firstName, lastName, userName, email, password, role }),
   });
 
   if (!response.ok){
@@ -22,8 +33,17 @@ export const AddingUser = async (name, email, password, role) =>{
 
 
 //modify user
-export const ModifyingUser = async (id, name, email, password, role) => {
+export const ModifyingUser = async (id, firstName, lastName, userName, email, password, role) => {
   const token = localStorage.getItem('token'); 
+
+  // Normalize values
+  firstName = firstName.trim();
+  firstName = Capitalize(firstName);
+  lastName = lastName.trim();
+  lastName = Capitalize(lastName);
+  userName = userName.trim().toLowerCase();
+  email = email.trim().toLowerCase();
+  password = password.trim();
 
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
@@ -31,7 +51,7 @@ export const ModifyingUser = async (id, name, email, password, role) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}` 
     },
-    body: JSON.stringify({ name, email, password, role }),
+    body: JSON.stringify({ firstName, lastName, userName, email, password, role }),
   });
 
   if (!response.ok) {

@@ -66,7 +66,9 @@ const ManageUsers = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Date Created</th>
                             <th>Role</th>
@@ -77,7 +79,9 @@ const ManageUsers = () => {
                         {users.map((user, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>{user.name}</td>
+                                <td>{user.firstName}</td>
+                                <td>{user.lastName}</td>
+                                <td>{user.userName}</td>
                                 <td>{user.email}</td>
                                 <td>
                                     {user.createdAt

@@ -7,13 +7,19 @@ import DialogAwait from '../misc/dialogAwait';
 // import { ROLES } from '../constants/roles';
 
 const SignUp = () => {
+    // User data
     const [username, setUsername] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    // control states
     const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-    const navigate = useNavigate();
+    const [success, setSuccess] = useState("");    
     const { isLogged, setIsLogged } = useAppContext();
+    const navigate = useNavigate();
+
     //   Dialog Modal Fields
     const [dialogTitle, setDialogTitle] = useState("");
     const [dialogMessage, setDialogMessage] = useState("");
@@ -36,13 +42,10 @@ const SignUp = () => {
     const handleSignUp = async (event) => {
         event.preventDefault();
         try {
-            // console.log(`attempting creating user with ${username}, ${email}, ${password}`)
-            const data = await Register(username, email, password);
-            // console.log(`user registered successfully: ${data}`);
-            console.log(`User registered successfully.`);
-            // setUsername('');
-            // setPassword('');
-            // setEmail('');
+            console.log(`attempting creating user with ${firstName}, ${lastName}, ${username}, ${email}, ${password}`)
+            const data = await Register(firstName, lastName, username, email, password);
+            console.log(`user registered successfully: ${data}`);
+            console.log(`User registered successfully.`);            
             setSuccess("Thank you!");
             setError("");
             //   Dialog pop up message
@@ -55,16 +58,7 @@ const SignUp = () => {
                 const data = await SignIn(email, password);
                 console.log("Login successfully");
                 setIsLogged(true);
-                navigate("/");
-                // if (data.user.role === ROLES.ADMIN) {
-                //   setTimeout(() => {
-                //     navigate('/dashboard-super');
-                //   }, 1450);
-                // } else if (data.user.role === ROLES.USER) {
-                //   setTimeout(() => {
-                //     navigate('/');
-                //   }, 1450);
-                // }
+                navigate("/");                
             } catch (error) {
                 setError(error.message);
             }
@@ -72,6 +66,13 @@ const SignUp = () => {
             console.log("Register failed");
             setError(error.message);
             setSuccess("");
+            // --- Use this only if you want to show a modal for a specific situation ---
+            //   Dialog pop up message
+            // await showDialog(
+            //     "Register failed",
+            //     "Please try again.",
+            //     true
+            // );
         }
     };
 
@@ -95,11 +96,30 @@ const SignUp = () => {
                         <input
                             className="login-form-input"
                             type="text"
-                            placeholder="Full Name"
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                            autoComplete='firstname'
+                        ></input>
+                        <input
+                            className="login-form-input"
+                            type="text"
+                            placeholder="Last Name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                            autoComplete='lastname'
+                        ></input>
+                        {/* --- To be deprecated --- There are still some users that use it */}
+                        {/* <input
+                            className="login-form-input"
+                            type="text"
+                            placeholder="Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                        ></input>
+                        ></input> */}
                         <input
                             className="login-form-input"
                             type="text"
@@ -107,6 +127,7 @@ const SignUp = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            autoComplete='email'
                         ></input>
                         <input
                             className="login-form-input css-margin-bottom-30px"
@@ -115,6 +136,7 @@ const SignUp = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            autoComplete='new-password'
                         ></input>
                         <button type="submit" className="login-form-button">
                             Register

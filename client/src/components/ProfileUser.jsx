@@ -11,34 +11,30 @@ const handleReturn = () => {
 };
 
 const ProfileUser = () => {
-  const [user, setUser] = useState({ name: '', email: '' });
+  const [user, setUser] = useState({ id: '', firstName: '', lastName: '', userName: '', email: '' });
   const [ticketsPurchased, setTicketsPurchased] = useState(0);
   const { isLogged, role } = useAppContext();
 
   useEffect(() => {
-    const userName = localStorage.getItem('name');
-    const userEmail = localStorage.getItem('email');
-    const userId = localStorage.getItem('userId'); 
-
-    
-    // console.log("Profile - isLogged: " + isLogged);
-    // console.log("Profile - role: " + role);
-
-    if (userName && userEmail) {
-      setUser({ name: userName, email: userEmail });
-    }
+    setUser({ 
+      id: localStorage.getItem('userId'),
+      firstName: localStorage.getItem('firstName'),
+      lastName: localStorage.getItem('lastName'),      
+      userName: localStorage.getItem('userName'),
+      email: localStorage.getItem('email')      
+    });  
 
     const fetchTickets = async () => {
       try {
-        const tickets = await getUserEventsAndTickets(userId);
-        const total = tickets.reduce((sum, ticket) => sum + ticket.numberTickets, 0);
-        setTicketsPurchased(total);
+        const tickets = await getUserEventsAndTickets(user.id);
+        const totalTickets = tickets.reduce((sum, ticket) => sum + ticket.numberTickets, 0);
+        setTicketsPurchased(totalTickets);
       } catch (error) {
         console.error('Error fetching tickets:', error);
       }
     };
 
-    if (userId) {
+    if (user.id) {
       fetchTickets();
     } else {
       console.error('User ID not found in localStorage');
@@ -59,10 +55,20 @@ const ProfileUser = () => {
               <div className="profile-user-img-container">
                   <span className="fa fa-user-o"></span>
               </div>
-              {/* Name */}
-              <div className="profile-label">User Name</div>
+              {/* First Name */}
+              <div className="profile-label">First Name</div>
               <div className="profile-data" style={{ fontSize: "29px" }}>
-                  {user.name}
+                  {user.firstName}
+              </div>
+              {/* Last Name */}
+              <div className="profile-label">Last Name</div>
+              <div className="profile-data" style={{ fontSize: "29px" }}>
+                  {user.lastName}
+              </div>
+              {/* User Name */}
+              <div className="profile-label">Username</div>
+              <div className="profile-data" style={{ fontSize: "29px" }}>
+                  {user.userName}
               </div>
               {/* Email */}
               <div className="profile-label">Email</div>

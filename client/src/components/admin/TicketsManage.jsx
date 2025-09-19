@@ -92,7 +92,7 @@ const ManageTickets = () => {
                       {tickets.map((ticket, index) => (
                           <tr key={index}>
                               <td>{index + 1}</td>
-                              <td>{ticket.userName.name}</td>
+                              <td>{ticket.userName.firstName} {ticket.userName.lastName}</td>
                               <td>{ticket.eventTitle.title}</td>
                               <td>{ticket.numberTickets}</td>
                               <td>

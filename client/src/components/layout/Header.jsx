@@ -1,17 +1,19 @@
+import { ROLES } from "../../constants/roles";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useAppContext } from "../../context/useAppContext";
+import { signOut } from "../../services/authSignOut";
+import { isTokenExpired } from '../../services/jwt';
 import "../../css/layout/header.css";
 import Logo from "../../assets/logos/LOGO-for-DARK-background.png";
 import SignoutIcon from "../../assets/header/icon-signout.png";
-import { ROLES } from "../../constants/roles";
-import { Link, useNavigate } from "react-router-dom";
-import { signOut } from "../../services/authSignOut";
-import { useEffect, useState, useRef } from "react";
-import { useAppContext } from "../../context/useAppContext";
 import userImg from "../../assets/profile/icon-user-for-profile.png";
 import DialogAwait from "../misc/dialogAwait";
-import { isTokenExpired } from '../../services/jwt';
+import { set } from "mongoose";
 
 const Header = () => {
-    const [user, setUser] = useState({ name: "" });
+
+    const [user, setUser] = useState({ firstName: "", lastName: "", userName: "" });
     const menuRef = useRef(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { isLogged, setIsLogged, role, setRole } = useAppContext();
@@ -30,8 +32,8 @@ const Header = () => {
             ? "role-admin"
             : "role-user"
         : "";
-
-
+    
+    // Handle session expiration
     const handleSessionExpired = async () => {
         await showDialog(
             "Session Expired",
@@ -43,9 +45,14 @@ const Header = () => {
 
     // Set initial user infor for header
     useEffect(() => {
-        const userName = localStorage.getItem("name");
+        setUser({ 
+            firstName: localStorage.getItem("firstName"),
+            lastName:  localStorage.getItem("lastName"),
+            userName:  localStorage.getItem("userName") 
+        });
         const role_stored = localStorage.getItem("role");
         const token = localStorage.getItem("token");
+        
         if (token) {
             if (isTokenExpired(token)) {
                 // Token expired: sign out user
@@ -58,14 +65,9 @@ const Header = () => {
             }
             setIsLogged(true); // Restore auth state
         }
-        setRole(Number(role_stored));
-        if (userName) {
-            setUser({ name: userName });
-        } else {
-            setUser({ name: "User" });
-        }
+        setRole(Number(role_stored));       
         // console.log('Logged: ', isLogged);
-        //   console.log('Role: ', role, ' Name: ', userName)
+        // console.log('Role: ', role, ' First Name: ', user.firstName, " username: ", user.userName);
     }, []);
 
     const showDialog = (title, message, errorState) => {
@@ -81,16 +83,14 @@ const Header = () => {
     };
 
     useEffect(() => {
-        const userName = localStorage.getItem("name");
-        const role_stored = localStorage.getItem("role");
-        setRole(Number(role_stored));
-        if (userName) {
-            setUser({ name: userName });
-        } else {
-            setUser({ name: "Username" });
-        }
-        // console.log('Logged: ', isLogged);
-        // console.log('Role: ', role, ' Name: ', userName)
+        setUser({ 
+            firstName: localStorage.getItem("firstName"),
+            lastName:  localStorage.getItem("lastName"),
+            userName:  localStorage.getItem("userName") 
+        });        
+        const role_stored = localStorage.getItem("role");  
+        setRole(Number(role_stored));              
+        // console.log('Role: ', role, ' First Name: ', user.firstName, " username: ", user.userName);                
     }, [isLogged]);
 
     const handleSignOut = async () => {
@@ -101,7 +101,7 @@ const Header = () => {
             localStorage.clear();
             sessionStorage.clear();
             setIsLogged(false);
-            setUser({ name: "" });
+            setUser({ firstName: "", lastName: "", userName: "" });
             navigate("/login");
         } catch (error) {
             console.error("An error occurred while signing out:", error);
@@ -244,7 +244,7 @@ const Header = () => {
                                         <div className="header-user-info">
                                             Hello,
                                             <span className="header-user-name">
-                                                {user.name}
+                                                { user.firstName ? user.firstName : user.userName? user.userName : "User"}
                                             </span>
                                         </div>
                                         <img
@@ -308,7 +308,7 @@ const Header = () => {
                                 <div className="header-user-info">
                                     Hello,
                                     <span className="header-user-name">
-                                        {user.name}
+                                        { user.firstName ? user.firstName : user.userName? user.userName : "User"}
                                     </span>
                                 </div>
                                 <img

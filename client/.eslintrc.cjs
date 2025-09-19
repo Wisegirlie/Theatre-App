@@ -14,10 +14,11 @@ module.exports = {
   rules: {
     "react/prop-types": "off", // Disables prop-types validation
     'react/jsx-no-target-blank': 'off',
+    "react/no-unescaped-entities": "off",
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
-    'no-unused-vars': 'off', // Disables warning for unused variables
+  'no-unused-vars': 'off', // Disables warning for unused variables  
   },
 }

@@ -16,12 +16,13 @@ export const SignIn = async (req, res) => {
     res.cookie('t', token, { maxAge: 4 * 24 * 60 * 60 * 1000, httpOnly: true });  // expires in 4 day  
     // res.cookie('t', token, { maxAge: 4 * 24 * 60 * 60 * 1000, httpOnly: true }); // expires in 25 day
     
-
     return res.json({
       token,
       user: {
         _id: userFound._id,
-        name: userFound.name,
+        firstName: userFound.firstName,
+        lastName: userFound.lastName,
+        userName: userFound.userName,
         email: userFound.email,
         role: userFound.role,
       },

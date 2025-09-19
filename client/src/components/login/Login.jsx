@@ -23,7 +23,8 @@ const Login = () => {
       setIsLogged(true);
       navigate('/');      
     } catch (error) {
-      setError(error.message)
+      setError("Failed to sign in.\nPlease check your email and password.");
+      // setError(error.message);     // Use this to see the actual error message from the server
     }
   }
 

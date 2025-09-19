@@ -1,7 +1,12 @@
 const API_URL = "http://localhost:3000/auth";
 
+import { Capitalize } from './utils';
+
 // Sign in
 export const SignIn = async (email, password) =>{
+
+  email = email.trim().toLowerCase();
+  password = password.trim();
   const response = await fetch(`${API_URL}/signin`, {
     method: 'POST',
     headers:{
@@ -12,26 +17,39 @@ export const SignIn = async (email, password) =>{
 
   if (!response.ok){
     const errorData = await response.json();
-    throw new Error(errorData.message || 'User login failed');
+    // throw new Error(errorData.message || 'User login failed');
+    throw new Error('User login failed');
   }  
   sessionStorage.clear();
   const data = await response.json();
   localStorage.setItem('token', data.token);
-  localStorage.setItem('userId', data.user._id);
-  localStorage.setItem('name', data.user.name);
+  localStorage.setItem('userId', data.user._id);  
+  localStorage.setItem('userName', data.user.userName);
+  localStorage.setItem('firstName', data.user.firstName);
+  localStorage.setItem('lastName', data.user.lastName);  
   localStorage.setItem('email', data.user.email);
   localStorage.setItem('role', data.user.role);
   return data;
 }
 
 // Sign up
-export const Register = async (name, email, password) =>{
+export const Register = async (firstName, lastName, userName, email, password) =>{
+
+  // Normalize values
+  firstName = firstName.trim();
+  firstName = Capitalize(firstName);
+  lastName = lastName.trim();
+  lastName = Capitalize(lastName);
+  userName = userName.trim().toLowerCase();
+  email = email.trim().toLowerCase();
+  password = password.trim();
+  // Register user
   const response = await fetch(`http://localhost:3000/api/users`, {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json',
     },
-    body:JSON.stringify({name, email, password}),
+    body:JSON.stringify({firstName, lastName, userName, email, password}),
   });
 
   if (!response.ok){

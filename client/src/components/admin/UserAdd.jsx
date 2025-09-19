@@ -6,7 +6,9 @@ import { ROLES } from "../../constants/roles.js";
 
 const AddUser = () => {
 
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState(ROLES.USER); // Default role set to USER
@@ -21,12 +23,12 @@ const AddUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //  Validate inputs
-    if (!name || !email || !password || !role) {
+    if (!firstName || !lastName || !email || !password || !role) {
       // console.log(name, email, password, role);
       setError('All fields are required. Please fill in all fields.');      
       return;
-    }
-    if (name.length < 3) {
+    }    
+    if (userName != "" && userName.length < 3) {
       setError('Username must be at least 3 characters long.');
       return;
     }
@@ -45,9 +47,11 @@ const AddUser = () => {
     }    
     try {
       // console.log(`attempting creating user with ${name}, ${email}, ${password}, ${role}`)
-      const data = await AddingUser(name, email, password, Number(role))
+      const data = await AddingUser(firstName, lastName, userName, email, password, Number(role))
       console.log(`user create successfully: ${data}`);
-      setName('');
+      setFirstName('');
+      setLastName('');
+      setUserName('');
       setPassword('');
       setEmail('');
       setRole('');
@@ -79,6 +83,31 @@ const AddUser = () => {
                         
                         <form className='userModify-form' >
                           <div className="userModify-form-fields">
+                            <div className="userModify-form-group">
+                                  <label htmlFor="firstname" className="userModify-form-label">First name</label>
+                                  <input
+                                      id="firstname"
+                                      name="firstname"
+                                      className="userModify-form-input"
+                                      type="text"
+                                      value={firstName}
+                                      onChange={(e) => setFirstName(e.target.value)}
+                                      autoComplete='firstname'
+                                  />
+                              </div>
+                              <div className="userModify-form-group">
+                                  <label htmlFor="lastname" className="userModify-form-label">Last name</label>
+                                  <input
+                                      id="lastname"
+                                      name="lastname"
+                                      className="userModify-form-input"
+                                      type="text"
+                                      value={lastName}
+                                      onChange={(e) => setLastName(e.target.value)}
+                                      autoComplete='username'
+                                  />
+                              </div>
+
                               <div className="userModify-form-group">
                                   <label htmlFor="username" className="userModify-form-label">Username</label>
                                   <input
@@ -86,8 +115,8 @@ const AddUser = () => {
                                       name="username"
                                       className="userModify-form-input"
                                       type="text"
-                                      value={name}
-                                      onChange={(e) => setName(e.target.value)}
+                                      value={userName}
+                                      onChange={(e) => setUserName(e.target.value)}
                                       autoComplete='username'
                                   />
                               </div>

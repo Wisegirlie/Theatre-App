@@ -124,7 +124,7 @@ const AddTickets = () => {
                                   <option value="">Select a user</option>
                                   {userNames.map((user) => (
                                       <option key={user._id} value={user._id}>
-                                          {user.name}
+                                          {user.firstName} {user.lastName}
                                       </option>
                                   ))}
                               </select>

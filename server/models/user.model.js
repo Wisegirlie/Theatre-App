@@ -1,10 +1,21 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { ROLES } from '../../client/src/constants/roles.js';
 
 const userSchema = new mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
     required: true,
+    trim: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  userName: {
+    type: String,
+    required: false,
     trim: true,
   },
   email: {
@@ -23,8 +34,8 @@ const userSchema = new mongoose.Schema({
   role: {
     type: Number,
     required: true,
-    default: 2, 
-    enum: [1, 2], 
+    default: ROLES.USER, // default for regular user
+    enum: [ROLES.USER, ROLES.ADMIN], 
   },
 },
 {timestamps: true});

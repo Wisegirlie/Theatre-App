@@ -142,7 +142,7 @@ const ModifyTickets = () => {
                               <option value="">Select user</option>
                               {userNames.map((user) => (
                                   <option key={user._id} value={user._id}>
-                                      {user.name}
+                                      {user.firstName} {user.lastName}
                                   </option>
                               ))}
                           </select>

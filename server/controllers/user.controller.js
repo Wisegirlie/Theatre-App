@@ -3,16 +3,16 @@ import User from '../models/user.model.js';
 //create User
 export const createUser = async (req, res) => {
 
-  const { name, email, password } = req.body;
+  const { firstName, lastName, userName, email, password } = req.body;
   try {
-    const existingUsername = await User.findOne({ name });
+    const existingUsername = await User.findOne({ userName });
     if (existingUsername) {
-      return res.status(400).json({ message: 'Username already exists' });
+      return res.status(400).json({ message: 'Username already in use.\nPlease select a different one.' });
     }
 
     const existingEmail = await User.findOne({email});
     if (existingEmail) {
-      return res.status(400).json({ message: 'Email already exists' })
+      return res.status(400).json({ message: 'This user is already registered' })
     }
     const user = await User.create(req.body);
     res.status(201).json(user);
@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
 //get AllUsers
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}).sort({ name: 1 });
+    const users = await User.find({}).sort({ email: 1 });
     res.status(200).json(users)
   } catch (error) {
     res.status(500).json({ message: 'Error fetching users: ', error });
@@ -37,21 +37,14 @@ export const getAllUsers = async (req, res) => {
 export const getUser = async (req, res) => {
 
   try {
-
     const user = await User.findById(req.params.id)
-    // console.log("backend id: " + req.params.id)
-
     if (!user) {
-
       return res.status(404).json({ message: 'User not found' })
     }
-
     res.status(200).json(user);
-
   } catch (error) {
-
     console.log(`User fetch failed for ID ${req.params.id}`, error);
-    res.status(500).json({ message: 'Error fetching user', error });
+    res.status(500).json({ message: 'Error fetching user: ', error });
 
   }
 }
@@ -60,7 +53,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedUser) return res.status(404).json({ message: "User not found." });
+    if (!updatedUser) return res.status(404).json({ message: "User not found" });
     res.json(updatedUser);
   } catch (err) {
     res.status(400).json({ error: "Error updating user: " + err.message });
@@ -73,21 +66,18 @@ export const deleteUser = async (req, res) => {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
     if (!deletedUser) return res.status(404).json({ message: 'User not found' });
     // res.json({acknowledged: deletedProduct.acknowledged, deletedCount: deletedProduct.deletedCount});
-    res.json({ message: 'User deleted.' });
+    res.json({ message: 'User deleted' });
   } catch (err) {
-    res.status(500).json({ error: "Error deleting product by Id." });
+    res.status(500).json({ error: "Error deleting User by Id." });
   }
 };
 
 //User Count
-export const usersCount = async (req,res) => {
-  
+export const usersCount = async (req,res) => {  
   try {
     const count = await User.countDocuments();
-
     res.status(200).json({ count });
   } catch (error) {
-
     res.status(500).json({ message: error.message });
   }
 }

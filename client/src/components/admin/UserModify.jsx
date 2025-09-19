@@ -1,3 +1,4 @@
+import { useAppContext } from "../../context/useAppContext";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ModifyingUser } from "../../services/userServices.js";
@@ -7,7 +8,7 @@ import Dialog from "../misc/dialog";
 import DialogAwait from "../misc/dialogAwait";
 import "../../css/admin/userModify.css";
 import { signOut } from "../../services/authSignOut";
-import { useAppContext } from "../../context/useAppContext";
+
 
 const ModifyUser = () => {
 
@@ -16,8 +17,10 @@ const ModifyUser = () => {
     const { setIsLogged } = useAppContext();
     const navigate = useNavigate();
 
-    // const navigate = useNavigate();
-    const [inputName, setInputName] = useState("");
+    //  Declare Form Fields
+    const [inputFirstName, setInputFirstName] = useState("");
+    const [inputLastName, setInputLastName] = useState("");
+    const [inputUserName, setInputUserName] = useState("");
     const [inputPassword, setInputPassword] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [success, setSuccess] = useState("");
@@ -53,7 +56,7 @@ const ModifyUser = () => {
         return new Promise((resolve) => {
             setDialogTitle(title);
             setDialogMessage(message);
-            setIsDialogOpen(true);
+            setIsDialogOpenAwait(true);
             setDialogIsError(errorState);
             setDialogPromiseResolver(() => () => {
                 resolve(); 
@@ -76,23 +79,21 @@ const ModifyUser = () => {
                     setDialogIsError(true);
                 }
                 if (userToModify) {
-                    setInputName(userToModify.name);
+                    setInputFirstName(userToModify.firstName);
+                    setInputLastName(userToModify.lastName);
+                    setInputUserName(userToModify.userName);                    
+                    setInputUserName(userToModify.userName);
                     setInputEmail(userToModify.email);
                     setInputRole(userToModify.role);
                 }
             } catch (error) {
                 //  Session expired
                 if (error.message && error.message.includes("Session expired or unauthorized")) {
-                    setDialogTitle("Session Expired");
-                    setDialogMessage(
-                        "Your session has expired.\nPlease log in again."
-                    );
-                    setDialogIsError(true);
                     setIsDialogOpenAwait(true);  // Open Await dialog
                     await showDialog(
-                        dialogTitle,
-                        dialogMessage,
-                        dialogIsError
+                        "Session Expired",
+                        "Your session has expired.\nPlease log in again.",
+                        true
                     );
                     handleSignOut();         
                     navigate("/login");                               
@@ -135,7 +136,9 @@ const ModifyUser = () => {
             );     
             const updatedUser = await ModifyingUser(
                 id,
-                inputName,
+                inputFirstName,
+                inputLastName,
+                inputUserName,                
                 inputEmail,
                 inputPassword,
                 inputRole
@@ -143,13 +146,15 @@ const ModifyUser = () => {
             console.log(`User Successfully updated`);   // add ${updatedUser} to show new data
             setSuccess("User Successfully updated");
             setError("");
-            //  Set Dialog fields SUCCESS
-            setDialogTitle("Update Successful");
-            setDialogMessage('User Successfully updated');
-            setIsDialogOpen(true);
-            setDialogIsError(false);
-            // navigate("/manage-users");
-            // window.history.back();
+            //  Set Dialog fields SUCCESS           
+            setIsDialogOpenAwait(true);
+            await showDialog(
+                "Update Successful", 
+                "User Successfully updated",
+                false
+            );
+            // Redirect to manage users after closing dialog
+            navigate("/manage-users");            
         } catch (error) {
             console.log("Update failed");
             setError(error.message);
@@ -191,7 +196,7 @@ const ModifyUser = () => {
                     onClose={() => setIsDialogOpen(false)}
                     resolvePromise={dialogPromiseResolver}
                 />
-                
+
                 <div className="userModify-form-header">
                     <h1 className="page-main-title">Modify User</h1>
                 </div>
@@ -204,6 +209,37 @@ const ModifyUser = () => {
                     <div className="userModify-form-fields">
                         <div className="userModify-form-group">
                             <label
+                                htmlFor="firstname"
+                                className="userModify-form-label"
+                            >
+                                First name
+                            </label>
+                            <input
+                                id="firstname"
+                                name="firstname"
+                                className="userModify-form-input"
+                                type="text"
+                                value={inputFirstName}
+                                onChange={(e) => setInputFirstName(e.target.value)}
+                                autoComplete="firstname"
+                            />
+                            </div>
+                              <div className="userModify-form-group">
+                                  <label htmlFor="lastname" className="userModify-form-label">Last name</label>
+                                  <input
+                                      id="lastname"
+                                      name="lastname"
+                                      className="userModify-form-input"
+                                      type="text"
+                                      value={inputLastName}
+                                      onChange={(e) => setInputLastName(e.target.value)}
+                                      autoComplete='username'
+                                  />
+                              </div>
+
+                            <div className="userModify-form-group">
+
+                            <label
                                 htmlFor="username"
                                 className="userModify-form-label"
                             >
@@ -214,8 +250,8 @@ const ModifyUser = () => {
                                 name="username"
                                 className="userModify-form-input"
                                 type="text"
-                                value={inputName}
-                                onChange={(e) => setInputName(e.target.value)}
+                                value={inputUserName}
+                                onChange={(e) => setInputUserName(e.target.value)}
                             />
                         </div>
 
