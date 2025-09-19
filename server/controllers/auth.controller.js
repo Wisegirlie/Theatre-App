@@ -13,8 +13,8 @@ export const SignIn = async (req, res) => {
       return res.status(400).json({ message: "Incorrect Password" });
     }
     const token = await createAccessToken({ _id: userFound._id, role: userFound.role });
-    res.cookie('t', token, { maxAge: 14400000, httpOnly: true });    
-    // res.cookie('t', token, { maxAge: 25 * 24 * 60 * 60 * 1000, httpOnly: true }); // expires in 25 day
+    res.cookie('t', token, { maxAge: 4 * 24 * 60 * 60 * 1000, httpOnly: true });  // expires in 4 day  
+    // res.cookie('t', token, { maxAge: 4 * 24 * 60 * 60 * 1000, httpOnly: true }); // expires in 25 day
     
 
     return res.json({

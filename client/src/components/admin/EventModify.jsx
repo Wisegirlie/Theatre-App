@@ -176,7 +176,7 @@ const ModifyEvent = ( events ) => {
                     {/* From Date */}
                     <div className="addEvent-container">
                         <label htmlFor="event-date" className="addEvent-label">
-                            Date:
+                            Event Date:
                         </label>
                         <input
                             name="event-date"
@@ -193,7 +193,7 @@ const ModifyEvent = ( events ) => {
                             htmlFor="event-tickets-available"
                             className="addEvent-label"
                         >
-                            Tickets Available:
+                            Venue Capacity:
                         </label>
                         <input
                             name="event-tickets-available"

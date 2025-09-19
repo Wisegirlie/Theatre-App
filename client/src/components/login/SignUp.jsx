@@ -89,6 +89,7 @@ const SignUp = () => {
             <div className="login-content-container">
                 <div className="login-content-container-inner-border">
                     <h1 className="signup-title">Sign up</h1>
+                    <h3>Welcome!</h3>
                     <p className="login-form-text">Create your account</p>
                     <form onSubmit={handleSignUp}>
                         <input

@@ -13,7 +13,7 @@ import ProfileUser from "./components/ProfileUser.jsx";
 import EventsDetail from "./components/EventsDetail";
 // --- Tickets ---
 import Tickets from "./components/Tickets";
-import TicketPurchase from "./components/ticketPurchase";
+import TicketPurchase from "./components/TicketPurchase";
 
 // ===================================
 //              ADMIN  
