@@ -88,7 +88,7 @@
 }
 
 .manageUsers-admin {
-    background-color: tomato;
+    background-color: tomato;  
     color: white;
 }
 
@@ -142,3 +142,9 @@
     margin-inline: auto;
   }
 
+
+@media (max-width: 640px) {
+    .profile-form-input {
+        text-align: center;
+    }
+}

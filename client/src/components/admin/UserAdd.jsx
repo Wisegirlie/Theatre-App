@@ -166,7 +166,7 @@ const AddUser = () => {
                               
                               <div className="userModify-button-group">
                                   <button
-                                      className="button-modify"
+                                      className="button-green"
                                       onClick={handleSubmit}
                                   >
                                       Add User

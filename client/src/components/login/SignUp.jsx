@@ -130,7 +130,7 @@ const SignUp = () => {
                             autoComplete='email'
                         ></input>
                         <input
-                            className="login-form-input css-margin-bottom-30px"
+                            className="login-form-input"
                             type="password"
                             placeholder="Password"
                             value={password}

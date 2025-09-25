@@ -206,63 +206,6 @@ const AddTickets = () => {
                   onClose={() => setIsDialogOpen(false)}
               />
           </div>
-
-
-
-
-    {/* --------------------------------- */}
-      {/* <div className='css-flex css-content-ticket'>
-        <div className='css-dashboard-div css-margin-right-0'>
-          <h1 className='page-main-title'>Add Ticket</h1>
-          <img className='css-dashbarRounded' src={DashBarRounded} />
-        </div>
-        <div className='css-flex'>
-          <div>
-            <img src={TicketPic} />
-          </div>
-          <div className='css-margin-left-40px'>
-            <div className='css-margin-bottom-30px'>
-              <span className='css-black-bold'>User Name:</span>
-              <select className='css-input-insert' value={userName} onChange={(e) => setUserId(e.target.value)} >
-                <option value={useId} selected>{userId}</option>
-                  {userNames.map((user) => (
-                    <option key={user._id} value={user.name}>{user.name}</option>
-                  ))}   
-              </select>
-              <br></br>
-            </div>
-            <div className='css-margin-bottom-30px'>
-              <span className='css-black-bold'>Event Title:</span>
-              <select className='css-input-insert' value={eventTitle} onChange={(e) => setEventTitle(e.target.value)}>
-                <option value="">Select an event</option>
-                {eventTitles.map((event) => (
-                  <option key={event._id} value={event._id}>{event.title}</option>
-                ))}
-              </select>
-              <br></br>
-              <div className='css-margin-bottom-30px'></div>
-              <span className='css-black-bold'>Number of Tickets:</span>
-              <input
-                className='css-input-insert css-tickets-width'
-                type='number'
-                value={numberTickets}
-                min={0}
-                onChange={(e) => setNumberTickets(e.target.value)}
-              />
-              <br></br>
-              <button
-                className='button-add'
-                style={{ marginRight: '40px' }}
-                onClick={handleAddTicket}
-              >
-                Add Ticket
-              </button>
-              <button onClick={handleReturn} className='button-back'>Return</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div></div> */}
     </>
   );
 }

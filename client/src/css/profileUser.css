@@ -5,8 +5,8 @@
   align-items: center;
   justify-items: center;
   justify-content: center;
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
 }
 
@@ -48,7 +48,7 @@
     background: var(--orange-light);
     border-radius: 50%;
     font-size: 30px;
-    margin: 0 auto 40px;    
+    margin: 0 25px 40px auto;    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,11 +73,24 @@
   font-size: 28px;  
   font-weight: 500;
   margin-bottom: 25px;
+  color: #1c7421;
+  background-color: #FFF;
+}
+
+.profile-form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1.5px solid #84cfea;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: border-color 0.2s;
+  background-color: #f4f4f4;
 }
 
 .profile-main-container .button-back {
-  margin-top: 20px;
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
 .profile-tickets {
@@ -85,41 +98,3 @@
   color: #777777;
   font-weight: 400;
 }
-
-/*  MOVE THE FOLLOwinG TO APPROPRIATE FILE --- next update*/
-  
-  .css-tickets-info {
-    display: flex;
-    margin-bottom: 30px;
-    text-align: left;
-    justify-content: flex-start;
-  }
-  
-  .css-ticketsPic-div {
-    width: 150px;
-  }
-  
-  .css-event-ticket-text {
-    color: #696969;
-    font-weight: bold;
-  }
-  
-  .css-event-ticket-text:hover {
-    text-decoration: none;
-    cursor: auto;
-  }
-  
-  
-  .css-value-text {
-    color: black;
-    font-weight: bold;
-  }
-  
-  .css-value-text:hover {
-    text-decoration: none;
-    cursor: auto;
-  }
-    
-  .css-margin-top-none {
-    margin-top: 0;
-  }
