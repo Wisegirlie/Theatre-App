@@ -4,12 +4,17 @@ import '../../css/admin/usersManage.css';
 import { deleteUser, getAllUsers } from '../../services/userServices.js';
 import { ROLES } from '../../constants/roles.js';
 import { useNavigate } from 'react-router-dom';
+import DeleteConfirmationModal from '../misc/DeleteConfirmationModal';
+import Spinner from '../misc/Spinner';
 // import UserIcon from '../../assets/login/icon-user.png';
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [userToDelete, setUserToDelete] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
     const navigate = useNavigate();
  
     useEffect(() => {
@@ -28,20 +33,42 @@ const ManageUsers = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+                width: '100%'
+            }}>
+                <Spinner size={64} ariaLabel="Loading users" />
+            </div>
+        );
     }
 
     if (error) {
         return <div>Error: {error}</div>;
     }
 
-    const handleDeleteUser = async (id) => {
+    const handleDeleteClick = (user) => {
+        setUserToDelete(user);
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        if (!userToDelete) return;
+
+        setIsDeleting(true);
         try {
-            await deleteUser(id);
-            setUsers(users.filter((user) => user._id !== id));
+            await deleteUser(userToDelete._id);
+            setUsers(users.filter((user) => user._id !== userToDelete._id));
+            setIsDeleteModalOpen(false);
+            setUserToDelete(null);
         } catch (error) {
             console.error("Failed to delete user:", error);
             setError(error.message);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -110,9 +137,7 @@ const ManageUsers = () => {
 
                                     <button
                                         className="manageUsers-action-btn delete-btn"
-                                        onClick={() =>
-                                            handleDeleteUser(user._id)
-                                        }
+                                        onClick={() => handleDeleteClick(user)}
                                     >
                                         Delete
                                     </button>
@@ -125,6 +150,21 @@ const ManageUsers = () => {
             <button onClick={handleReturn} className="manageUsers-button-back">
                 Return
             </button>
+
+            <DeleteConfirmationModal
+                title="Delete User"
+                itemType="user"
+                itemName={
+                    userToDelete
+                        ? `${userToDelete.firstName} ${userToDelete.lastName}\n${userToDelete.email}`
+                        : ""
+                }
+                message={`Are you sure you want to delete this user account?\n\nAll associated tickets and data will be permanently removed.`}
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleDeleteConfirm}
+                isLoading={isDeleting}
+            />
         </section>
     );
 }

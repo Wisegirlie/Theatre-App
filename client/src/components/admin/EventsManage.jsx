@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllEvents } from '../../services/eventServices.js';
 import EventsCard from './EventsCardAdmin.jsx';
+import Spinner from '../misc/Spinner';
 import '../../css/admin/manageEvents.css';
 import '../../css/events.css';
 
@@ -31,7 +32,20 @@ const ManageEvents = () => {
     navigate('/add-event');
   };
 
-  if (loading) return <div className="container"></div>;
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        width: '100%'
+      }}>
+        <Spinner size={64} ariaLabel="Loading events" />
+      </div>
+    );
+  }
+  
   if (error) return <div className="container">Error: {error}</div>;
   if (!events) return <div className="container">Events not found</div>;
 

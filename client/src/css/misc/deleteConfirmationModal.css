@@ -1,0 +1,141 @@
+/* ------------------------------------------------- */
+/*          Deletion Confirmation Modal              */
+/* ------------------------------------------------- */
+
+.delete-dialog-container {
+    position: fixed;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    background: #ffffff;
+    color: #333;
+    text-align: center;
+    padding: 0 30px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: visible;
+    border: none;
+}
+
+.delete-dialog-container::backdrop {
+    background: rgba(30, 30, 30, 0.8);
+}
+
+.delete-dialog-innercontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-dialog-icon {
+    width: 80px;
+    margin-top: -40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.delete-dialog-title {
+    font-size: 26px;
+    margin: 30px 0 10px;
+    font-weight: 500;
+    color: #d32f2f;
+}
+
+.delete-dialog-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 20px 0;
+    padding: 12px 20px;
+    background-color: #f5f5f5;
+    border-left: 4px solid #d32f2f;
+    border-radius: 4px;
+    text-align: center;
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+.delete-dialog-message {
+    font-size: 18px;
+    margin: 10px 0;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.delete-dialog-warning-text {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin: 15px 0 20px;
+}
+
+.delete-dialog-buttons {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.delete-dialog-cancel-button,
+.delete-dialog-confirm-button {
+    flex: 1;
+    padding: 12px 0;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.delete-dialog-cancel-button {
+    background-color: #757575;
+    color: #ffffff;
+}
+
+.delete-dialog-cancel-button:hover:not(:disabled) {
+    background-color: #616161;
+}
+
+.delete-dialog-confirm-button {
+    background-color: #d32f2f;
+    color: #ffffff;
+}
+
+.delete-dialog-confirm-button:hover:not(:disabled) {
+    background-color: #b71c1c;
+}
+
+.delete-dialog-cancel-button:disabled,
+.delete-dialog-confirm-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 500px) {
+    .delete-dialog-container {
+        width: 90%;
+        padding: 0 20px 20px;
+    }
+
+    .delete-dialog-title {
+        font-size: 22px;
+    }
+
+    .delete-dialog-message {
+        font-size: 16px;
+    }
+
+    .delete-dialog-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .delete-dialog-cancel-button,
+    .delete-dialog-confirm-button {
+        font-size: 16px;
+    }
+}

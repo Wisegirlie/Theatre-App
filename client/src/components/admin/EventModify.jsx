@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TheaterPic from "../../assets/shows/event_default_image.png";
 import { updateEvent, getEventById, deleteEvent } from "../../services/eventServices.js";
+import DeleteConfirmationModal from '../misc/DeleteConfirmationModal';
+import Spinner from '../misc/Spinner';
 import "../../css/admin/eventsAdd.css";
 
 const ModifyEvent = ( events ) => {
@@ -18,6 +20,8 @@ const ModifyEvent = ( events ) => {
     const [ticketsSold, setTicketsSold] = useState(0);
     const [eventDate, setEventDate] = useState('');
     const [price, setPrice] = useState(0.00);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     
 
     useEffect(() => {
@@ -89,18 +93,38 @@ const ModifyEvent = ( events ) => {
 
     const handleReturn = () => {
         window.history.back();
-    };  
+    };
 
-  const handleDeleteEvent = async ( id ) => {
-    try {
-      await deleteEvent(id);
-      // const updatedEvents = events.filter((_, i) => i !== index);
-      // setEvents(updatedEvents);
-      navigate("/manage-events");
-    } catch (error) {
-      console.error('Failed to delete event:', error);
+    const handleDeleteClick = () => {
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        setIsDeleting(true);
+        try {
+            await deleteEvent(id);
+            setIsDeleteModalOpen(false);
+            navigate("/manage-events");
+        } catch (error) {
+            console.error('Failed to delete event:', error);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    if (isDeleting) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+                width: '100%'
+            }}>
+                <Spinner size={64} ariaLabel="Deleting event" />
+            </div>
+        );
     }
-  };
 
     return (
         <div className="event-details-main-container addEvent-main-container container">
@@ -165,7 +189,7 @@ const ModifyEvent = ( events ) => {
                         <input
                             type="text"
                             id="venue"
-                            name="venue"                            
+                            name="venue"
                             className="addEvent-input"
                             placeholder="Where is the event taking place"
                             value={venue}
@@ -200,7 +224,9 @@ const ModifyEvent = ( events ) => {
                             className="addEvent-input addEvent-input-tickets-width"
                             type="number"
                             value={ticketsAvailable}
-                            onChange={(e) => setTicketsAvailable(parseInt(e.target.value))}
+                            onChange={(e) =>
+                                setTicketsAvailable(parseInt(e.target.value))
+                            }
                         />
                     </div>
                     {/* Tickets Sold */}
@@ -214,11 +240,11 @@ const ModifyEvent = ( events ) => {
                         <input
                             name="event-tickets-available"
                             className="addEvent-input addEvent-input-tickets-width"
-                            type="number"  
+                            type="number"
                             value={ticketsSold}
                             onChange={(e) =>
                                 setTicketsSold(parseInt(e.target.value))
-                            }                                                  
+                            }
                         />
                     </div>
                     {/* Price */}
@@ -231,9 +257,7 @@ const ModifyEvent = ( events ) => {
                             className="addEvent-input addEvent-input-tickets-width"
                             type="number"
                             value={price}
-                            onChange={(e) =>
-                                setPrice(Number(e.target.value))
-                            }    
+                            onChange={(e) => setPrice(Number(e.target.value))}
                         />
                     </div>
 
@@ -244,14 +268,31 @@ const ModifyEvent = ( events ) => {
                     >
                         Save changes
                     </button>
-                    <button onClick={handleReturn} className="button-back event-detail-button-right-margin">
+                    <button
+                        onClick={handleReturn}
+                        className="button-back event-detail-button-right-margin"
+                    >
                         Cancel
                     </button>
-                    <button onClick={() => handleDeleteEvent(id)} className="button-orange">
+                    <button
+                        onClick={handleDeleteClick}
+                        className="button-orange"
+                    >
                         Delete event
                     </button>
                 </div>
             </div>
+
+            <DeleteConfirmationModal
+                title="Delete Event"
+                itemType="event"
+                itemName={title}
+                message={`Are you sure you want to delete this event?\n\nAll associated tickets will be permanently removed.`}
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleDeleteConfirm}
+                isLoading={isDeleting}
+            />
         </div>
     );
 };

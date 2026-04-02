@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllTickets, deleteTicket } from '../../services/ticketServices';
 import Dialog from '../../components/misc/dialog';
+import Spinner from '../misc/Spinner';
+import DeleteConfirmationModal from '../misc/DeleteConfirmationModal';
 
 const ManageTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -10,6 +12,9 @@ const ManageTickets = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [ticketToDelete, setTicketToDelete] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   
   //   Declare Dialog Modal Fields
   const [dialogTitle, setDialogTitle] = useState("");
@@ -35,19 +40,32 @@ const ManageTickets = () => {
     fetchTickets();
   }, []);
 
-  const handleDeleteTicket = async (id) => {
+  const handleDeleteClick = (ticket) => {
+    setTicketToDelete(ticket);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!ticketToDelete) return;
+
+    setIsDeleting(true);
     try {
-      await deleteTicket(id);
-      const updatedTickets = tickets.filter(ticket => ticket._id !== id);
+      await deleteTicket(ticketToDelete._id);
+      const updatedTickets = tickets.filter(ticket => ticket._id !== ticketToDelete._id);
       setTickets(updatedTickets);
       const total = updatedTickets.reduce((acc, ticket) => acc + ticket.numberTickets, 0);
       setTotalTickets(total);
+      setIsDeleteModalOpen(false);
+      setTicketToDelete(null);
     } catch (error) {
       console.error('Error deleting ticket:', error);
       setDialogTitle('Error deleting ticket');
       setDialogMessage({error}.toString());
       setIsDialogOpen(true);
       setDialogIsError(true);
+      setIsDeleteModalOpen(false);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -62,7 +80,20 @@ const ManageTickets = () => {
     };
 
 
-  if (loading) return <div className="loader-container"></div>;
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        width: '100%'
+      }}>
+        <Spinner size={64} ariaLabel="Loading tickets" />
+      </div>
+    );
+  }
+  
   if (error) return <div className="container">{error}</div>;
   if (!tickets) return <div className="container">Ticets not found</div>;
 
@@ -112,9 +143,7 @@ const ManageTickets = () => {
 
                                   <button
                                       className="ticketsManage-action-btn delete-btn"
-                                      onClick={() =>
-                                          handleDeleteTicket(ticket._id)
-                                      }
+                                      onClick={() => handleDeleteClick(ticket)}
                                   >
                                       Delete
                                   </button>
@@ -139,6 +168,21 @@ const ManageTickets = () => {
               error={dialogIsError}
               isOpen={isDialogOpen}
               onClose={() => setIsDialogOpen(false)}
+          />
+          {/*  Deletion Confirmation Modal  */}
+          <DeleteConfirmationModal
+              title="Delete Ticket"
+              itemType="ticket"
+              itemName={
+                  ticketToDelete
+                      ? `Ticket for ${ticketToDelete.eventTitle.title}\n${ticketToDelete.userName.firstName} ${ticketToDelete.userName.lastName} - ${ticketToDelete.numberTickets} ticket(s)`
+                      : ""
+              }
+              message={`Are you sure you want to delete this ticket?`}
+              isOpen={isDeleteModalOpen}
+              onClose={() => setIsDeleteModalOpen(false)}
+              onConfirm={handleDeleteConfirm}
+              isLoading={isDeleting}
           />
       </section>
   );
