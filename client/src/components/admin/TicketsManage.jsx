@@ -8,7 +8,8 @@ import DeleteConfirmationModal from '../misc/DeleteConfirmationModal';
 
 const ManageTickets = () => {
   const [tickets, setTickets] = useState([]);
-  const [totalTickets, setTotalTickets] = useState(0);  
+  const [totalTickets, setTotalTickets] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);  
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
@@ -31,6 +32,8 @@ const ManageTickets = () => {
         setLoading(false);
         const total = data.reduce((acc, ticket) => acc + ticket.numberTickets, 0);
         setTotalTickets(total);
+        const revenue = data.reduce((acc, ticket) => acc + (ticket.eventTitle.price * ticket.numberTickets), 0);
+        setTotalRevenue(revenue);
       } catch (error) {
         console.error('Error fetching tickets:', error);
         setError('Failed to fetch tickets: ' + error.message);
@@ -55,6 +58,8 @@ const ManageTickets = () => {
       setTickets(updatedTickets);
       const total = updatedTickets.reduce((acc, ticket) => acc + ticket.numberTickets, 0);
       setTotalTickets(total);
+      const revenue = updatedTickets.reduce((acc, ticket) => acc + (ticket.eventTitle.price * ticket.numberTickets), 0);
+      setTotalRevenue(revenue);
       setIsDeleteModalOpen(false);
       setTicketToDelete(null);
     } catch (error) {
@@ -87,69 +92,90 @@ const ManageTickets = () => {
   }
   
   if (error) return <div className="container">{error}</div>;
-  if (!tickets) return <div className="container">Ticets not found</div>;
+  if (!tickets) return <div className="container">Tickets not found</div>;
 
   return (
       <section className="ticketsManage-section-container" id="ManageTickets">
           <h1 className="page-main-title">Manage Tickets</h1>
           <div className="ticketsManage-text">
-              <p>Total Tickets Sold: {totalTickets}</p>
+              <div style={{ display: "flex", flexDirection: "row", gap: 40}}>
+                  <p>Total Tickets Sold: {totalTickets}</p>
+                  <p>Total Revenue: $ {totalRevenue.toFixed(2)}</p>
+              </div>
               <Link to="/add-ticket">
                   <button className="button-add">Add new ticket</button>
               </Link>
           </div>
           <div className="ticketsManage-table-container">
-            {totalTickets > 0 &&
-              <table className="ticketsManage-table">
-                  <thead>
-                      <tr>
-                          <th>#</th>
-                          <th>User</th>
-                          <th>Event</th>
-                          <th>Quantity</th>
-                          <th>Created</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {tickets.map((ticket, index) => (
-                          <tr key={index}>
-                              <td>{index + 1}</td>
-                              <td>{ticket.userName.firstName} {ticket.userName.lastName}</td>
-                              <td>{ticket.eventTitle.title}</td>
-                              <td>{ticket.numberTickets}</td>
-                              <td>
-                                  {ticket.createdAt
-                                      ? ticket.createdAt.slice(0, 10)
-                                      : "undefined"}
-                              </td>
-                              <td>
-                                  <button
-                                      className="ticketsManage-action-btn edit-btn"
-                                      onClick={() =>
-                                          handleModifyTicket(ticket._id)
-                                      }
-                                  >
-                                      Edit
-                                  </button>
-
-                                  <button
-                                      className="ticketsManage-action-btn delete-btn"
-                                      onClick={() => handleDeleteClick(ticket)}
-                                  >
-                                      Delete
-                                  </button>
-                              </td>
+              {totalTickets > 0 && (
+                  <table className="ticketsManage-table">
+                      <thead>
+                          <tr>
+                              <th>#</th>
+                              <th>User</th>
+                              <th>Event</th>
+                              <th>Quantity</th>
+                              <th>Unit Price</th>
+                              <th>Total Price</th>
+                              <th>Created</th>
+                              <th>Actions</th>
                           </tr>
-                      ))}
-                  </tbody>
-              </table>
-            }                  
-            {/*  No tickets found  */}
-            {totalTickets == 0 && 
-              <div className="ticketsManage-noTickets">No tickets found.</div>
-            }
-          </div>    
+                      </thead>
+                      <tbody>
+                          {tickets.map((ticket, index) => (
+                              <tr key={index}>
+                                  <td>{index + 1}</td>
+                                  <td>
+                                      <strong>
+                                          {ticket.userName.firstName}{" "}
+                                          {ticket.userName.lastName}
+                                      </strong>
+                                  </td>
+                                  <td>{ticket.eventTitle.title}</td>
+                                  <td>{ticket.numberTickets}</td>
+                                  <td>$ {ticket.eventTitle.price}</td>
+                                  <td>
+                                      ${" "}
+                                      {ticket.eventTitle.price *
+                                          ticket.numberTickets}
+                                  </td>
+                                  <td>
+                                      {ticket.createdAt
+                                          ? ticket.createdAt.slice(0, 10)
+                                          : "undefined"}
+                                  </td>
+                                  <td>
+                                      <button
+                                          className="ticketsManage-action-btn edit-btn"
+                                          onClick={() =>
+                                              handleModifyTicket(ticket._id)
+                                          }
+                                      >
+                                          <i className="fa fa-pencil"></i>Edit
+                                      </button>
+
+                                      <button
+                                          className="ticketsManage-action-btn delete-btn"
+                                          onClick={() =>
+                                              handleDeleteClick(ticket)
+                                          }
+                                      >
+                                          <i className="fa fa-trash-o"></i>
+                                          Delete
+                                      </button>
+                                  </td>
+                              </tr>
+                          ))}
+                      </tbody>
+                  </table>
+              )}
+              {/*  No tickets found  */}
+              {totalTickets == 0 && (
+                  <div className="ticketsManage-noTickets">
+                      No tickets found.
+                  </div>
+              )}
+          </div>
           <button onClick={handleReturn} className="ticketsManage-button-back">
               Return
           </button>

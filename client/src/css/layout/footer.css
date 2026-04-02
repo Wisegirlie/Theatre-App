@@ -32,7 +32,8 @@ footer {
 .fa-instagram::before, .fa-youtube-play::before, .fa-envelope::before {    
   font-size: 1.1875rem;    
   color: #d2cab6;
-  padding: 0 3px;
+  padding: 0 3px;  
+  margin-right: 8px;
 }
 
 .fa-instagram:hover::before,

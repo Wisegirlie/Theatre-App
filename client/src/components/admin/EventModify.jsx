@@ -296,7 +296,7 @@ const ModifyEvent = ( events ) => {
                         onClick={handleDeleteClick}
                         className="button-orange"
                     >
-                        Delete event
+                        <i className="fa fa-trash-o"></i> Delete event
                     </button>
                 </div>
             </div>

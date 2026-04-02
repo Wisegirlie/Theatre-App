@@ -51,15 +51,14 @@ header {
   margin-top: 7px;
 } */
 
-i, i::before {    
-  font-size: 1.125rem;    
-  color: var(--orange-main); 
+i, i::before {  
+}
+
+.fa-star:before {
+  font-size: 1.125rem;
+  color: var(--orange-main);
   margin-right: 8px;
 }
-
-.fa-star:before {  
-}
-
 
 /* =====================
         MENU OPTIONS    

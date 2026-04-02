@@ -65,6 +65,41 @@ button:hover{
 }
 
 .button-orange:hover {
-    background-color: #ff821c;
+    background-color: #ff821c;    
+}
+
+.edit-btn {
+    background-color: #3498db;
+    color: white;
+    min-width: 110px;
+    margin-right: 5px;
+}
+
+.edit-btn:hover {
+    background-color: #2980b9;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Delete button icon styling */
+.fa-trash-o::before {
+    margin-right: 10px;
+    margin-left: 3px;
+    font-size: 1rem;
+    color: white;
+}
+
+/* Edit button icon styling */
+.edit-btn .fa-pencil::before {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: white;
     
 }
