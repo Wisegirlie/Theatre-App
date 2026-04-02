@@ -20,11 +20,15 @@ export default function Ticket ( { title, ticketsNum, venue, eventDate, address,
                 <div className="ticket-event-date">{eventDate}</div>
             </div>            
 
-            <div className="ticket-event-price">PRICE: ${price}</div>
+            <div className="ticket-event-price">
+                {ticketsNum} {ticketsNum === 1 ? "TICKET" : "TICKETS"}
+            </div>
             <div className="ticket-event-venue">
                 {venue} 
                 <br />
-                {address}
+                {address ? address : ""}
+                {address ? <br /> : ""}
+                Total Price: ${price * ticketsNum}
             </div>
 
             <div className="ticket-number">

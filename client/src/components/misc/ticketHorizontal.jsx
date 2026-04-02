@@ -22,19 +22,21 @@ export default function TicketHorizontal ( { title, ticketsNum, venue, eventDate
                 <div className="ticketHorizontal-event-date">{eventDate}</div>
 
                 <div className="ticketHorizontal-event-price">
-                    PRICE: ${price}
+                    {ticketsNum} {ticketsNum === 1 ? "TICKET" : "TICKETS"}
                 </div>
                 <div className="ticketHorizontal-event-venue">
                     {venue}
                     <br />
-                    {address}
+                    {address ? address : ""}
+                    {address ? <br /> : ""}
+                    Total Price: ${price * ticketsNum}
                 </div>
-{/* 
+                {/* 
                 <div className="ticketHorizontal-number">
                     TICKET NUMBER:
                     <br />
                     {ticketId}
-                </div> */}                
+                </div> */}
             </div>
             <div className="ticketHorizontal-barcode-container">
                 <img
@@ -44,31 +46,31 @@ export default function TicketHorizontal ( { title, ticketsNum, venue, eventDate
                 />
             </div>
             <div className="ticketHorizontal-seat-container">
-                    <div className="ticketHorizontal-seat-item">
-                        <div className="ticketHorizontal-seat-label">
-                            Tickets
-                        </div>
-                        <div className="ticketHorizontal-seat-value">
-                            {ticketsNum}
-                        </div>
-                    </div>
-                    <div className="ticketHorizontal-seat-item">
-                        <div className="ticketHorizontal-seat-label">Gate</div>
-                        <div className="ticketHorizontal-seat-value">
-                            {String(
-                                Math.floor(Math.random() * 24) + 1
-                            ).padStart(2, "0")}
-                        </div>
-                    </div>
-                    <div className="ticketHorizontal-seat-item">
-                        <div className="ticketHorizontal-seat-label">Row</div>
-                        <div className="ticketHorizontal-seat-value">
-                            {String(
-                                Math.floor(Math.random() * 41) + 1
-                            ).padStart(2, "0")}
-                        </div>
+                <div className="ticketHorizontal-seat-item">
+                    <div className="ticketHorizontal-seat-label">Tickets</div>
+                    <div className="ticketHorizontal-seat-value">
+                        {ticketsNum}
                     </div>
                 </div>
+                <div className="ticketHorizontal-seat-item">
+                    <div className="ticketHorizontal-seat-label">Gate</div>
+                    <div className="ticketHorizontal-seat-value">
+                        {String(Math.floor(Math.random() * 24) + 1).padStart(
+                            2,
+                            "0",
+                        )}
+                    </div>
+                </div>
+                <div className="ticketHorizontal-seat-item">
+                    <div className="ticketHorizontal-seat-label">Row</div>
+                    <div className="ticketHorizontal-seat-value">
+                        {String(Math.floor(Math.random() * 41) + 1).padStart(
+                            2,
+                            "0",
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
