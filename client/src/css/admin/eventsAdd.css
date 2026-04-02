@@ -35,13 +35,13 @@
   border-radius: 10px;
   border: none;
   height: 35px;
-  font-size: 16px;
+  font-size: 1rem;
   background-color:rgb(239, 239, 239);
   outline: none;  
 }
 
 .event-input-file {
-  font-size: 16px; 
+  font-size: 1rem; 
 }
 
 .addEvent-input-textarea {

@@ -30,7 +30,7 @@
 .event-details-description-text {
   display: block;
   margin-bottom: 30px;
-  font-size: 17px;  
+  font-size: 1.0625rem;  
 }
 
 .event-detail-button-right-margin {
@@ -39,7 +39,7 @@
 
 .event-details-text {
     display: block;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 400;
     margin-top: 30px;
     color: #888888;
@@ -47,7 +47,7 @@
 
 .event-details-text-orange {
   display: block;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--orange-main);
 }

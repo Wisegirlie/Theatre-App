@@ -30,7 +30,7 @@ footer {
 }
 
 .fa-instagram::before, .fa-youtube-play::before, .fa-envelope::before {    
-  font-size: 19px;    
+  font-size: 1.1875rem;    
   color: #d2cab6;
   padding: 0 3px;
 }

@@ -44,45 +44,45 @@
     color: white;
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: bold;
     display: inline-block;
     margin-bottom: 10px;
 }
 
 .ticket-event-title {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: bold;
     margin: 5px 0;
     letter-spacing: 1px;
 }
 
 .ticket-event-subtitle {
-    font-size: 24px;
+    font-size: 1.5rem;
     margin: 5px 0 20px;
     color: #555;
 }
 
 .ticket-event-date {
-    font-size: 18px;
+    font-size: 1.125rem;
     margin-bottom: 18px;
     text-align: center;
 }
 
 .ticket-event-price {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .ticket-event-venue {
-    font-size: 16px;
+    font-size: 1rem;
     margin-bottom: 30px;
     line-height: 1.4;
 }
 
 .ticket-number {
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-bottom: 30px;
     letter-spacing: 2px;
 }
@@ -117,13 +117,13 @@
 }
 
 .ticket-seat-label {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #666;
     margin-bottom: 5px;
 }
 
 .ticket-seat-value {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 

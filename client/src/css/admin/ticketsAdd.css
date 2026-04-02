@@ -120,7 +120,7 @@
     width: 140px;
     height: 140px;    
     border-radius: 50%;
-    font-size: 30px;
+    font-size: 1.875rem;
     margin: 0 auto 40px;
     display: flex;
     flex-direction: column;

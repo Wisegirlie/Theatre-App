@@ -47,7 +47,7 @@
     height: 140px;
     background: var(--orange-light);
     border-radius: 50%;
-    font-size: 30px;
+    font-size: 1.875rem;
     margin: 0 25px 40px auto;    
     display: flex;
     flex-direction: column;
@@ -57,20 +57,20 @@
 
 .profile-user-img-container .fa-user-o {
   color: #FFF;  
-  font-size: 45px;
+  font-size: 2.8125rem;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
 .profile-label {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: italic;
   font-weight: 400;
   
 }
 
 .profile-data {
-  font-size: 28px;  
+  font-size: 1.75rem;  
   font-weight: 500;
   margin-bottom: 25px;
   color: #1c7421;
@@ -89,12 +89,12 @@
 }
 
 .profile-main-container .button-back {
-  font-size: 15px;
+  font-size: 0.9375rem;
   margin-bottom: 10px;
 }
 
 .profile-tickets {
-  font-size: 18px; 
+  font-size: 1.125rem; 
   color: #777777;
   font-weight: 400;
 }

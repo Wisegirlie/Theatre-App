@@ -78,7 +78,7 @@
     display: inline-block;
     padding: 5px 20px 6px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: capitalize;
     min-width: 100px;
@@ -110,7 +110,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 0.875rem;
     transition: all 0.3s ease;    
 }
 
@@ -135,7 +135,7 @@
 }
 
 .manageUsers-button-back {
-    font-size: 16px;
+    font-size: 1rem;
     padding-left: 60px;
     padding-right: 60px;
     margin-top: 40px;
