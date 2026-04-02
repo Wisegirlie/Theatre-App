@@ -3,6 +3,7 @@ import { getAllEvents } from '../services/eventServices';
 import EventsCard from './misc/EventsCard';
 import '../css/events.css';
 import DataNotFound from './misc/DataNotFound';
+import Spinner from './misc/Spinner';
 
 const Events = ( props ) => {
   const [eventsData, setEventsData] = useState([]);
@@ -25,7 +26,14 @@ const Events = ( props ) => {
     fetchEvents();
   }, []);
 
-  if (loading) return <div className="container"></div>;
+  if (loading) {
+      return (
+          <div style={{ paddingTop: '105px' }}>
+              <Spinner size={64} ariaLabel="Loading events" />
+          </div>
+      );
+  }
+
   if (error) return <div className="container">Error: {error}</div>;
   if (!eventsData) return <div className="container">Events not found</div>;
 

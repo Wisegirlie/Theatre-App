@@ -6,6 +6,7 @@ import { getAllUsers } from '../../services/userServices.js';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import Dialog from '../../components/misc/dialog';
 import TicketPNG from '../../assets/misc/ticket.png';
+import Spinner from '../misc/Spinner';
 
 const ModifyTickets = () => {
 
@@ -137,7 +138,10 @@ const ModifyTickets = () => {
     }
   };
 
-  if (loading) return <div className="container"></div>;
+    if (loading) {
+        return <Spinner size={64} ariaLabel="Loading ticket" />;
+    }
+
   if (error) return <div className="container">{error}</div>;
 
   return (

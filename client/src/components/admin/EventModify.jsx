@@ -114,15 +114,7 @@ const ModifyEvent = ( events ) => {
 
     if (isDeleting) {
         return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '100vh',
-                width: '100%'
-            }}>
-                <Spinner size={64} ariaLabel="Deleting event" />
-            </div>
+            <Spinner size={64} ariaLabel="Deleting event" />            
         );
     }
 

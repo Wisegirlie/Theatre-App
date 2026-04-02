@@ -8,6 +8,7 @@ import '../css/tickets.css';
 import '../css/ticketHorizontal.css';
 import DataNotFound from './misc/DataNotFound';
 import { useNavigate } from 'react-router-dom';
+import Spinner from './misc/Spinner';
 
 
 const Tickets = () => {
@@ -50,9 +51,13 @@ const Tickets = () => {
             setError("User ID not found in localStorage");
         }
         setLoading(false);
-    }, [userId]);
+    }, [userId]);    
 
-    if (loading) return <div className="loading"></div>;
+    if (loading) {
+        return <Spinner size={64} ariaLabel="Loading tickets" />;
+    }
+
+    
     if (error) return <div className="error">Error: {error}</div>;
 
     return (

@@ -1,10 +1,11 @@
 /* Spinner styles - uses --background-gray from colors.css */
 .spinner-wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 40px;
-}
+  padding-bottom: 40px;  
+  width: 100%;
+}       
 
 .spinner {
   border: 6px solid #f3f3f3; /* Light grey */

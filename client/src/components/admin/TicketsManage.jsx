@@ -81,16 +81,8 @@ const ManageTickets = () => {
 
 
   if (loading) {
-    return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        width: '100%'
-      }}>
-        <Spinner size={64} ariaLabel="Loading tickets" />
-      </div>
+    return (      
+        <Spinner size={64} ariaLabel="Loading tickets" />      
     );
   }
   

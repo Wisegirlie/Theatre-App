@@ -34,15 +34,7 @@ const ManageUsers = () => {
 
     if (loading) {
         return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '100vh',
-                width: '100%'
-            }}>
-                <Spinner size={64} ariaLabel="Loading users" />
-            </div>
+            <Spinner size={64} ariaLabel="Loading users" />            
         );
     }
 

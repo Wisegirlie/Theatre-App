@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getEventById } from '../services/eventServices';
+import Spinner from "./misc/Spinner";
 
 const handleReturn = () => {
   window.history.back(); 
@@ -34,7 +35,11 @@ const EventsDetail = () => {
     fetchEvent();
   }, [id]);
 
-    if (loading) return <div className="container">Loading...</div>;
+    if (loading) {
+        return (
+            <Spinner size={64} ariaLabel="Loading event" />
+        );
+    }
     if (error) return <div className="container">Error: {error}</div>;
     if (!eventData) return <div className="container">Event not found</div>;
 

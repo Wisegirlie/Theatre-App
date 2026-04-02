@@ -52,6 +52,7 @@ button:hover{
 
 .button-add{
     background-color: var(--green-button);
+    padding: 9px 50px 12px;
 }
 
 .button-add:hover{
