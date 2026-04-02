@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getEventById, updateEventTickets } from '../services/eventServices';
 import { purchaseTicket } from '../services/ticketServices';
+import { useAppContext } from '../context/useAppContext';
 import Dialog from './misc/dialog';
 import DialogAwait from './misc/dialogAwait';
 
@@ -13,6 +14,7 @@ const handleReturn = () => {
 
 function PurchaseTicket() {
     const { id } = useParams();
+    const { isLogged } = useAppContext();
     const [eventData, setEventData] = useState(null);
     const [tickets, setTickets] = useState(1);    
     const navigate = useNavigate();
@@ -37,6 +39,13 @@ function PurchaseTicket() {
           });
       });
   };
+
+    // Check authentication and redirect to login if not logged in
+    useEffect(() => {
+        if (!isLogged) {
+            navigate('/login');
+        }
+    }, [isLogged, navigate]);
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -70,7 +79,20 @@ function PurchaseTicket() {
     };
 
     const handleConfirmPurchase = async () => {
+        // Check if user is still logged in before proceeding
+        if (!isLogged) {
+            navigate('/login');
+            return;
+        }
+
         const userId = localStorage.getItem("userId"); // Obtener el userId desde localStorage
+        
+        // Double check userId exists
+        if (!userId) {
+            navigate('/login');
+            return;
+        }
+
         console.log("Tickets available: " + eventData.ticketsAvailable);
         console.log("Tickets to purchase: " + tickets);
 

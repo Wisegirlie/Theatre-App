@@ -1,15 +1,25 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/useAppContext.jsx';
 import { ROLES } from '../../constants/roles.js';
-import AccessDenied from "../layout/accessDenied.jsx";
+import AccessDenied from '../layout/accessDenied.jsx';
 
 const VerifyAuthUser = ({ children }) => {
     const { isLogged, role } = useAppContext();
+    const navigate = useNavigate();
 
-    return (
-        <>
-            {isLogged && (role === ROLES.USER || role === ROLES.ADMIN ) ? children : <AccessDenied />}
-        </>
-    );
+    useEffect(() => {
+        if (!isLogged || (role !== ROLES.USER && role !== ROLES.ADMIN)) {
+            navigate('/login');
+        }
+    }, [isLogged, role, navigate]);
+
+    // Only render children if authenticated
+    if (!isLogged || (role !== ROLES.USER && role !== ROLES.ADMIN)) {
+        return <AccessDenied />;
+    }
+
+    return <>{children}</>;
 };
 
 
