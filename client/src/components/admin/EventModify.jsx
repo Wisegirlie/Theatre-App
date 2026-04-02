@@ -15,13 +15,14 @@ const ModifyEvent = ( events ) => {
     const [description, setDescription] = useState("");
     const [ticketsAvailable, setTicketsAvailable] = useState(0);
     const [image, setImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(TheaterPic);
+    const [imagePreview, setImagePreview] = useState(null);
     const [venue, setVenue] = useState('');
     const [ticketsSold, setTicketsSold] = useState(0);
     const [eventDate, setEventDate] = useState('');
     const [price, setPrice] = useState(0.00);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [imageLoading, setImageLoading] = useState(true);
     
 
     useEffect(() => {
@@ -38,9 +39,11 @@ const ModifyEvent = ( events ) => {
                     setEventDate(eventToModify.eventDate?.slice(0, 10) || "");
                     setImage(eventToModify.image || null);
                     setImagePreview(eventToModify.image || TheaterPic);
+                    setImageLoading(false);
                 }
             } catch (error) {
                 console.error("Failed to fetch event: ", error);
+                setImageLoading(false);
                 // redirect or show error message
             }
         };
@@ -83,9 +86,12 @@ const ModifyEvent = ( events ) => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            setImageLoading(true);
             setImage(file);
-            setImagePreview(URL.createObjectURL(file));
+            const newPreview = URL.createObjectURL(file);
+            setImagePreview(newPreview);
         } else {
+            setImageLoading(true);
             setImage(null);
             setImagePreview(TheaterPic);
         }
@@ -124,11 +130,31 @@ const ModifyEvent = ( events ) => {
             <div className="event-details-container">
                 {/* LEFT PANEL */}
                 <div className="event-details-leftPanel addEvent-leftPanel">
-                    <img
-                        className="event-details-img"
-                        src={imagePreview}
-                        alt="Event Poster"
-                    />
+                    <div style={{ position: 'relative', width: '100%', minHeight: '380px' }}>
+                        {imageLoading && (
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                                zIndex: 10
+                            }}>
+                                <Spinner size={48} ariaLabel="Loading event image" />
+                            </div>
+                        )}
+                        <img
+                            className="event-details-img"
+                            src={imagePreview}
+                            alt="Event Poster"
+                            onLoad={() => setImageLoading(false)}
+                            style={{ display: 'block', width: '100%' }}
+                        />
+                    </div>
                     <label htmlFor="file" style={{ marginRight: "10px" }}>
                         Event image (max 2Mb):
                     </label>
