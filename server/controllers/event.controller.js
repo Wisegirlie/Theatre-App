@@ -1,4 +1,5 @@
 import Event from '../models/event.model.js';
+import Ticket from '../models/ticket.model.js';
 import multer from 'multer';
 
 
@@ -50,12 +51,27 @@ export const createEvent = async (req, res) => {
 export const deleteEvent = async (req, res) => {
   try {
     const { id } = req.params;
-    const event = await Event.findByIdAndDelete(id);
+    
+    // First, check if event exists
+    const event = await Event.findById(id);
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
-    res.status(200).json({ message: 'Event deleted successfully' });
+    
+    // Delete all tickets associated with this event FIRST
+    // Note: Middleware will restore tickets to event (slightly redundant but safe)
+    const ticketDeletionResult = await Ticket.deleteMany({ eventTitle: id });
+    console.log(`Deleted ${ticketDeletionResult.deletedCount} ticket entries for event: ${event.title}`);
+    
+    // Then delete the event (no orphaned tickets)
+    await Event.findByIdAndDelete(id);
+    
+    res.status(200).json({ 
+      message: 'Event deleted successfully',
+      ticketsDeleted: ticketDeletionResult.deletedCount 
+    });
   } catch (error) {
+    console.error('Error deleting event:', error);
     res.status(500).json({ message: error.message });
   }
 };

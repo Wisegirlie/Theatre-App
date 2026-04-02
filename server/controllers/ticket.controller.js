@@ -39,8 +39,10 @@ export const deleteTicketById = async (req, res) => {
       if (!ticket) {
         return res.status(404).json({ message: 'Ticket not found' });
       }
+      // Ticket restoration is handled automatically by Mongoose middleware
       res.status(200).json({ message: 'Ticket deleted successfully' });
     } catch (error) {
+      console.error('Error deleting ticket:', error);
       res.status(500).json({ message: error.message });
     }
   };

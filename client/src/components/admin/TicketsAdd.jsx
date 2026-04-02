@@ -1,7 +1,7 @@
 import '../../css//admin/ticketsAdd.css'
 import { useState, useEffect } from 'react';
 import { createTicket } from '../../services/ticketServices';
-import { getAllEvents } from '../../services/eventServices';
+import { getAllEvents, updateEventTickets } from '../../services/eventServices';
 import { getAllUsers } from '../../services/userServices';
 import { useNavigate } from 'react-router-dom';
 import TicketPNG from '../../assets/misc/ticket.png';
@@ -68,9 +68,35 @@ const AddTickets = () => {
       return;
     }
 
+    // Find the selected event to check available tickets
+    const selectedEvent = events.find(event => event._id === eventId);
+    if (!selectedEvent) {
+      setDialogTitle('Error');
+      setDialogMessage("Selected event not found.");
+      setIsDialogOpen(true);
+      setDialogIsError(true);
+      return;
+    }
+
+    // Check if there are enough tickets available
+    if (numberTickets > selectedEvent.ticketsAvailable) {
+      setDialogTitle('Not enough tickets');
+      setDialogMessage(`Only ${selectedEvent.ticketsAvailable} tickets available for this event.`);
+      setIsDialogOpen(true);
+      setDialogIsError(true);
+      return;
+    }
+
     try {
+      // Create the ticket
       const response = await createTicket(userId, eventId, numberTickets);
       console.log('Ticket created successfully:', response);
+
+      // Update the event's available tickets
+      const updatedTicketsAvailable = selectedEvent.ticketsAvailable - numberTickets;
+      await updateEventTickets(eventId, updatedTicketsAvailable);
+      console.log('Event tickets updated:', updatedTicketsAvailable);
+
       navigate('/manage-tickets');
 
     } catch (error) {

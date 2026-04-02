@@ -1,4 +1,5 @@
 import User from '../models/user.model.js';
+import Ticket from '../models/ticket.model.js';
 
 //create User
 export const createUser = async (req, res) => {
@@ -63,11 +64,26 @@ export const updateUser = async (req, res) => {
 // Delete a user by ID
 export const deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
-    if (!deletedUser) return res.status(404).json({ message: 'User not found' });
-    // res.json({acknowledged: deletedProduct.acknowledged, deletedCount: deletedProduct.deletedCount});
-    res.json({ message: 'User deleted' });
+    const userId = req.params.id;
+    
+    // First, check if user exists
+    const userToDelete = await User.findById(userId);
+    if (!userToDelete) return res.status(404).json({ message: 'User not found' });
+    
+    // Delete all tickets associated with this user
+    // Ticket restoration to events is handled automatically by Mongoose middleware
+    const ticketDeletionResult = await Ticket.deleteMany({ userName: userId });
+    console.log(`Deleted ${ticketDeletionResult.deletedCount} ticket entries for user ${userId}`);
+    
+    // Then delete the user
+    const deletedUser = await User.findByIdAndDelete(userId);
+    
+    res.json({ 
+      message: 'User deleted', 
+      ticketsDeleted: ticketDeletionResult.deletedCount 
+    });
   } catch (err) {
+    console.error('Error deleting user:', err);
     res.status(500).json({ error: "Error deleting User by Id." });
   }
 };

@@ -1,7 +1,7 @@
 import '../../css/admin/ticketsAdd.css';
 import { useState, useEffect } from 'react';
 import { updateTicket } from '../../services/ticketServices.js';
-import { getAllEvents } from '../../services/eventServices.js';
+import { getAllEvents, getEventById, updateEventTickets } from '../../services/eventServices.js';
 import { getAllUsers } from '../../services/userServices.js';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import Dialog from '../../components/misc/dialog';
@@ -18,6 +18,7 @@ const ModifyTickets = () => {
   const [events, setEvents] = useState([]);
   const [eventId, setEventId] = useState('');
   const [numberTickets, setNumberTickets] = useState(0);
+  const [originalNumberTickets, setOriginalNumberTickets] = useState(0);
   const [error, setError] = useState('')  
   const [loading, setLoading] = useState(true); 
   const [success, setSuccess] = useState("");
@@ -67,6 +68,7 @@ const ModifyTickets = () => {
         setUserId(ticketToModify.userName._id);
         setEventId(ticketToModify.eventTitle._id);
         setNumberTickets(ticketToModify.numberTickets);
+        setOriginalNumberTickets(ticketToModify.numberTickets);
       }      
     }
   }, [id, tickets]);
@@ -91,8 +93,37 @@ const ModifyTickets = () => {
       if (isNaN(numTickets)) {
         throw new Error('Number of tickets must be a number');
       }
+
+      // Calculate the difference in ticket quantity
+      const ticketDifference = numTickets - originalNumberTickets;
       
+      // Get the current event data
+      const currentEvent = await getEventById(eventId);
+      if (!currentEvent) {
+        throw new Error('Event not found');
+      }
+
+      // Calculate new available tickets for the event
+      // If user increased tickets (positive diff), decrease available
+      // If user decreased tickets (negative diff), increase available
+      const newAvailableTickets = currentEvent.ticketsAvailable - ticketDifference;
+
+      // Check if there are enough tickets available (only if increasing)
+      if (ticketDifference > 0 && ticketDifference > currentEvent.ticketsAvailable) {
+        setDialogTitle('Not enough tickets');
+        setDialogMessage(`Only ${currentEvent.ticketsAvailable} additional tickets available for this event.`);
+        setIsDialogOpen(true);
+        setDialogIsError(true);
+        return;
+      }
+      
+      // Update the ticket
       const response = await updateTicket(id, userId, eventId, numTickets);
+      
+      // Update the event's available tickets
+      await updateEventTickets(eventId, newAvailableTickets);
+      console.log(`Event tickets adjusted by ${-ticketDifference} (from ${currentEvent.ticketsAvailable} to ${newAvailableTickets})`);
+      
       const updatedTickets = tickets.map(ticket => (ticket._id === id ? response : ticket));
       setSuccess("Ticket Successfully updated");
       setError("");
