@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { isLogged, setIsLogged } = useAppContext();
+  const { isLogged, setIsLogged, setRole } = useAppContext();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -21,6 +21,7 @@ const Login = () => {
       console.log('Login successfully');
       setError('')
       setIsLogged(true);
+      setRole(data.user.role);
       navigate('/');      
     } catch (error) {
       setError("Failed to sign in.\nPlease check your email and password.");

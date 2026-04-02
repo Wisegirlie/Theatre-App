@@ -3,16 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/useAppContext.jsx';
 import { ROLES } from '../../constants/roles.js';
 import AccessDenied from '../layout/accessDenied.jsx';
+import Spinner from '../misc/Spinner';
 
 const VerifyAuthUser = ({ children }) => {
-    const { isLogged, role } = useAppContext();
+    const { isLogged, role, isAuthLoading } = useAppContext();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isLogged || (role !== ROLES.USER && role !== ROLES.ADMIN)) {
+        // Only redirect after auth check is complete
+        if (!isAuthLoading && (!isLogged || (role !== ROLES.USER && role !== ROLES.ADMIN))) {
             navigate('/login');
         }
-    }, [isLogged, role, navigate]);
+    }, [isLogged, role, isAuthLoading, navigate]);
+
+    // Show spinner while checking authentication
+    if (isAuthLoading) {
+        return <Spinner size={64} ariaLabel="Checking authentication" />;
+    }
 
     // Only render children if authenticated
     if (!isLogged || (role !== ROLES.USER && role !== ROLES.ADMIN)) {

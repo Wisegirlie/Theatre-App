@@ -4,7 +4,7 @@ import { SignIn, Register } from '../../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/useAppContext';
 import DialogAwait from '../misc/dialogAwait';
-// import { ROLES } from '../constants/roles';
+import { ROLES } from '../../constants/roles';
 
 const SignUp = () => {
     // User data
@@ -17,7 +17,7 @@ const SignUp = () => {
     // control states
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");    
-    const { isLogged, setIsLogged } = useAppContext();
+    const { isLogged, setIsLogged, setRole } = useAppContext();
     const navigate = useNavigate();
 
     //   Dialog Modal Fields
@@ -58,6 +58,7 @@ const SignUp = () => {
                 const data = await SignIn(email, password);
                 console.log("Login successfully");
                 setIsLogged(true);
+                setRole(ROLES.USER); // New users always get regular user role 
                 navigate("/");                
             } catch (error) {
                 setError(error.message);

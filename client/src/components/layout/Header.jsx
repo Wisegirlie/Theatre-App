@@ -101,6 +101,7 @@ const Header = () => {
             localStorage.clear();
             sessionStorage.clear();
             setIsLogged(false);
+            setRole(null);
             setUser({ firstName: "", lastName: "", userName: "" });
             navigate("/login");
         } catch (error) {
