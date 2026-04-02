@@ -15,7 +15,6 @@
 // - isLoading: Boolean to show loading state during deletion (optional).
 
 import "../../css/misc/deleteConfirmationModal.css";
-import WarningIcon from "../../assets/misc/icon_cancel.png";
 import { useEffect, useRef } from "react";
 
 export default function DeleteConfirmationModal({
@@ -64,11 +63,7 @@ export default function DeleteConfirmationModal({
             aria-live="assertive"
         >
             <div className="delete-dialog-innercontainer">
-                <img
-                    className="delete-dialog-icon"
-                    src={WarningIcon}
-                    alt="Warning Icon"
-                />
+                <i className="fa fa-exclamation delete-dialog-icon" aria-hidden="true"></i>
                 <div className="delete-dialog-title">{title}</div>
                 {itemName && (
                     <div className="delete-dialog-item-name">

@@ -67,7 +67,7 @@ const AddEvent = () => {
                       alt="Event Poster"
                   />
                   <label htmlFor="file" style={{ marginRight: "10px" }}>
-                        Event image (max 2Mb):
+                      Event image (max 2Mb):
                   </label>
                   <input
                       type="file"
@@ -117,7 +117,7 @@ const AddEvent = () => {
                       <input
                           name="venue"
                           type="text"
-                          id="venue"                          
+                          id="venue"
                           value={venue}
                           className="addEvent-input"
                           placeholder="Where is the event taking place"
@@ -151,7 +151,9 @@ const AddEvent = () => {
                           className="addEvent-input addEvent-input-tickets-width"
                           type="number"
                           value={ticketsAvailable}
-                          onChange={(e) => setTicketsAvailable(parseInt(e.target.value))}
+                          onChange={(e) =>
+                              setTicketsAvailable(parseInt(e.target.value))
+                          }
                       />
                   </div>
                   {/* Tickets Sold */}
@@ -165,9 +167,11 @@ const AddEvent = () => {
                       <input
                           name="event-tickets-available"
                           className="addEvent-input addEvent-input-tickets-width"
-                          type="number"    
-                          value={ticketsSold}      
-                          onChange={(e) => setTicketsSold(parseInt(e.target.value))}                                          
+                          type="number"
+                          value={ticketsSold}
+                          onChange={(e) =>
+                              setTicketsSold(parseInt(e.target.value))
+                          }
                       />
                   </div>
                   {/* Price */}
@@ -180,7 +184,7 @@ const AddEvent = () => {
                           className="addEvent-input addEvent-input-tickets-width"
                           type="number"
                           value={price}
-                          onChange={(e) => setPrice(Number(e.target.value))}                                          
+                          onChange={(e) => setPrice(Number(e.target.value))}
                       />
                   </div>
 
@@ -189,10 +193,10 @@ const AddEvent = () => {
                       onClick={handleAddEvent}
                       className="button-green event-detail-button-right-margin"
                   >
-                      Save Event
+                      <i className="fa fa-floppy-o"></i> Save Event
                   </button>
                   <button onClick={handleReturn} className="button-back">
-                      Cancel
+                      <i className="fa fa-times-circle-o"></i> Cancel
                   </button>
               </div>
           </div>

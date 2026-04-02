@@ -284,13 +284,13 @@ const ModifyEvent = ( events ) => {
                         onClick={() => handleModifyEvent(id)}
                         className="button-modify event-detail-button-right-margin"
                     >
-                        Save changes
+                        <i className="fa fa-floppy-o"></i> Save changes
                     </button>
                     <button
                         onClick={handleReturn}
                         className="button-back event-detail-button-right-margin"
                     >
-                        Cancel
+                        <i className="fa fa-times-circle-o"></i> Cancel
                     </button>
                     <button
                         onClick={handleDeleteClick}

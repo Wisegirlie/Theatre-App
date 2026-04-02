@@ -98,12 +98,15 @@ const ManageTickets = () => {
       <section className="ticketsManage-section-container" id="ManageTickets">
           <h1 className="page-main-title">Manage Tickets</h1>
           <div className="ticketsManage-text">
-              <div style={{ display: "flex", flexDirection: "row", gap: 40}}>
+              <div style={{ display: "flex", flexDirection: "row", gap: 40 }}>
                   <p>Total Tickets Sold: {totalTickets}</p>
                   <p>Total Revenue: $ {totalRevenue.toFixed(2)}</p>
               </div>
-              <Link to="/add-ticket">
-                  <button className="button-add">Add new ticket</button>
+              <Link to="/add-ticket">                  
+                  <button className="button-add">
+                      <i className="fa fa-plus"></i>
+                      Add new ticket
+                  </button>
               </Link>
           </div>
           <div className="ticketsManage-table-container">

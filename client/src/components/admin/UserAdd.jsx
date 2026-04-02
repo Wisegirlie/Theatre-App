@@ -169,13 +169,13 @@ const AddUser = () => {
                                       className="button-green"
                                       onClick={handleSubmit}
                                   >
-                                      Add User
+                                      <i className="fa fa-user-plus"></i> Add User
                                   </button>
                                   <button
                                       onClick={handleReturn}
                                       className="button-modify userModify-button-secondary"
                                   >
-                                      Return
+                                      <i className="fa fa-arrow-left"></i> Return
                                   </button>
                               </div>
                               

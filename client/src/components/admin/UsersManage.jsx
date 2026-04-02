@@ -76,7 +76,10 @@ const ManageUsers = () => {
             <div className="manageUsers-text">
                 <p>Total Users registered: {users.length}</p>
                 <Link to="/add-User">
-                    <button className="button-add">Add new user</button>
+                    <button className="button-add">
+                        <i className="fa fa-plus"></i>
+                        Add new user
+                    </button>
                 </Link>
             </div>
 
@@ -98,8 +101,12 @@ const ManageUsers = () => {
                         {users.map((user, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>{user.firstName}</td>
-                                <td>{user.lastName}</td>
+                                <td>
+                                    <strong>{user.firstName}</strong>
+                                </td>
+                                <td>
+                                    <strong>{user.lastName}</strong>
+                                </td>
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
                                 <td>
@@ -123,7 +130,7 @@ const ManageUsers = () => {
                                 <td>
                                     <Link to={`/modify-User/${user._id}`}>
                                         <button className="manageUsers-action-btn edit-btn">
-                                            Edit
+                                            <i className="fa fa-pencil"></i>Edit
                                         </button>
                                     </Link>
 
@@ -131,6 +138,7 @@ const ManageUsers = () => {
                                         className="manageUsers-action-btn delete-btn"
                                         onClick={() => handleDeleteClick(user)}
                                     >
+                                        <i className="fa fa-trash-o"></i>
                                         Delete
                                     </button>
                                 </td>

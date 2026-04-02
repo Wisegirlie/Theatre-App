@@ -69,7 +69,7 @@
 .admin-card-button {  
   display: block;
   background-color: var(--cyan-button);  
-  width: 100%; 
+  width: 100%;   
 }
 
 .card-button:hover {

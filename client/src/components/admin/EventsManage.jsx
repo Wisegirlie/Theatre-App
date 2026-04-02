@@ -48,6 +48,7 @@ const ManageEvents = () => {
           <div className="admin-events-text">
               <p>Total Events registered: {events.length}</p>
               <button className="button-add" onClick={handleAddEventClick}>
+                  <i className="fa fa-plus"></i>
                   Add new event
               </button>
           </div>

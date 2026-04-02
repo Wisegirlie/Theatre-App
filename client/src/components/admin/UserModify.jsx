@@ -321,13 +321,13 @@ const ModifyUser = () => {
                                 className="button-modify"
                                 onClick={handleSubmit}
                             >
-                                Save Changes
+                                <i className="fa fa-floppy-o"></i> Save Changes
                             </button>
                             <button
                                 onClick={handleReturn}
                                 className="button-modify userModify-button-secondary"
                             >
-                                Return
+                                <i className="fa fa-arrow-left"></i> Return
                             </button>
                         </div>
 

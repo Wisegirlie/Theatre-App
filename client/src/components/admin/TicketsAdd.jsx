@@ -199,13 +199,13 @@ const AddTickets = () => {
                                   className="button-modify"
                                   onClick={handleAddTicket}
                               >
-                                  Save Changes
+                                  <i className="fa fa-floppy-o"></i> Save Changes
                               </button>
                               <button
                                   onClick={handleReturn}
                                   className="button-modify ticketModify-button-secondary"
                               >
-                                  Return
+                                  <i className="fa fa-arrow-left"></i> Return
                               </button>
                           </div>
     

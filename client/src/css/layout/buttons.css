@@ -7,10 +7,10 @@ button{
     border: none;    
     font-size: .92rem;
     color: white;
-    padding: 8px 40px 11px;
+    padding: 8px 40px 11px 36px;
     border-radius: 6px;
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer;    
   }
     
 button:hover{
@@ -52,7 +52,7 @@ button:hover{
 
 .button-add{
     background-color: var(--green-button);
-    padding: 9px 50px 12px;
+    padding: 9px 45px 12px;
 }
 
 .button-add:hover{
@@ -97,9 +97,51 @@ button:hover{
 }
 
 /* Edit button icon styling */
-.edit-btn .fa-pencil::before {
+.fa-pencil::before {
     margin-right: 8px;
     font-size: 1rem;
     color: white;
     
+}
+
+/* Add button icon styling */
+.button-add .fa-plus::before {
+    margin-right: 12px;
+    font-size: 0.88rem;
+    color: rgb(239, 255, 243);    
+}
+
+/* Save button icon styling */
+.button-modify .fa-floppy-o::before {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: white;
+}
+
+/* Cancel/Back button icon styling */
+.button-back .fa-times-circle-o::before {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: white;
+}
+
+/* Arrow left icon for return/cancel buttons */
+.fa-arrow-left::before {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: #9c9c9c;
+}
+
+/* User plus icon for add user button */
+.button-green .fa-user-plus::before {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: white;
+}
+
+/* Floppy icon for green save buttons */
+.button-green .fa-floppy-o::before {
+    margin-right: 8px;
+    font-size: 1rem;
+    color: white;
 }
