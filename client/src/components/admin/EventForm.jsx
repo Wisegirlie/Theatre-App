@@ -94,6 +94,15 @@ const EventForm = () => {
             return;
         }
 
+        // Validate description field
+        if (!description || description.trim() === '') {
+            setDialogTitle(isModifyMode ? "Update Failed" : "Creation Failed");
+            setDialogMessage("The event description is required.");
+            setDialogIsError(true);
+            setIsDialogOpen(true);
+            return;
+        }
+
         try {
             let finalImage;
             
@@ -171,13 +180,19 @@ const EventForm = () => {
     const handleDeleteConfirm = async () => {
         setIsDeleting(true);
         try {
-            await deleteEvent(id);
+            const response = await deleteEvent(id);
             setIsDeleteModalOpen(false);
             setIsDeleting(false); // Reset before showing dialog so it can render
+            
+            const deletedTicketsCount = response.ticketsDeleted || 0;
+            const ticketsMessage = deletedTicketsCount === 0 
+                ? "No associated tickets were found."
+                : `${deletedTicketsCount} associated ${deletedTicketsCount === 1 ? 'ticket has' : 'tickets have'} been permanently removed.`;
+            
             await showDialog(
                 "Event Deleted",
-                `The event "${title}" has been deleted.`,
-                false
+                `The event "${title}" has been deleted.\n\n${ticketsMessage}`,
+                false,
             );
             navigate("/manage-events");
         } catch (error) {
@@ -282,6 +297,7 @@ const EventForm = () => {
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            required
                         />
                     </div>
                     {/* Venue */}
