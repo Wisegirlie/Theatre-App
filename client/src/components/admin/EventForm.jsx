@@ -4,6 +4,8 @@ import TheaterPic from "../../assets/shows/event_default_image.png";
 import { updateEvent, getEventById, deleteEvent, createEvent } from "../../services/eventServices.js";
 import DeleteConfirmationModal from '../misc/DeleteConfirmationModal';
 import Spinner from '../misc/Spinner';
+import Dialog from '../misc/dialog';
+import DialogAwait from '../misc/dialogAwait';
 import "../../css/admin/eventsAdd.css";
 
 const EventForm = () => {
@@ -24,6 +26,14 @@ const EventForm = () => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [imageLoading, setImageLoading] = useState(isModifyMode);
+    
+    // Dialog states
+    const [dialogTitle, setDialogTitle] = useState("");
+    const [dialogMessage, setDialogMessage] = useState("");
+    const [dialogIsError, setDialogIsError] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isDialogAwaitOpen, setIsDialogAwaitOpen] = useState(false);
+    const [dialogPromiseResolver, setDialogPromiseResolver] = useState(null);
     
     useEffect(() => {
         if (!isModifyMode) {
@@ -56,6 +66,18 @@ const EventForm = () => {
         fetchEvent();
     }, [id, isModifyMode]);
 
+    const showDialog = (title, message, errorState) => {
+        return new Promise((resolve) => {
+            setDialogTitle(title);
+            setDialogMessage(message);
+            setIsDialogAwaitOpen(true);
+            setDialogIsError(errorState);
+            setDialogPromiseResolver(() => () => {
+                resolve();
+            });
+        });
+    };
+
     const defaultImageToBlob = async (imageUrl) => {
         const response = await fetch(imageUrl);
         const blob = await response.blob();
@@ -63,6 +85,15 @@ const EventForm = () => {
     };
 
     const handleSaveEvent = async () => {
+        // Validate title field
+        if (!title || title.trim() === '') {
+            setDialogTitle(isModifyMode ? "Update Failed" : "Creation Failed");           
+            setDialogMessage("The event title is required and cannot be empty.");
+            setDialogIsError(true);
+            setIsDialogOpen(true);
+            return;
+        }
+
         try {
             let finalImage;
             
@@ -89,17 +120,28 @@ const EventForm = () => {
             };
 
             if (isModifyMode) {
-                const result = await updateEvent(id, eventData);
-                console.log(`Event ${eventData.title} updated successfully:`, result);
+                await updateEvent(id, eventData);
+                await showDialog(
+                    "Event Updated",
+                    `The event "${title}" has been successfully updated.`,
+                    false
+                );
             } else {
-                const result = await createEvent(eventData);
-                console.log(`Event ${eventData.title} created successfully:`, result);
+                await createEvent(eventData);
+                await showDialog(
+                    "Event Created",
+                    `The event "${title}" has been successfully created.`,
+                    false
+                );
             }
 
             navigate("/manage-events");
         } catch (error) {
             console.error(`An error occurred while ${isModifyMode ? 'updating' : 'adding'} the event:`, error);
-            console.error(`Failed to ${isModifyMode ? 'update' : 'create'} event: ${error.message}`);
+            setDialogTitle(isModifyMode ? "Update Failed" : "Creation Failed");
+            setDialogMessage(`Failed to ${isModifyMode ? 'update' : 'create'} event:\n${error.message}`);
+            setDialogIsError(true);
+            setIsDialogOpen(true);
         }
     };
 
@@ -131,11 +173,20 @@ const EventForm = () => {
         try {
             await deleteEvent(id);
             setIsDeleteModalOpen(false);
+            setIsDeleting(false); // Reset before showing dialog so it can render
+            await showDialog(
+                "Event Deleted",
+                `The event "${title}" has been deleted.`,
+                false
+            );
             navigate("/manage-events");
         } catch (error) {
             console.error('Failed to delete event:', error);
-        } finally {
             setIsDeleting(false);
+            setDialogTitle("Deletion Failed");
+            setDialogMessage(`Failed to delete event:\n${error.message}`);
+            setDialogIsError(true);
+            setIsDialogOpen(true);
         }
     };
 
@@ -213,6 +264,7 @@ const EventForm = () => {
                             placeholder="Enter event title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            required
                         />
                     </div>
                     {/* Event description */}
@@ -348,6 +400,25 @@ const EventForm = () => {
                     isLoading={isDeleting}
                 />
             )}
+
+            {/* Dialog for errors */}
+            <Dialog
+                title={dialogTitle}
+                message={dialogMessage}
+                error={dialogIsError}
+                isOpen={isDialogOpen}
+                onClose={() => setIsDialogOpen(false)}
+            />
+
+            {/* DialogAwait for success messages */}
+            <DialogAwait
+                title={dialogTitle}
+                message={dialogMessage}
+                error={dialogIsError}
+                isOpen={isDialogAwaitOpen}
+                onClose={() => setIsDialogAwaitOpen(false)}
+                resolvePromise={dialogPromiseResolver}
+            />
         </div>
     );
 };
