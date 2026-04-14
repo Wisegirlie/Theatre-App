@@ -1,34 +1,40 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TheaterPic from "../../assets/shows/event_default_image.png";
-import { updateEvent, getEventById, deleteEvent } from "../../services/eventServices.js";
+import { updateEvent, getEventById, deleteEvent, createEvent } from "../../services/eventServices.js";
 import DeleteConfirmationModal from '../misc/DeleteConfirmationModal';
 import Spinner from '../misc/Spinner';
 import "../../css/admin/eventsAdd.css";
 
-const ModifyEvent = ( events ) => {
-    // const location = useLocation();
-    // const { events } = location.state || { events: [] }; // Recibe los eventos de la ubicación
-    const { id } = useParams();
+const EventForm = () => {
+    const { id } = useParams(); // If id exists, we're in modify mode
     const navigate = useNavigate();
+    const isModifyMode = !!id;
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [ticketsAvailable, setTicketsAvailable] = useState(0);
     const [image, setImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
+    const [imagePreview, setImagePreview] = useState(isModifyMode ? null : TheaterPic);
     const [venue, setVenue] = useState('');
     const [ticketsSold, setTicketsSold] = useState(0);
-    const [eventDate, setEventDate] = useState('');
+    // Initialize with today's date in add mode, empty string in modify mode
+    const [eventDate, setEventDate] = useState(isModifyMode ? '' : new Date().toISOString().split('T')[0]);
     const [price, setPrice] = useState(0.00);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [imageLoading, setImageLoading] = useState(true);
+    const [imageLoading, setImageLoading] = useState(isModifyMode);
     
-
     useEffect(() => {
+        if (!isModifyMode) {
+            // In add mode, show default image immediately without loading state
+            setImageLoading(false);
+            return;
+        }
+
         const fetchEvent = async () => {
             try {
-                const eventToModify = await getEventById(id); // API call
+                const eventToModify = await getEventById(id);
                 if (eventToModify) {
                     setTitle(eventToModify.title || "");
                     setDescription(eventToModify.description || "");
@@ -39,16 +45,16 @@ const ModifyEvent = ( events ) => {
                     setEventDate(eventToModify.eventDate?.slice(0, 10) || "");
                     setImage(eventToModify.image || null);
                     setImagePreview(eventToModify.image || TheaterPic);
-                    setImageLoading(false);
+                    // imageLoading will be set to false by img onLoad event
                 }
             } catch (error) {
                 console.error("Failed to fetch event: ", error);
+                setImagePreview(TheaterPic);
                 setImageLoading(false);
-                // redirect or show error message
             }
         };
         fetchEvent();
-    }, [id, events]);
+    }, [id, isModifyMode]);
 
     const defaultImageToBlob = async (imageUrl) => {
         const response = await fetch(imageUrl);
@@ -56,12 +62,22 @@ const ModifyEvent = ( events ) => {
         return new File([blob], "default-image.png", { type: blob.type });
     };
 
-    const handleModifyEvent = async () => {
+    const handleSaveEvent = async () => {
         try {
-            const finalImage = image
-                ? image
-                : await defaultImageToBlob(TheaterPic);
-            const updatedEvent = {
+            let finalImage;
+            
+            // Check if image is a File object (new upload) or a string (existing URL)
+            if (image instanceof File) {
+                finalImage = image;
+            } else if (typeof image === 'string' && image) {
+                // Convert existing image URL to File object
+                finalImage = await defaultImageToBlob(image);
+            } else {
+                // Use default image (convert local import to File)
+                finalImage = await defaultImageToBlob(TheaterPic);
+            }
+            
+            const eventData = {
                 image: finalImage,
                 title,
                 description,
@@ -72,14 +88,18 @@ const ModifyEvent = ( events ) => {
                 price
             };
 
-            const updatedData = await updateEvent(id, updatedEvent);
+            if (isModifyMode) {
+                const result = await updateEvent(id, eventData);
+                console.log(`Event ${eventData.title} updated successfully:`, result);
+            } else {
+                const result = await createEvent(eventData);
+                console.log(`Event ${eventData.title} created successfully:`, result);
+            }
 
-            // // const updatedEvents = events.map((event) =>
-            // //     event._id === id ? updatedData : event
-            // );
             navigate("/manage-events");
         } catch (error) {
-            console.error("An error occurred while updating the event:", error);
+            console.error(`An error occurred while ${isModifyMode ? 'updating' : 'adding'} the event:`, error);
+            console.error(`Failed to ${isModifyMode ? 'update' : 'create'} event: ${error.message}`);
         }
     };
 
@@ -90,10 +110,11 @@ const ModifyEvent = ( events ) => {
             setImage(file);
             const newPreview = URL.createObjectURL(file);
             setImagePreview(newPreview);
+            // onLoad handler will set imageLoading to false
         } else {
-            setImageLoading(true);
             setImage(null);
             setImagePreview(TheaterPic);
+            setImageLoading(false);
         }
     };
 
@@ -126,7 +147,7 @@ const ModifyEvent = ( events ) => {
 
     return (
         <div className="event-details-main-container addEvent-main-container container">
-            <h1 className="page-main-title">Modify Event</h1>
+            <h1 className="page-main-title">{isModifyMode ? 'Modify Event' : 'Add Event'}</h1>
             <div className="event-details-container">
                 {/* LEFT PANEL */}
                 <div className="event-details-leftPanel addEvent-leftPanel">
@@ -147,13 +168,25 @@ const ModifyEvent = ( events ) => {
                                 <Spinner size={48} ariaLabel="Loading event image" />
                             </div>
                         )}
-                        <img
-                            className="event-details-img"
-                            src={imagePreview}
-                            alt="Event Poster"
-                            onLoad={() => setImageLoading(false)}
-                            style={{ display: 'block', width: '100%' }}
-                        />
+                        {imagePreview && (
+                            <img
+                                className="event-details-img"
+                                src={imagePreview}
+                                alt="Event Poster"
+                                onLoad={() => setImageLoading(false)}
+                                onError={() => {
+                                    console.error('Failed to load image:', imagePreview);
+                                    setImagePreview(TheaterPic);
+                                    setImageLoading(false);
+                                }}
+                                style={{ 
+                                    display: 'block', 
+                                    width: '100%',
+                                    opacity: imageLoading ? 0 : 1,
+                                    transition: 'opacity 0.3s ease-in-out'
+                                }}
+                            />
+                        )}
                     </div>
                     <label htmlFor="file" style={{ marginRight: "10px" }}>
                         Event image (max 2Mb):
@@ -235,7 +268,7 @@ const ModifyEvent = ( events ) => {
                             htmlFor="event-tickets-available"
                             className="addEvent-label"
                         >
-                            Venue Capacity:
+                            {isModifyMode ? 'Venue Capacity:' : 'Tickets Available:'}
                         </label>
                         <input
                             name="event-tickets-available"
@@ -250,13 +283,13 @@ const ModifyEvent = ( events ) => {
                     {/* Tickets Sold */}
                     <div className="addEvent-container">
                         <label
-                            htmlFor="event-tickets-available"
+                            htmlFor="event-tickets-sold"
                             className="addEvent-label"
                         >
                             Tickets sold:
                         </label>
                         <input
-                            name="event-tickets-available"
+                            name="event-tickets-sold"
                             className="addEvent-input addEvent-input-tickets-width"
                             type="number"
                             value={ticketsSold}
@@ -281,38 +314,42 @@ const ModifyEvent = ( events ) => {
 
                     {/* Buttons */}
                     <button
-                        onClick={() => handleModifyEvent(id)}
-                        className="button-modify event-detail-button-right-margin"
+                        onClick={handleSaveEvent}
+                        className={`${isModifyMode ? 'button-modify' : 'button-green'} event-detail-button-right-margin`}
                     >
-                        <i className="fa fa-floppy-o"></i> Save changes
+                        <i className="fa fa-floppy-o"></i> {isModifyMode ? 'Save changes' : 'Save Event'}
                     </button>
                     <button
                         onClick={handleReturn}
-                        className="button-back event-detail-button-right-margin"
+                        className={`button-back ${isModifyMode ? 'event-detail-button-right-margin' : ''}`}
                     >
                         <i className="fa fa-times-circle-o"></i> Cancel
                     </button>
-                    <button
-                        onClick={handleDeleteClick}
-                        className="button-orange"
-                    >
-                        <i className="fa fa-trash-o"></i> Delete event
-                    </button>
+                    {isModifyMode && (
+                        <button
+                            onClick={handleDeleteClick}
+                            className="button-orange"
+                        >
+                            <i className="fa fa-trash-o"></i> Delete event
+                        </button>
+                    )}
                 </div>
             </div>
 
-            <DeleteConfirmationModal
-                title="Delete Event"
-                itemType="event"
-                itemName={title}
-                message={`Are you sure you want to delete this event?\n\nAll associated tickets will be permanently removed.`}
-                isOpen={isDeleteModalOpen}
-                onClose={() => setIsDeleteModalOpen(false)}
-                onConfirm={handleDeleteConfirm}
-                isLoading={isDeleting}
-            />
+            {isModifyMode && (
+                <DeleteConfirmationModal
+                    title="Delete Event"
+                    itemType="event"
+                    itemName={title}
+                    message={`Are you sure you want to delete this event?\n\nAll associated tickets will be permanently removed.`}
+                    isOpen={isDeleteModalOpen}
+                    onClose={() => setIsDeleteModalOpen(false)}
+                    onConfirm={handleDeleteConfirm}
+                    isLoading={isDeleting}
+                />
+            )}
         </div>
     );
 };
 
-export default ModifyEvent;
+export default EventForm;
