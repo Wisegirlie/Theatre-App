@@ -75,6 +75,24 @@ export const getAllTickets = async () => {
     return data;
   };
 
+//get ticket by ID
+export const getTicketById = async (id) => {
+  const response = await fetch(`${API_URL}/api/ticket/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to fetch ticket');
+  }
+
+  const data = await response.json();
+  return data;
+};
+
   // get tickets count
 export const getTicketsCount = async () => {
   const token = localStorage.getItem('token');

@@ -27,8 +27,7 @@ import EventForm from "./components/admin/EventForm.jsx";
 import ManageEvents from "./components/admin/EventsManage";
 // ---- Tickets ----
 import ManageTickets from "./components/admin/TicketsManage.jsx";
-import ModifyTickets from "./components/admin/TicketsModify.jsx";
-import AddTickets from "./components/admin/TicketsAdd.jsx";
+import TicketForm from "./components/admin/TicketForm.jsx";
 // ---- Users ----
 import ManageUsers from "./components/admin/UsersManage.jsx";
 import ModifyUser from './components/admin/UserModify.jsx'
@@ -69,8 +68,8 @@ function App() {
           <Route path="/modify-User/:id" element={<Layout><VerifyAuthAdmin><ModifyUser /></VerifyAuthAdmin></Layout>} />
           {/* =======  Admin Ticket Module  ======= */}  
           <Route path="/manage-tickets" element={<Layout><VerifyAuthAdmin><ManageTickets /></VerifyAuthAdmin></Layout>}/>
-          <Route path="/modify-ticket/:id" element={<Layout><VerifyAuthAdmin><ModifyTickets /></VerifyAuthAdmin></Layout>}/>
-          <Route path="/add-ticket"  element={<Layout><VerifyAuthAdmin><AddTickets /></VerifyAuthAdmin></Layout>} />     
+          <Route path="/modify-ticket/:id" element={<Layout><VerifyAuthAdmin><TicketForm /></VerifyAuthAdmin></Layout>}/>
+          <Route path="/add-ticket"  element={<Layout><VerifyAuthAdmin><TicketForm /></VerifyAuthAdmin></Layout>} />     
           {/* =======  Admin Profile  ======= */}  
           <Route path="/profile"   element={<Layout><VerifyAuthAdmin><ProfileUser /></VerifyAuthAdmin></Layout>} /> 
         </Routes>

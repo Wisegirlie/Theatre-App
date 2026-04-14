@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTicket, createTicketForUser, deleteTicketById, getAllTickets, getUserEventsAndTickets, ticketCount, updateTicket } from "../controllers/ticket.controller.js";
+import { createTicket, createTicketForUser, deleteTicketById, getAllTickets, getTicketById, getUserEventsAndTickets, ticketCount, updateTicket } from "../controllers/ticket.controller.js";
 import { requireSignIn } from "../middlewares/requireSignIn.js";
 
 
@@ -12,6 +12,7 @@ router.get('/api/ticket/events/tickets/:userId', requireSignIn, getUserEventsAnd
 router.post('/api/ticket', createTicket);
 router.delete('/api/ticket/:id', deleteTicketById);
 router.put('/api/ticket/:id', updateTicket);
+router.get('/api/ticket/:id', getTicketById);
 router.get('/api/ticket', getAllTickets);
 
 
